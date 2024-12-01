@@ -14,8 +14,13 @@ export default defineConfig({
         label: "Notes",
         groups: [
           {
-            query: createNotesQuery({
-	      tree: true,
+	    query: createNotesQuery({
+	      tree: {
+		expanded: false,
+		replace: {
+      		  "^/Images/": "",
+   		},
+	      },	
 	    }), 
 	  },
         ],
