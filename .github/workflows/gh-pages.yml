@@ -17,7 +17,7 @@ concurrency:
 
 # Needed to deploy to GitHub pages subdomain. (E.g. `your-username.github.io/eleventy-notes/`)
 env:
-  ELEVENTY_NOTES_PATH_PREFIX: "Second-brain"
+  ELEVENTY_NOTES_PATH_PREFIX: "SecondBrain"
 
 jobs:
   setup:
