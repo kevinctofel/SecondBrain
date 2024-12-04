@@ -1,5 +1,6 @@
 # 🧠 My second brain
 
+
 > [!info]- Tip
 > My second brain data is organized by folder categories in the sidebar. My daily writings are found in the Journal folder there too.
 
@@ -27,5 +28,3 @@ This may change in the future, but for now, here's how this site is designed on 
 - All content is written in [Markdown format](https://en.wikipedia.org/wiki/Markdown), which is simpler than HTML. I use the Vim text editor in Linux and/or Obsidian to create or edit content.
 - All content is stored in a Github repository.
 - When I commit new content to the repository, static HTML files are produced by [11ty](https://www.11ty.dev/), which are then published to the web within seconds.
-
-_Tip: My second brain data is organized by folder categories in the sidebar. My daily writings are found in the Journal folder there too._
