@@ -8,6 +8,13 @@ export default defineConfig({
   theme: {
     color: "blue",
   },
+  wikilinks: {
+    // What label to use for wikilinks without a label
+    // - "ref"       Use the reference
+    // - "title"     Use the title of the note (fallback fileSlug)
+    // - "fileSlug"  Use the file slug
+    autoLabel: "title",
+    },
   sidebar: {
     sections: [
       {
