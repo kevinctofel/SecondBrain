@@ -1,5 +1,9 @@
 # 🧠 My second brain
 
+> [!info]- Tip
+> My second brain data is organized by folder categories in the sidebar. My daily writings are found in the Journal folder there too.
+
+
 ## Who am I?
 
 I'm Kevin C. Tofel, a 55 year old student of life and technology. I've previously worked at Gigaom, ZDNet, and Google. I've also sold two startup technology blogs.
