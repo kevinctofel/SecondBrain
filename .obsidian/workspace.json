@@ -11,14 +11,12 @@
             "id": "80b74fa01a034eea",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "index.md.md",
-                "mode": "source",
-                "source": false
+                "file": "Images/Wallabag.jpg"
               },
-              "icon": "lucide-file",
-              "title": "index.md"
+              "icon": "lucide-image",
+              "title": "Wallabag"
             }
           }
         ]
