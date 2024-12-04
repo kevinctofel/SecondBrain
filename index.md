@@ -2,7 +2,7 @@
 
 ## Who am I?
 
-I'm Kevin C. Tofel, a 55 year old student of life and software engineering. I've previously worked at Gigaom, ZDNet, and Google. I've also sold two startup technology blogs.
+I'm Kevin C. Tofel, a 55 year old student of life and technology. I've previously worked at Gigaom, ZDNet, and Google. I've also sold two startup technology blogs.
 
 ## What is this?
 
@@ -14,7 +14,7 @@ I tend to be online, consuming interesting content. Like a *lot* of content. So 
 
 ## Why does this exist?
 
-I was a professional blogger for nearly 20 years, leaving that role in early 2024. As the year progressed, I found that I missed writing and sharing interesting content. This site lets me continue doing that while also boosting my future productivity by housing important information I may later refer to.
+I was a professional blogger for nearly 20 years, leaving that role in early 2024. I recently relaized I missed writing and sharing interesting content. This site lets me continue doing that while also boosting my future productivity by housing important information I may later refer to.
 
 ## How do I update this site?
 
@@ -23,3 +23,5 @@ This may change in the future, but for now, here's how this site is designed on 
 - All content is written in [Markdown format](https://en.wikipedia.org/wiki/Markdown), which is simpler than HTML. I use the Vim text editor in Linux and/or Obsidian to create or edit content.
 - All content is stored in a Github repository.
 - When I commit new content to the repository, static HTML files are produced by [11ty](https://www.11ty.dev/), which are then published to the web within seconds.
+
+_Tip: My second brain data is organized by folder categories in the sidebar. My daily writings are found in the Journal folder there too._
