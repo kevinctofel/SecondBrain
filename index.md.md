@@ -1,4 +1,4 @@
-### 🧠 My second brain
+# 🧠 My second brain
 
 ## Who am I?
 
