@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "🧠 Kevin C. Tofel's second brain.md",
+                "file": "🧠 My second brain.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "🧠 Kevin C. Tofel's second brain"
+              "title": "🧠 My second brain"
             }
           }
         ]
@@ -176,6 +176,8 @@
   "active": "7ee7826aa4e8c5cc",
   "lastOpenFiles": [
     "Journal/2024/December/12-03-2024.md",
+    "🧠 Kevin C. Tofel's second brain.md",
+    "🧠 My second brain.md",
     "Images/Obsidian_git.png",
     "Software/Wallabag.md",
     "Software/Immich.md",
