@@ -1,7 +1,8 @@
+### 🧠 My second brain
 
 ## Who am I?
 
-I'm a 55 year old student of life and software engineering. I've previously worked at Gigaom, ZDNet, and Google. I've also sold two startup technology blogs.
+I'm Kevin C. Tofel, a 55 year old student of life and software engineering. I've previously worked at Gigaom, ZDNet, and Google. I've also sold two startup technology blogs.
 
 ## What is this?
 
