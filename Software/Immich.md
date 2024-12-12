@@ -4,7 +4,7 @@ A self hosted, private alternative to Google Drive.
 
 ### Installation on UNRAID
 
-Standard install uses 3 Docker containers but there's a simpler method that uses just two.
+Standard install uses 3 Docker containers but there's [a simpler method that uses just two](https://youtu.be/LtNWxxM5Mzg?si=rm2u5wLFvhs9ni2Q).
 
 ### Public sharing of photos or albums
 
