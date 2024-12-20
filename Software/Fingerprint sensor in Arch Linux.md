@@ -27,7 +27,9 @@ For initial support, I installed the _fprintd_ package. I then enrolled my finge
 fprintd-enroll
 ```
 
---- To add fingerprint support for login, the following was added to the /etc/pam.d/sddm file:
+---
+
+ To add fingerprint support for login, the following was added to the /etc/pam.d/sddm file:
 
 ``` bash
 auth 			[success=1 new_authtok_reqd=1 default=ignore]  	pam_unix.so try_first_pass likeauth nullok
