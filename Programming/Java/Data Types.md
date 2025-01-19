@@ -24,3 +24,7 @@
 | boolean | Only two values: true and false |
 
 ---
+
+## Numerical Precision
+
+A float value has a precision of about 9 significant digits, and a double value has a precision of about 17 significant digits. It is generally best to assume that the last digit of any float or double value is rounded and may not be exact.
