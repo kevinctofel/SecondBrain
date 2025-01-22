@@ -28,3 +28,7 @@
 ## Numerical Precision
 
 A float value has a precision of about 9 significant digits, and a double value has a precision of about 17 significant digits. It is generally best to assume that the last digit of any float or double value is rounded and may not be exact.
+
+## Floating point literals
+
+A floating-point literal using scientific notation is written using an e preceding the power-of-10 exponent, as in 6.02e23 to represent 6.02 x 1023. The e stands for exponent. Likewise, 0.001 is 1 x 10-3 and can be written as 1.0e-3. For a floating-point literal, good practice is to make the leading digit non-zero.
