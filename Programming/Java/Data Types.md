@@ -43,3 +43,6 @@ public class ThreeRandomValues {
       System.out.println(randGen.nextInt());
       System.out.println(randGen.nextInt());
 ```
+The statement import java.util.Random; enables use of the Random class. The statement Random randGen = new Random(); creates a new random number generator object named randGen. The method call randGen.nextInt() can then be used to get a random integer ranging from to .
+
+A programmer can specify the seed when the Random object is created, as in Random randGen = new Random(5); or using the setSeed() method, as in randGen.setSeed(5); With a specific seed, each program run will yield the same sequence of pseudo-random numbers. 
