@@ -8,8 +8,6 @@
 
 **String** - Represents textual information as a sequence of encoded characters. Examples: "Hello!", "This is a String.".
 
----
-
 ## Java Primitive Data Types
 
 | Type | Description |
@@ -23,8 +21,6 @@
 | char | Any single character |
 | boolean | Only two values: true and false |
 
----
-
 ## Numerical Precision
 
 A float value has a precision of about 9 significant digits, and a double value has a precision of about 17 significant digits. It is generally best to assume that the last digit of any float or double value is rounded and may not be exact.
@@ -32,3 +28,18 @@ A float value has a precision of about 9 significant digits, and a double value 
 ## Floating point literals
 
 A floating-point literal using scientific notation is written using an e preceding the power-of-10 exponent, as in 6.02e23 to represent 6.02 x 1023. The e stands for exponent. Likewise, 0.001 is 1 x 10-3 and can be written as 1.0e-3. For a floating-point literal, good practice is to make the leading digit non-zero.
+
+## Generating a random number 
+
+The Random class provides methods that return a random integer in the range to or a programmer-defined range. 
+```java
+import java.util.Random;
+
+public class ThreeRandomValues {
+   public static void main(String[] args) {
+      Random randGen = new Random();  // New random number generator
+
+      System.out.println(randGen.nextInt());
+      System.out.println(randGen.nextInt());
+      System.out.println(randGen.nextInt());
+```
