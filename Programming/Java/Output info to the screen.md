@@ -50,3 +50,10 @@ System.out.printf("%.2f", myFloat);
 | --- | --- | --- |
 | width | Specifies the minimum number of characters to print. If the formatted value has more characters than the width, the value will not be truncated. If the formatted value has fewer characters than the width, the output will be padded with spaces (or 0's if the '0' flag is specified). | printf("Value: %7d", myInt);  Value:     301 |
 | flags |	-: Left aligns the output given the specified width, padding the output with spaces.  +: Print a preceding + sign for positive values. Negative numbers are always printed with the - sign. 0: Pads the output with 0's when the formatted value has fewer characters than the width. space: Prints a preceding space for positive value. |	printf("%+d", myInt);   +301 printf("%08d", myInt);   00000301  printf("%+08d", myInt);  +0000301 |
+
+##  String formatting
+| Sub-specifier |	Description |	Example |
+| --- | --- | --- |
+| width |	Specifies the minimum number of characters to print. If the string has more characters than the width, the value will not be truncated. If the formatted value has fewer characters than the width, the output will be padded with spaces. | printf("%20s String", myString); Formatting String |
+| .precision |	Specifies the maximum number of characters to print. If the string has more characters than the precision, the string will be truncated. | 	printf("%.6s", myString);  Format |
+| flags |	-: Left aligns the output given the specified width, padding the output with spaces. |	printf("%-20s String", myString);  Formatting           String |
