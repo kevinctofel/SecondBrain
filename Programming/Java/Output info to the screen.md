@@ -34,7 +34,11 @@ System.out.printf("%.2f", myFloat);
 | %% | | Prints the "%" character. |
 | %n | | Prints the platform-specific new-line character. |
 
-## Floating-point formatting.
+## Floating-point formatting
+
+```java
+%(flags)(width)(.precision)specifier
+```
 | Sub-specifier |	Description |	Example |
 | --- | --- | --- |
 | width |	Specifies the minimum number of characters to print. If the formatted value has more characters than the width, the value will not be truncated. If the formatted value has fewer characters than the width, the output will be padded with spaces (or 0's if the '0' flag is specified). |	printf("Value: %7.2f", myFloat); Value:   12.34 |
