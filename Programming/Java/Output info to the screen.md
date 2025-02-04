@@ -57,3 +57,6 @@ System.out.printf("%.2f", myFloat);
 | width |	Specifies the minimum number of characters to print. If the string has more characters than the width, the value will not be truncated. If the formatted value has fewer characters than the width, the output will be padded with spaces. | printf("%20s String", myString); Formatting String |
 | .precision |	Specifies the maximum number of characters to print. If the string has more characters than the precision, the string will be truncated. | 	printf("%.6s", myString);  Format |
 | flags |	-: Left aligns the output given the specified width, padding the output with spaces. |	printf("%-20s String", myString);  Formatting           String |
+
+## Flushing output
+The PrintStream method flush() flushes the stream's buffer contents. Ex: The statement System.out.flush(); writes the contents of the buffer for System.out to the computer screen. Most Java implementations make System.out flush when a newline character is output or println() method is called. 
