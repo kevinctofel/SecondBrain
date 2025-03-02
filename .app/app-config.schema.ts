@@ -140,7 +140,7 @@ export interface AppConfig {
 
       /**
        * The icon of the link.
-       * See https://feathericons.com/ for a list of icons.
+       * See https://lucide.dev/icons/ for a list of icons.
        */
       icon: string;
 
@@ -223,6 +223,20 @@ export interface AppConfig {
      * @default true
      */
     externalLinks?: boolean;
+  };
+
+  /**
+   * The configuration for the page navigation.
+   */
+  pageNav?: {
+    /**
+     * Controls the display of page navigation.
+     * - "on": Display page navigation based on sidebar and frontmatter configuration.
+     * - "manual": Display page navigation based on frontmatter configuration only.
+     * - "off": Do not display page navigation.
+     * @default "on"
+     */
+    mode?: "on" | "off" | "manual";
   };
 
   /**
