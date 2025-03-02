@@ -5,9 +5,9 @@
     class="toggle-btn"
     :aria-pressed="$store.bookmarks.is('{{ id }}')"
     @click="$store.bookmarks.toggle('{{ id }}')"
-    lang="{% uiLang %}"
+    lang="en"
   >
-    {{ 'bookmark' | icon | safe }}
-    <span>{{ 'bookmark_toggle.label' | t }}</span>
+    {{ 'bookmark' | feather | safe }}
+    <span>Bookmark</span>
   </button>
 {% endmacro %}

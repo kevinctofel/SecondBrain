@@ -78,10 +78,6 @@ function applyDefaults(custom) {
       externalLinks: true,
       ...custom.panel,
     },
-    pageNav: {
-      mode: "on",
-      ...custom.pageNav,
-    },
     wikilinks: {
       autoLabel: "ref",
       anchorLabel: "none",
