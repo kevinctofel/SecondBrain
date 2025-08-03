@@ -3,8 +3,11 @@
 templateEngineOverride: njk, md
 ---
 
-# Articles
+# 🧠 My second brain
 
+
+> [!info]- Tip
+> My second brain data is organized by folder categories in the sidebar. My daily writings are found in the Journal folder there. Long articles are on this page.
 
 
 <ul>
