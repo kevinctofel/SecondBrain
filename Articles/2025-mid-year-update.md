@@ -2,6 +2,7 @@
 title: 2025 mid-year update
 description: It's been six months without a blog post and boy, have there been some ch- ch- changes in my life!
 date: 2025-07-01
+tags: article
 ---
 
 I really can't believe I haven't blogged in roughly six months. Then again, **I** know what I've been dealing with so maybe I shouldn't be surprised. It's been a lot. Many, many changes. I think they're for the better but time will tell.

@@ -25,4 +25,7 @@ export default function (eleventyConfig) {
   assetsModule.setup(eleventyConfig);
 
   core.setup(eleventyConfig);
+  eleventyConfig.addCollection("articles", function(collection) {
+        return collection.getFilteredByGlob("Articles/*.md");
+    });
 }
