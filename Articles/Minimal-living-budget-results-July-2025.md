@@ -75,11 +75,11 @@ I'd say I learned that I don't need much to be happy but I already knew that. Ju
 
 I ate well, and ate enough. I got out for some drinks and pub food a few times. I have all of the services I need -- internet, streaming, etc... -- to keep me entertained.
 
-In short, I'm continuing to enjoy my mininmalistic lifestyle. Moreso perhaps because it's just me, meaning Amazon isn't coming to the house multiple times a week like it used to.
+In short, I'm continuing to enjoy my minimalistic lifestyle. Moreso perhaps because it's just me, meaning Amazon isn't coming to the house multiple times a week like it used to. 
 
 # One last expense not captured
 
-I actually lost about $1,000 more from my cash flow last month. 
+I actually lost about $1,200 more from my cash flow last month. 
 
 After several weeks of deep thought, I made the intentional decision to buy a used Fujifilm X-S10 camera and two lenses. This was around $1,200 of unplanned, unbudgeted spending. There won't be much of that going forward but it's worth noting.
 
