@@ -23,7 +23,7 @@ While the large iPad is great as that casual computer and video consumption, it'
 
 ![iPad Pro in two sizes](../Images/iPadPros.jpg)
 
-The iPad mini is a good candidate for my "tablet mode" but it's not great for the "casual computer" use. The larger iPad Pro is great for the latter, but pushes beyong the limits for the former. Hence: I'm trying to meet those two use cases in the middle with the 11-inch iPad Pro.
+The iPad mini is a good candidate for my "tablet mode" but it's not great for the "casual computer" use. The larger iPad Pro is great for the latter, but pushes beyond the limits for the former. Hence: I'm trying to meet those two use cases in the middle with the 11-inch iPad Pro.
 
 In just 24 hours with the new device, I'm confident that tablet mode is a win here. I've used the new slate all around the house and already find it much more portable and "tablet-like" without the keyboard. I can't speak to the casual compute scenario because my local Apple Store didn't have the matching Magic Keyboard for iPad Pro 11 in stock. That arrives in a few days, when I can begin to test it out.
 
