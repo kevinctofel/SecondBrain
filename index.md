@@ -3,7 +3,7 @@
 templateEngineOverride: njk, md
 ---
 
-# 🧠 My second brain
+# Kevin C. Tofel
 
 
 > [!info]- Tip
