@@ -11,7 +11,7 @@ I've been using a 5th generation iPad Pro 12.9 tablet with keyboard for nearly f
 
 So I traded in the big iPad Pro 12.9 with M1 chip and bought the latest iPad Pro with an M4 chip. Not the 13-inch one though. I downsized to the 11-inch iPad Pro.
 
-![iPad Pro box](../Images/IPad_box.JPG)
+![iPad Pro box](../Images/IPad_box.jpg)
 
 Here's my thought process. While I have a capable laptop, I tend to use the big iPad Pro with Magic Keyboard for everyday computer tasks. By that I mean email, calendar management, personal finance applications and general web browsing, to name a few. I'm writing this very post on the large old iPad, for example. So it's a great casual computer for me.
 
