@@ -11,7 +11,7 @@ templateEngineOverride: njk, md
 
 
 <ul>
-{%- for post in collections.article -%}
+{%- for post in collections.article | reverse -%}
   <h3><a href="{{post.url}}">{{ post.data.title }}</a></h3>{{ post.data.description}}
   </br></br>
 {%- endfor -%}
