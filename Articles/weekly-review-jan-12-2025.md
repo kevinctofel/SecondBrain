@@ -21,7 +21,7 @@ Why then downsize to the 11-inch iPad Pro?
 
 While the large iPad is great as that casual computer and video consumption, it's bulky as a tablet. When I don't need a keyboard, I want something smaller that's more comfortable to hold, thrown in a bag, etc...
 
-{% imagePlaceholder "./src/assets/images/blog/IPad_Pros.JPG", "Two sizes of iPad Pro tablets" %}
+iPadPros.jpg
 
 The iPad mini is a good candidate for my "tablet mode" but it's not great for the "casual computer" use. The larger iPad Pro is great for the latter, but pushes beyong the limits for the former. Hence: I'm trying to meet those two use cases in the middle with the 11-inch iPad Pro.
 
@@ -42,6 +42,6 @@ Many of you have offered support for us as our granddaughter Melani was born at 
 Melani is still in the NIC unit where she'll likely stay for another 3-5 weeks. However, she's doing great, as are her parents.
 She told me to tell you all that she says "Hi!"
 
-{% imagePlaceholder "./src/assets/images/blog/Melani.jpeg", "Baby Melani in the hospital" %}
+Melani.jpeg
 
 ✌🏼
