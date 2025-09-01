@@ -26,7 +26,6 @@ export default defineConfig({
 		expanded: false,
 		replace: {
       		  "^/Images/": "",
-            "^/Articles/": "",
    		},
 	      },	
 	    }), 
