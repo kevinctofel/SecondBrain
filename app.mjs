@@ -2,7 +2,7 @@
 import { defineConfig, createNotesQuery } from "./.app/app-config.js";
 
 export default defineConfig({
-  title: "My Second Brain",
+  title: "Kevin C. Tofel",
   description:
     "Everything important that my brain can't hold.",
   theme: {
@@ -26,6 +26,7 @@ export default defineConfig({
 		expanded: false,
 		replace: {
       		  "^/Images/": "",
+            "^/Articles/": "",
    		},
 	      },	
 	    }), 
