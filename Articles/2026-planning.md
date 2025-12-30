@@ -74,7 +74,7 @@ This is a tricky attribute to improve, but after some thought, I do have some id
 
 - Taking an advanced motorcycle riding class as I've only done a basic one.
 - Revisit my passion for football (aka: soccer) not just by watching it every week but by finding a team or league to play in the warmer months.
-- Plan some unique experiences, such as the local rock climbing gym or the golf simulator across the street from where I live. Perhaps some boxing or matial arts classes could work too.
+- Plan some unique experiences, such as the local rock climbing gym or the golf simulator across the street from where I live. Perhaps some boxing or martial arts classes could work too.
 
 ## Constitution
 
