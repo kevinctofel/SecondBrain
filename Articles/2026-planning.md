@@ -92,7 +92,8 @@ I also neglected some medical tests and routine checkups in 2025, so I already p
 
 Lastly, when I was younger and able to run a marathon in 3:19, this score would have been much higher. These days, I have much less endurance and get sicker a little more often.
 
-To that end, a mid-range 2026 goal is to get my 5K race time to a respectable level. In 2019, I achieved All American status for my age group with a 20:59 5K. That's not going to happen, realistically. However, I think **a 25:00 5K at my age is a good target**.
+To that end, a mid-range 2026 goal is to get my 5K race time to a respectable level. In 2019, I achieved All American status for my age group with a 20:59 5K. That's not going to happen, realistically. However, I think **a 25:00 5K at my age is a good target**. To help with that, I'm going to "splurge" on a $15 monthly Planet Fitness membership: There's a club roughly 3 miles from my apartment and I can use the treadmills there during cold weather (now) and the summertime heat.
+
 ## Intelligence
 
 It may appear difficult to separate Intelligence from Wisdom, and I do see some overlap. However, I do have a clear goal in 2026 specific to intelligence.

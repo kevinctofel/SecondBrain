@@ -5,4 +5,4 @@ date: 2025-12-30
 tags: article
 ---
 
-Text here 
+Coming soon.
