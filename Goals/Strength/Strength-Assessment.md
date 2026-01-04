@@ -12,5 +12,5 @@ The following table shows the results (in pounds) of that and all subsequent tes
 |---|:---:|:---:|
 |Barbell Squat|180|212|
 |Barbell Bench Press|101|115|
-|Seated Barbell Should Press|88|97|
+|Seated Barbell Shoulder Press|88|97|
 |Barbell Bent Over Row|143|146|
