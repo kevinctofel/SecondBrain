@@ -1,9 +1,3 @@
----
-title: Linux distros for certification exam
-date: 01-11-2026
-description: The recommended Linux distros to use for the Linux+ certification exam, along with notes and other thoughts on them.
---- 
-
 All distros share the same basic software architecture including:
 - Linux kernel
 - GNU software utilities
