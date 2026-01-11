@@ -1,6 +1,6 @@
 ### head command
 
-head shows the first 10 lines (by default) of one ore more files.
+head shows the first 10 lines (by default) of one or more files.
 
 ```
 ```
