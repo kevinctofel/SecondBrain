@@ -35,3 +35,6 @@ Examples:
 |443|HTTPS|A secure, encrypted connection to web servers|
 |2049|NFS|Network File System provides file sharing between Unix and Linux systems|
 
+All ports for Linux services are defined in ***/etc/services*** 
+
+![First 30 service ports listed in Arch](!../Images/Linux_services.png)
