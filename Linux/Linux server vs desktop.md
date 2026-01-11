@@ -37,4 +37,4 @@ Examples:
 
 All ports for Linux services are defined in ***/etc/services*** 
 
-![First 30 service ports listed in Arch](!../Images/Linux_services.png)
+![First 30 service ports listed in Arch](../Images/Linux_services.png)
