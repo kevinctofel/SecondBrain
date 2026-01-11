@@ -25,7 +25,7 @@ Examples:
 |22|SSH|Secure Shell protocol for sending encrypted data to a server|
 |23|Telnet|Unsecure protocol to interacting with a server shell|
 |25|SMTP|Simple Mail Transport Protocol|
-|53|DNS|Domain Naming System to match IP addresses to computer names|
+|53|DNS|Domain Na ming System to match IP addresses to computer names|
 |67|DHCP|Dynamic Host Configuration Protocol|Provides valid IP addresses on a network|
 |80|HTTP|Hypertext Transfer Protocol|Allows clients to request web pages from servers|
 |109, 110|POP|Post Office Protocol|
@@ -54,4 +54,13 @@ Main two are:
   * Main configuration file is httpd.conf, typically found at ***/etc/httpd***
   * Additional config files typically found at ***/etc/httpd/conf.d***
   * Default page to serve is ***DocumentRoot*** found at ***/var/www/html***
+
 - nginX  Server
+  * More modern than Apache, released in 2004
+  * Adds native web proxy, mail proxy, web page cache, and load-balancing
+  * Smaller memory footprint than Apache
+  * Can handle 10,000 simultaneous client connections 
+  * Main configuration file is ***nginx.conf*** typically found at ***/etc/nginx/***
+  * Additional config files typically found at ***/etc/nginx/conf.d***
+  * ***DocumentRoot*** is the default folder for web pages & apps, found at ***/var/www/nginx-default***
+
