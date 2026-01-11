@@ -38,3 +38,20 @@ Examples:
 All ports for Linux services are defined in ***/etc/services*** 
 
 ![First 30 service ports listed in Arch](../Images/Linux_services.png)
+
+## Basic Linux services
+
+Most popular Linux services:
+- Web services
+- Database services
+- Email services
+
+## Web servers
+
+Main two are:
+- Apache Server
+  * Modular: every feature is a plug-in Modular
+  * Main configuration file is httpd.conf, typically found at ***/etc/httpd***
+  * Additional config files typically found at ***/etc/httpd/conf.d***
+  * Default page to serve is ***DocumentRoot*** found at ***/var/www/html***
+- nginX  Server
