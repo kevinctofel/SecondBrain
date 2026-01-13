@@ -64,3 +64,67 @@ Main two are:
   * Additional config files typically found at ***/etc/nginx/conf.d***
   * ***DocumentRoot*** is the default folder for web pages & apps, found at ***/var/www/nginx-default***
 
+- lighthttpd Package
+  * Lightweight alternative that uses little memory and computer
+  * Has an included database
+
+## Database servers
+  
+  Main options:
+  - PostgreSQL
+    * Started as a university project and went open source in 1996.
+    * Follows standard ACID (atomicity, consistency, isolation and durability) industry guidelines
+  - mySQL
+    * Started as a simple, fast database
+    * Commonly used in the LAMP platform: Linux, Apache, MySQL, PHP)
+    * Owned by Oracle; open source replica is MariaDB
+  - MongoDB
+    * A NoSQL system
+    * Stores data as documents with JSON elements
+
+## Mail servers
+
+Most Linux distros come with some type of email server package, which are made up of small programs:
+  - MTA, or Mail Transfer Agent
+  - MDA, or Mail Delivery System
+  - MUA, or Mail User Agent (these typically run on the client side)
+    * Evolution
+    * K-Mail
+
+### Mail Transfer Agent 
+  - Handles both incoming and outgoing messages on the server
+  - Determines the destination host of the recipient addresses
+  - If host is a remote mail server, MTA connects with that mail server to communicate
+  - Main MTA packages:
+    * sendmail
+      - Very complex to configure
+      - Default config file is at ***/etc/mail/sendmail.cf*** 
+      - Recommended not to use that file but instead make changes at ***/etc/mail/sendmail.mc*** 
+    * Postfix
+      - A more modular application
+      - Two small config files
+      - Most config files found the ***/etc/postfix*** folder. ***main.cf*** defines basic parameters, ***master.cf* file defines how the daemons run
+    * Exim
+      - Monolithic like sendmail
+      - Config files found at ***/etc/exim.cf***
+
+### Mail Delivery Agent
+  - Receives messages for local users from the MTA and determines how to deliver them
+  - Two common MDA packages:
+    * Binmail
+      - Most used
+      - Location is the name: ***/bin/mail***
+      - By default can read messages stored in ***/var/spool/mail/***
+      - Can be pointed to an alternative mailbox
+    * Procmail
+      - Many distros install it by default
+      - Takes advantage of user-configured recipies allowing user to direct how server processes incoming mail
+      - User can create a personal ***.procmailrc*** file in the ***$HOME*** directory to direct messages based on regular expressions to control where messages are sent, i.e.: separate mailbox files, forwarded to another mailbox or to ***/dev/null*** to automatically trash messages.
+
+### Mail User Agent
+  
+  Most remote mail Linux clients use IMAP4 to communicate with a mail server.
+  Dovecot is a popular IMAP4 server package.
+    - Main configuration files are found at ***/etc/dovecot/dovecot.conf***
+    - Additional config is found in the ***/etc/dovecot/conf.d*** folder
+
