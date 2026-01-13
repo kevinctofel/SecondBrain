@@ -103,7 +103,7 @@ Most Linux distros come with some type of email server package, which are made u
     * Postfix
       - A more modular application
       - Two small config files
-      - Most config files found the ***/etc/postfix*** folder. ***main.cf*** defines basic parameters, ***master.cf* file defines how the daemons run
+      - Most config files found the ***/etc/postfix*** folder. ***main.cf*** defines basic parameters, ***master.cf*** file defines how the daemons run
     * Exim
       - Monolithic like sendmail
       - Config files found at ***/etc/exim.cf***
