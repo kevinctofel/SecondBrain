@@ -128,3 +128,26 @@ Most Linux distros come with some type of email server package, which are made u
     - Main configuration files are found at ***/etc/dovecot/dovecot.conf***
     - Additional config is found in the ***/etc/dovecot/conf.d*** folder
 
+## File Servers
+  Linux typically supports NFS (Network File System) or SMB (Samba) to serve and access shared files.
+  Note: ***gvfs-nfs*** is a lighter, more temporary method and runs in userspace so it's not as quick or persistent as NFS which runs at the kernel level.
+
+  - The NFS protocol uses the ***nfs-utils*** package.
+  - SMB uses the ***samba*** package on the server and a few additional supporting packages for clients.
+
+## Print Servers
+  CUPS, or Common Unix Printing System is the standard Linux print sharing package. It uses the IPP (Internet Printing Protocol). Samba also supports printer sharing on Microsoft networks.
+
+## Network Resource Servers
+
+### IP addresses
+- ***DHCP*** or Dynamic Host Configuration Protocol assigns unique IP addresses for every device on the network that requests one. A central DHCP server maintains this data to ensure there are no IP address conflicts.
+  - ***DHCPd*** is the most popular DHCP server package. Clients need a DHCP package to request IP addresses:
+    - ***dhclient*** Most Debian and RedHat distros use this
+    - ***dhcpcd***
+    - ***pump***
+
+  - Configuration of DHCP on the client is typically found at ***/etc/dhcp/dhcp.conf*** although on my personal system it's found at ***/etc/dhcpcd.conf***
+
+
+
