@@ -110,6 +110,17 @@ Example: a <= b holds true if a is less than or equal to b.
 
 ### Floating Point Accuracy
 
-Since Python stores numbers as binary values, high precision can lead to small approxmiations. As a result, using numeric operators can return unxpected values. 
+Since Python stores numbers as representations of binary values, high precision can lead to small approxmiations. As a result, using numeric operators can return unxpected values. 
 
-Mitigation techniques include using [Python's Decimal module](https://docs.python.org/3/library/decimal.html) or rounding techniques.
+Example: 
+0.1 + 0.2 != 0.3
+It actually equals 0.3 with several zeros and a trailing number.
+
+Mitigation techniques include using [Python's Decimal module](https://docs.python.org/3/library/decimal.html) or rounding techniques. Using the Decimal module with a custom level of precision.
+
+Example: 
+from decimal import Decimal
+Decimal('0.1') + Decimal('0.2') = 0.3
+OR
+getcontext().prec = 1
+Decimal(0.1) + Decimal(0.2) = 0.3
