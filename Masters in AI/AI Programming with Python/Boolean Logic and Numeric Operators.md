@@ -50,3 +50,31 @@ print(can_enter)  # Output: True
 ```
 
 Useful for checking multiple conditions.
+
+### Relaional Operators
+
+Compare values and return True or False
+
+Equal to (==)
+- Checks if two values are the same.
+Example: a == b returns true if both hold similar values.
+Do not confuse this with the assignment (=) operator. = is used to assign a value. == is used to check for equality.
+- Not Equal to (!=)
+Verifies if two values differ.
+Example: a != b is true if a and b are distinct.
+- Greater Than (>)
+Determines if the value on the left is larger.
+Example: a > b indicates true if a exceeds b.
+- Greater Than or Equal to (>=)
+Checks if the left side value is not less.
+Example: a >= b is true if a is greater or equal to b.
+- Less Than (<)
+Evaluates if the left value is smaller.
+Example: a < b gives true if a is less than b.
+- Less Than or Equal to (<=)
+Confirms if the left-side value is not greater.
+Example: a <= b holds true if a is less than or equal to b.
+
+### Floating Point Accuracy
+
+
