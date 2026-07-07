@@ -54,3 +54,13 @@ Indentation levels much match to represent code blocks. _else_ statements must m
 | while	| Starts a while loop | while x > 0: |
 | with | Simplifies resource management (e.g., file handling) |	with open('file.txt') as f: |
 | yield |	Pauses and returns a value from a generator | yield x |
+
+### Adding comments
+
+Preface each comment line with a pound sign (#) for comments, which the Python interpreter will ignore when running the program.
+
+For a block comment, use three single or double quotes above and below the comment block.
+
+#### Best practices
+ - Use comments to explain conditions like "if" and "else" statements.
+ - Employ docstrings (""" """) directly after function definitions for describing purpose, arguments, and returns.
