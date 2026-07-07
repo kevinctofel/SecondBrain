@@ -1,3 +1,37 @@
+---
+course: AI Programming with Python
+lesson: Fundamentals
+module: Python Basics
+date: 2026-07-07
+
+study_time: 3h
+difficulty: 1
+confidence: 5
+review_due: 2026-07-14
+
+status: complete
+
+concepts:
+  - variables
+  - literals
+  - operators
+  - comments
+  - docstrings
+
+skills:
+  - Python
+  - Documentation
+
+projects: []
+
+questions:
+  - Why are bitwise operators still commonly used?
+
+tags:
+  - python
+  - ai-programming
+---
+
 ## Fundamentals
 
 Python Lexis: Vocabulary or Keyword Identifiers. Approximately 30. This is effectively the Python language dictionary.
