@@ -65,7 +65,7 @@ For a block comment, use three single or double quotes above and below the comme
  - Use comments to explain conditions like "if" and "else" statements.
  - Employ docstrings (""" """) directly after function definitions for describing purpose, arguments, and returns.
 Example:
-```Python
+```
 def divide_numbers(dividend: float, divisor: float) -> float:
     """Divide two numbers and return the result.
 
