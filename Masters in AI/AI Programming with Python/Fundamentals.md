@@ -64,3 +64,28 @@ For a block comment, use three single or double quotes above and below the comme
 #### Best practices
  - Use comments to explain conditions like "if" and "else" statements.
  - Employ docstrings (""" """) directly after function definitions for describing purpose, arguments, and returns.
+Example:
+```Python
+def divide_numbers(dividend: float, divisor: float) -> float:
+    """Divide two numbers and return the result.
+
+    This function performs floating-point division. It validates
+    the input to prevent standard division-by-zero crashes.
+
+    Args:
+        dividend (float): The number to be divided.
+        divisor (float): The number to divide by.
+
+    Returns:
+        float: The quotient of the division.
+
+    Raises:
+        ValueError: If the divisor is zero.
+    """
+    if divisor == 0:
+        raise ValueError("The divisor cannot be zero.")
+    return dividend / divisor
+```
+
+## Literals and Variables
+
