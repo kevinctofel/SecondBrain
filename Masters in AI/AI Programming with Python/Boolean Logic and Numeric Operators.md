@@ -1,3 +1,36 @@
+---
+course: AI Programming with Python
+lesson: Fundamentals
+module: Boolean Logic and Operators
+date: 2026-07-07
+
+study_time: 1h
+difficulty: 2
+confidence: 4
+review_due: 2026-07-14
+
+status: complete
+
+concepts:
+  - Boolean values
+  - Boolean expressions
+  - Nested Boolean expressions
+  - Boolean operator precedence
+
+skills:
+  - Python
+  - Boolean logic
+
+projects: []
+
+questions:
+  - Is it generally a good idea to always use parentheses with Boolean expressions when there are 3 more conditions?
+
+tags:
+  - python
+  - ai-programming
+---
+
 ## Boolean Logic and Numeric Operators
 
 Primary operators are Not, And and Or.
