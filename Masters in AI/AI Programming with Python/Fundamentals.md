@@ -89,3 +89,34 @@ def divide_numbers(dividend: float, divisor: float) -> float:
 
 ## Literals and Variables
 
+### Basic Python data types:
+
+- Literals use directly fixed values that typically never change
+- Booleans are either True or False values
+- Integers and floats are numeric data types of either whole numbers or decimal numbers respectively. Python will default to integers when no decimal point is present. If there is one, Python defaults the data type to a floating point number.
+- Strings are text sequences in quotes
+- Scientific notation is to represent very large or small numbers. _e_ is used to represent the power of 10. Example: 1e6 for 1,000,000
+
+### Numbers with Various Bases:
+
+Binary (Base 2): Uses digits 0 and 1, prefixed with 0b, e.g., 0b1010 for 10.
+Octal (Base 8): Uses digits 0-7, prefixed with 0o, e.g., 0o12 for 10.
+Decimal (Base 10): Standard number system used daily, e.g., 10 stays 10.
+Hexadecimal (Base 16): Utilizes digits 0-9 and letters A-F, prefixed by 0x, e.g., 0xA for 10.
+
+### Python Variables:
+
+Definition:
+- Variables act as containers for data.
+- Created using an equal sign, e.g., x = 100.
+
+Properties:
+- Can be created, updated, deleted, and recreated.
+- Offer the flexibility needed to manage dynamic changes.
+
+Naming Conventions:
+- Use "snake_case" separating words by underscores (e.g., user_name).
+- Avoid spaces and special characters in variable names.
+
+
+
