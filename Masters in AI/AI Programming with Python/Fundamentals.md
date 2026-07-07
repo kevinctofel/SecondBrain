@@ -141,3 +141,26 @@ Example: 10 + 3 equals 13.
 Subtracts one number from another.
 Example: 10 - 3 equals 7.
 
+### Assignments and Shortcut Operators
+
+- Basic Assignment: Assigns a value to a variable (e.g., X = 10).
+- Addition Assignment (+=): Adds and reassigns (e.g., X += 5 makes X from 10 to 15).
+- Subtraction Assignment (-=): Subtracts and reassigns (e.g., X -= 3 makes X from 15 to 12).
+- Multiplication Assignment (*=): Multiplies and reassigns (e.g., X *= 2 changes X from 12 to 24).
+- Exponentiation Assignment (=**): Raises to a power and reassigns (e.g., X** = 2 turns X from 3 into 9).
+- Division Assignment (/=): Divides and reassigns (e.g., X /= 4 makes X from 24 to 6.0).
+- Floor Division Assignment (//=): Floors division and reassigns (e.g., X //= 3 changes X from 10 to 3).
+- Modulus Assignment (%=): Modulus result reassigned (e.g.,X=6 then X %= 5 leaves X as 1).
+
+### Unary and Binary Operators
+
+Unary: This can be used to change a positive number to a negative number. Add a negative sign in front of a variable to make it a negative value.  
+
+Binary Operator (Addition): Performs arithmetic and logical operations, like combining numbers.
+Used for calculating totals, such as in a shopping cart.
+
+Example: Adding prices of items:
+- Item 1: $30
+- Item 2: $20
+- Total using binary + operator is $50.
+
