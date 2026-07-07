@@ -118,5 +118,26 @@ Naming Conventions:
 - Use "snake_case" separating words by underscores (e.g., user_name).
 - Avoid spaces and special characters in variable names.
 
+### Numeric operators
 
+- Exponentiation ( ** ) : Raises a number to the power of another.
+Example: 10**3 results in 1,000.
+- Multiplication (*):
+Multiplies two numbers.
+Example: 10 * 3 equals 30.
+- Division (/):
+Divides one number by another, resulting in a float.
+Example: 10 / 3 yields approximately 3.333.
+- Modulus (%):
+Finds the remainder of a division.
+Example: 10 % 3 returns 1 (since 9 is the closest divisible number).
+- Floor Division (//):
+Divides one number by another, returning the largest whole number.
+Example: 10 // 3 equals 3 (ignores remainder).
+- Addition (+):
+Adds two numbers together.
+Example: 10 + 3 equals 13.
+- Subtraction (-):
+Subtracts one number from another.
+Example: 10 - 3 equals 7.
 
