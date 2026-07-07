@@ -164,3 +164,44 @@ Example: Adding prices of items:
 - Item 2: $20
 - Total using binary + operator is $50.
 
+### Operator precedence
+
+- Parentheses (PE): Always perform tasks inside parentheses first.
+- Exponents (E): Follow up with exponents or powers.
+- Multiplication and Division (MD): Proceed with these from left to right.
+- Addition and Subtraction (AS): Conclude with these operations, also from left to right.
+
+### Bitwise operators
+
+These manipulate data at the binary bit level and can help optimize embedded systems or systems with limited memory.
+
+- Purpose: Used predominantly in low-level programming tasks. They are vital for manipulating bits to control the behavior of various software features and are crucial in resource-constrained environments like embedded systems.
+
+- Common Uses: Managing feature flags: Toggle functionalities in applications by setting bit values.
+Optimizing performance: For tasks requiring efficient data storage and manipulation.
+
+- Key Operations:
+OR (|): Activates bits by evaluating where any operand is 1. Example: Turning on specific feature bits.
+AND (&), XOR (^): Other operators for different bit-level manipulations.
+
+- Coding Example:
+Example of using OR to activate features: If the initial binary setting is 0b0000 (all features off), applying OR with 0b0101 results in 0b101 (features one and three activated) while removing the leading zeros.
+
+#### Bitwise operators in Python
+
+- Not (~): Inverts all bits. Converts positive to negative by flipping each bit (e.g., 0101 becomes 1010, yielding -6 due to two's complement).
+
+- And (&): Results in 1 only if both bits are 1. For 0101 and 0011, the outcome is 0001.
+
+- Or (|): Produces 1 if at least one bit is 1. Given 0101 or 0011, results in 0111.
+
+- Xor (^): Returns 1 if bits differ. 0101 and 0011 become 0110.
+
+- Left Shift (<<): Moves bits left, filling with zeros. Shifting 0101 one place results in 1010 (decimal 10).
+
+- Right Shift (>>): Shifts bits right, reducing size. Moving 0101 right delivers 0010 (decimal 2).
+
+### String Operators
+
+Using a plus sign (+) concatenates two strings
+An asterisk (*) repeats a string the number of times you "multiply" the string by.
