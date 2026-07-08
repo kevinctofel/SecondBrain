@@ -2,11 +2,11 @@
 course: AI Programming with Python
 lesson: Fundamentals
 module: Boolean Logic and Operators
-date: 2026-07-07
+date: 2026-07-08
 
-study_time: 1h
+study_time: 2h
 difficulty: 2
-confidence: 4
+confidence: 4.5
 review_due: 2026-07-14
 
 status: complete
@@ -16,10 +16,14 @@ concepts:
   - Boolean expressions
   - Nested Boolean expressions
   - Boolean operator precedence
+  - Relational operators
+  - Converting data types
 
 skills:
   - Python
   - Boolean logic
+  - Typecasting
+  - Pythonic math
 
 projects: []
 
@@ -29,6 +33,8 @@ questions:
 tags:
   - python
   - ai-programming
+  - booleans
+  - data types
 ---
 
 ## Boolean Logic and Numeric Operators
@@ -141,7 +147,7 @@ Example:
 
 Python's _input()_ function accepts user input, while the _print()_ function displays output in the terminal.
 
-### Customizing the print function with Parameters
+### Customizing the print function with optional parameters
 
 - sep: Defines the separator between multiple arguments.
 - end: Determines what is printed at the end of the output.
@@ -156,4 +162,14 @@ The default value of sep is an empty whitespace.
 The default value of end is a new line \n .
 
 ### int() and float() functions
+
+Use the int() function to convert input into integers.
+Use the float() function to convert input into floating-point numbers.
+
+Example:
+```python
+age = int(input('Enter your age: '))
+height = float(input('Enter your height: '))
+print(f'You are {age} years old and {height} meters tall.')
+```
 
