@@ -52,6 +52,14 @@ Using these operators, you can, for example:
 
 Precedent order for Boolean functions is: Not, And, Or.
 
+Common examples of Boolean values:
+bool(0)        # False
+bool(1)        # True
+bool("")       # False
+bool("0")      # True
+bool([])       # False
+bool([0])      # True
+
 ### Boolean expressions
 
 Example:
@@ -90,7 +98,7 @@ print(can_enter)  # Output: True
 
 Useful for checking multiple conditions.
 
-### Relaional Operators
+### Relational Operators
 
 Compare values and return True or False
 
@@ -116,7 +124,7 @@ Example: a <= b holds true if a is less than or equal to b.
 
 ### Floating Point Accuracy
 
-Since Python stores numbers as representations of binary values, high precision can lead to small approxmiations. As a result, using numeric operators can return unxpected values. 
+Since Python stores numbers as representations of binary values, high precision can lead to small approxmiations. As a result, using numeric operators can return unxpected values. Most decimal fractions (such as 0.1) cannot be represented exactly in binary floating-point, so Python stores the closest representable value.
 
 Example: 
 0.1 + 0.2 != 0.3
@@ -131,7 +139,7 @@ Decimal('0.1') + Decimal('0.2') = 0.3
 ```
 OR
 ```python
-from decimal import Decimal
+from decimal import Decimal, getcontext
 getcontext().prec = 1
 Decimal(0.1) + Decimal(0.2) = 0.3
 ```
