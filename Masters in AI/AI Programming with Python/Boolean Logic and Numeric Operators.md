@@ -139,4 +139,21 @@ Example:
 
 ### Print and Input functions
 
+Python's _input()_ function accepts user input, while the _print()_ function displays output in the terminal.
+
+### Customizing the print function with Parameters
+
+- sep: Defines the separator between multiple arguments.
+- end: Determines what is printed at the end of the output.
+
+Example:
+```python
+print("Hello", "World", sep=", ", end="!")
+# Expected output: Hello, World!
+```
+
+The default value of sep is an empty whitespace.
+The default value of end is a new line \n .
+
+### int() and float() functions
 
