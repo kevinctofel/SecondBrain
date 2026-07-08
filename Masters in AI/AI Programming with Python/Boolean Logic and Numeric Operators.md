@@ -129,3 +129,14 @@ from decimal import Decimal
 getcontext().prec = 1
 Decimal(0.1) + Decimal(0.2) = 0.3
 ```
+
+### Typecasting
+
+Used to modify the data type of one item to another, such as a string to an integer. Often used to modify user input to work with it for math.
+
+Example:
+- If "123" is given as a string, using the _int_ function changes it to the integer 123. Practical use includes calculating ages or prices from input strings using _int()_ or _float()_, depending on the type of number needed.
+
+### Print and Input functions
+
+
