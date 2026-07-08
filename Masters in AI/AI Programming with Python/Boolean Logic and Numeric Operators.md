@@ -53,12 +53,14 @@ Using these operators, you can, for example:
 Precedent order for Boolean functions is: Not, And, Or.
 
 Common examples of Boolean values:
+```python
 bool(0)        # False
 bool(1)        # True
 bool("")       # False
 bool("0")      # True
 bool([])       # False
 bool([0])      # True
+```
 
 ### Boolean expressions
 
