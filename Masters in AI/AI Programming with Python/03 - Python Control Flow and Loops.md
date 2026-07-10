@@ -120,3 +120,24 @@ Infinite loops
 Off by one errors
 Ensuring termination
 
+Infinite loop example:
+```python
+desired_temperature = 68
+current_temperature = 66
+
+while current_temperature < desired_temperature:
+    print(f"Heating... Current temperature: {current_temperature}")
+    current_temperature += 1  # Increase temperature by 1 degree each cycle
+
+print("Desired temperature reached. Heating system turned off.")
+```
+
+Off by one example:
+```python
+# Incorrect version: counts 0 through 5 (6 numbers instead of 5)
+count = 0
+while count <= 5:
+    print(f"Count: {count}")
+    count += 1
+```
+
