@@ -105,3 +105,18 @@ Useful when dealing with large datasets or numerous user interactions.
 Saves time and reduces human error with scalable code.
 
 While loops are good for situations with an unknown number of iterations.
+
+#### While loops
+
+While loops are essential for executing code repeatedly until a specific condition becomes false. They are part of control structures in programming and are commonly used when the number of iterations isn't known in advance.
+
+NOTE: Video showed how to read each line in a file until the end by using a while loop. It did not cover the details of _read_line_. the _.strip_ method and _with open() as input_file_ 
+
+While loops provide flexibility for scenarios where the loop run count isn't predetermined, such as waiting for user inputs or processing data until a file's end.
+
+#### While loop pitfalls
+
+Infinite loops
+Off by one errors
+Ensuring termination
+
