@@ -44,3 +44,10 @@ Control flow is generally managed with loops and conditional statements. Loops h
     - 90 or Above: Grade A
     - 80-89: Grade B
     - Below 80: Grade F
+ 
+#### Multiple Conditional Statements
+
+By using conditional operators (Not, And, Or) we can reduce redundancy when creating conditional statements.
+
+
+
