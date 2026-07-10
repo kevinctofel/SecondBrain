@@ -116,9 +116,9 @@ While loops provide flexibility for scenarios where the loop run count isn't pre
 
 #### While loop pitfalls
 
-Infinite loops
-Off by one errors
-Ensuring termination
+- Infinite loops
+- Off by one errors
+- Ensuring termination
 
 Infinite loop example:
 ```python
@@ -141,3 +141,4 @@ while count <= 5:
     count += 1
 ```
 
+To ensure a while loop termination, there has to be some variable updated correctly to have a false condition.
