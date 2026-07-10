@@ -56,13 +56,37 @@ Logical Operators:
 
 Practical Example - Weather Check
 - Temperature above 77°F:
-  - If sunny: "Go to the beach."
-  - Otherwise: "Stay inside."
+    - If sunny: "Go to the beach."
+    - Otherwise: "Stay inside."
 - Temperature between 50°F and 77°F:
-  - If sunny: "Go for a walk."
-  - Otherwise: "Stay inside."
+    - If sunny: "Go for a walk."
+    - Otherwise: "Stay inside."
 - Temperature 50°F or below:
-  - "Stay inside."
+    - "Stay inside."
 
 #### Nesting Conditional Statements
 
+Adds layers to decision making processes. Breaks down complex logic into manageable parts.
+
+Creating structured code through logical operators and nested conditions simplifies complex decision trees and enhances human readability.
+
+Example:
+```python
+temperature = 51
+is_sunny = True
+
+if temperature > 77:
+    if is_sunny:
+        print("Go to the Beach")
+    else:
+        print("Stay inside")
+elif temperature > 50:
+    if is_sunny:
+        print("Go for a walk")
+    else:
+        print("Stay inside")
+else:
+    print("Stay inside")
+
+#Output: Go for a walk
+```
