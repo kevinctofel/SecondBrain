@@ -49,5 +49,20 @@ Control flow is generally managed with loops and conditional statements. Loops h
 
 By using conditional operators (Not, And, Or) we can reduce redundancy when creating conditional statements.
 
+Logical Operators:
+- AND: Combines multiple conditions; both must be true.
+- OR: One or more conditions must be true.
+- NOT: Inverts the Boolean value.
 
+Practical Example - Weather Check
+- Temperature above 77°F:
+  - If sunny: "Go to the beach."
+  - Otherwise: "Stay inside."
+- Temperature between 50°F and 77°F:
+  - If sunny: "Go for a walk."
+  - Otherwise: "Stay inside."
+- Temperature 50°F or below:
+  - "Stay inside."
+
+#### Nesting Conditional Statements
 
