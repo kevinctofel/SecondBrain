@@ -90,3 +90,18 @@ else:
 
 #Output: Go for a walk
 ```
+#### Loops in Python
+
+Purpose of Loops:
+Enable code to run multiple times seamlessly.
+Avoid repetitive coding, enhancing efficiency and scalability.
+
+Types of Loops:
+While Loops: Continue executing as long as a specified condition is true.
+For Loops: Iterate over items in a sequence such as lists or strings.
+
+Benefits:
+Useful when dealing with large datasets or numerous user interactions.
+Saves time and reduces human error with scalable code.
+
+While loops are good for situations with an unknown number of iterations.
