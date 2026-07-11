@@ -142,3 +142,28 @@ while count <= 5:
 ```
 
 To ensure a while loop termination, there has to be some variable updated correctly to have a false condition.
+
+#### For Loops
+
+Good for when you know the number of iterations, particularly over a data structure; for each item in a collection or sequence.
+
+Where do for loops make sense?
+  - Sequences or ranges of numbers
+  - Strings
+  - Collections (lists (or arrays), tuples, and sets)
+
+Example:
+```python
+cart = ['apple', 'banana', 'cherry', 'grapefruit']
+for item in cart:
+    print(item)
+```
+
+Tuples: data is stored with parenthesis and is immutible.
+
+Sets: A collection of unique, unordered and unindexed mutaable items in curly braces. However, any items added to a set are immutable.
+
+
+
+
+
