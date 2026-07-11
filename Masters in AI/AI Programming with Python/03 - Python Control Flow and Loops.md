@@ -161,7 +161,28 @@ for item in cart:
 
 Tuples: data is stored with parenthesis and is immutible.
 
-Sets: A collection of unique, unordered and unindexed mutaable items in curly braces. However, any items added to a set are immutable.
+Sets: A collection of **unique**, unordered and unindexed mutaable items in curly braces. However, any items added to a set are immutable.
+
+Dictionaries: Key / value pairs of data. The key is an identifier and the values are data of any type.
+
+- For Loop with Range:
+    - Creates a sequence of numbers, allowing iteration across a specified range.
+    - Example: for i in range(5) prints numbers 0 through 4.
+- For Loop with Strings:
+    - Iterates over each character in a string.
+    - Example: for letter in "Python" prints each character of the word.
+- For Loop with Lists:
+    - Iterates over items in a list.
+    - Example: Lists of fruits allow each item to be printed: apple, banana, etc.
+- For Loop with Tuples:
+    - Fine for handling immutable sequences of data.
+    - Example: Prints coordinates stored in a tuple.
+- For Loop with Sets:
+    - Iterates over unordered, unique items.
+    - Ensures duplicates are ignored, printing only unique entries.
+- For Loop with Dictionaries:
+    - Iterates over key-value pairs.
+    - Example: Retrieves each piece of data within a dictionary structured like a person's profile.
 
 
 
