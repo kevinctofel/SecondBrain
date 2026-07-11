@@ -184,7 +184,11 @@ Dictionaries: Key / value pairs of data. The key is an identifier and the values
     - Iterates over key-value pairs.
     - Example: Retrieves each piece of data within a dictionary structured like a person's profile.
 
+#### Common challenges with For Loops
 
+- One by one errors where the loop runs one too many or one two few times
+- Editing loop variables
+- Modifying mutable sequences rather than iterating over a copy a of the sequence.
 
 
 
