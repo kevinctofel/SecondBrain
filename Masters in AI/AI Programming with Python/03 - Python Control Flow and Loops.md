@@ -2,12 +2,12 @@
 course: AI Programming with Python
 lesson: Python Control Flow and Loops
 module: Python Basics
-date: 2026-07-10
+date: 2026-07-12
 
-study_time: xh
+study_time: 2h
 difficulty: 1
 confidence: 5
-review_due: 2026-07-17
+review_due: 2026-07-19
 
 status: in progress
 
@@ -155,7 +155,7 @@ Where do for loops make sense?
 Example:
 ```python
 cart = ['apple', 'banana', 'cherry', 'grapefruit']
-for item in cart:
+for item in cart: # Foe each item in the data structure
     print(item)
 ```
 
@@ -190,42 +190,29 @@ Dictionaries: Key / value pairs of data. The key is an identifier and the values
 - Editing loop variables
 - Modifying mutable sequences rather than iterating over a copy a of the sequence.
 
-#### For loops in Python
+#### Range() function in Python
 
-Useful for when you know the number of loop iterations or for iterating over sequences of data.
+Useful to iterate over sequences of integer numbers but can be used for other iteratable data structures too.
 
-Common Use Cases:
-- Numbers: Generate sequences using the range function for specific iterations.
-- Strings: Iterate over each character.
-- Collections: Process items in lists, tuples, and sets.
+- Basic Usage:
+    - Use range(n) to generate numbers from 0 to n-1.
+    - Example: for i in range(5): prints numbers 0 to 4.
+- Custom Start and End:
+    - Specify both starting and ending points with range(start, end).
+    -Example: for i in range(2, 7): outputs numbers from 2 to 6.
+- Incorporating Steps:
+    - Include steps to skip numbers: range(start, end, step).
+    - Example: for i in range(0, 10, 2): prints 0, 2, 4, 6, 8.
+- List Index Access:
+    - Apply range() with len(list) for accessing list elements.
+    - Example: fruits = ['apple', 'banana', 'cherry']:
 
 Example:
 ```python
-cart = ['apple', 'banana', 'cherry', 'grapefruit']
-for item in cart:
-    print(item)
+for i in range(len(fruits)):
+print(f"Index {i} contains {fruits[i]}")
 ```
 
-Usage of for loops in Python:
-
-- For Loop with Range:
-    - Creates a sequence of numbers, allowing iteration across a specified range.
-    - Example: for i in range(5) prints numbers 0 through 4.
-- For Loop with Strings:
-    - Iterates over each character in a string.
-    - Example: for letter in "Python" prints each character of the word.
-- For Loop with Lists:
-    - Iterates over items in a list.
-    - Example: Lists of fruits allow each item to be printed: apple, banana, etc.
-- For Loop with Tuples:
-    - Fine for handling immutable sequences of data.
-    - Example: Prints coordinates stored in a tuple.
-- For Loop with Sets:
-    - Iterates over unordered, unique items.
-    - Ensures duplicates are ignored, printing only unique entries.
-- For Loop with Dictionaries:
-    - Iterates over key-value pairs.
-    - Example: Retrieves each piece of data within a dictionary structured like a person's profile.
 
 
 
