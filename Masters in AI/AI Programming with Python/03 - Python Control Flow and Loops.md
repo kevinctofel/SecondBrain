@@ -190,5 +190,43 @@ Dictionaries: Key / value pairs of data. The key is an identifier and the values
 - Editing loop variables
 - Modifying mutable sequences rather than iterating over a copy a of the sequence.
 
+#### For loops in Python
+
+Useful for when you know the number of loop iterations or for iterating over sequences of data.
+
+Common Use Cases:
+- Numbers: Generate sequences using the range function for specific iterations.
+- Strings: Iterate over each character.
+- Collections: Process items in lists, tuples, and sets.
+
+Example:
+```python
+cart = ['apple', 'banana', 'cherry', 'grapefruit']
+for item in cart:
+    print(item)
+```
+
+Usage of for loops in Python:
+
+- For Loop with Range:
+    - Creates a sequence of numbers, allowing iteration across a specified range.
+    - Example: for i in range(5) prints numbers 0 through 4.
+- For Loop with Strings:
+    - Iterates over each character in a string.
+    - Example: for letter in "Python" prints each character of the word.
+- For Loop with Lists:
+    - Iterates over items in a list.
+    - Example: Lists of fruits allow each item to be printed: apple, banana, etc.
+- For Loop with Tuples:
+    - Fine for handling immutable sequences of data.
+    - Example: Prints coordinates stored in a tuple.
+- For Loop with Sets:
+    - Iterates over unordered, unique items.
+    - Ensures duplicates are ignored, printing only unique entries.
+- For Loop with Dictionaries:
+    - Iterates over key-value pairs.
+    - Example: Retrieves each piece of data within a dictionary structured like a person's profile.
+
+
 
 
