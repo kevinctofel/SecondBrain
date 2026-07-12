@@ -213,6 +213,7 @@ for i in range(len(fruits)):
 print(f"Index {i} contains {fruits[i]}")
 ```
 
+The range() function is efficient when you know the number of iterations. For large sequences or non-integer values, look for alternatives
 
 
 
