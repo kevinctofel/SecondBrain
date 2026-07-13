@@ -2,17 +2,26 @@
 course: AI Programming with Python
 lesson: Python Control Flow and Loops
 module: Python Basics
-date: 2026-07-12
+date: 2026-07-13
 
-study_time: 2h
+study_time: 2.5h
 difficulty: 1
 confidence: 5
-review_due: 2026-07-19
+review_due: 2026-07-20
 
-status: in progress
+status: completed
 
 concepts:
-  - variables
+  - control flow
+  - loops
+  - if
+  - for
+  - else
+  - elif
+  - while
+  - break
+  - continue
+  - nested loops
 
 
 skills:
@@ -215,9 +224,9 @@ print(f"Index {i} contains {fruits[i]}")
 
 The range() function is efficient when you know the number of iterations. For large sequences or non-integer values, look for alternatives
 
-#### The Pass() function
+#### The Pass statement
 
-Pass() does nothing. It's useful as a placeholder while defining or outlining code functions. It supports an incremental development approach.
+_Pass_ does nothing. It's useful as a placeholder while defining or outlining code functions. It supports an incremental development approach.
 
 #### Enhancing Python loops
 
