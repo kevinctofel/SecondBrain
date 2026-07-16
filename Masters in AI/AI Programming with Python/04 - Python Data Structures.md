@@ -75,8 +75,17 @@ print(fruits)
 
 ### Iterating over lists with a For loop
 
+Use a for loop to retrive each value in a list. Although a standard loop structure works, you can also use _for item in list:_ to iterate through each list element.
 
+Can be useful to create new lists when we don't know what the values should be, such as a list of squared numbers. The input will be the non-squared numbers, while the new list will contain the squares of those numbers.
 
-
+Example:
+```python
+squares = []
+for number in range(0:6)
+    squares.append(number ** 2)
+print(squares)
+# Expect [1, 4, 9, 16, 25]
+```
 
 
