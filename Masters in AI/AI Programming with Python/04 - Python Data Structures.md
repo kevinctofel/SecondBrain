@@ -62,3 +62,21 @@ _sorted()_ returns a new list of the original list items but in sorted order.
 - Example with fruits: Sorting ["apple", "orange", "banana", "cherry", "grape"] returns ["apple", "banana", "cherry", "grape", "orange"], arranged alphabetically.
 
 ### Removing list items with the del statement
+
+_del_ statement deletes a list item at a specific index. It does not create a new list; it modifies the original list.
+
+Example:
+``` python
+fruits = ["apple", "banana", "cherry"]
+del fruits[1]
+print(fruits)
+# Expect "apple", "cherry"
+```
+
+### Iterating over lists with a For loop
+
+
+
+
+
+
