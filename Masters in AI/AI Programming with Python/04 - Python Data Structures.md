@@ -34,3 +34,15 @@ print(fruits[0:2])
 
 ### Managing Lists in Python
 
+Some built-in list methods:
+
+- Append:
+    - Adds an item to the end of a list.
+    - Example: Adding "grape" to a list of fruits.
+- Insert:
+    - Places an item at a specified index.
+    - Useful for organizing items, e.g., placing "orange" at index 1 in the fruits list.
+- Index:
+    - Locates the index of a specific item within a list.
+    - Example: Finding the index of "banana" after new additions to the list. NOTE: If there are duplicates of the same value in the list, index() will result in the first matching index.
+ 
