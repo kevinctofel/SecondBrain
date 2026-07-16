@@ -45,4 +45,20 @@ Some built-in list methods:
 - Index:
     - Locates the index of a specific item within a list.
     - Example: Finding the index of "banana" after new additions to the list. NOTE: If there are duplicates of the same value in the list, index() will result in the first matching index.
- 
+
+### Using the len() and sorted() functions
+
+_len()_ returns the total number of items in a list. 
+
+Example:
+```python
+fruits = ['apple', 'banana', 'cherry']
+print(len(fruits))  # Outputs 3
+```
+
+_sorted()_ returns a new list of the original list items but in sorted order.
+
+- Example with numbers: When you print sorted([5, 2, 9, 1]), the result is a new sorted list [1, 2, 5, 9].
+- Example with fruits: Sorting ["apple", "orange", "banana", "cherry", "grape"] returns ["apple", "banana", "cherry", "grape", "orange"], arranged alphabetically.
+
+### Removing list items with the del statement
