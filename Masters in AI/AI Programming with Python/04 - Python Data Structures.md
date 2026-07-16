@@ -1,3 +1,40 @@
+---
+course: AI Programming with Python
+lesson: Python Control Flow and Loops
+module: Python Basics
+date: 2026-07-16
+
+study_time: 1.5h
+difficulty: 1
+confidence: 5
+review_due: 2026-07-23
+
+status: in progress
+
+concepts:
+    - lists
+    - modifying lists
+    - managing lists
+    - copying lists
+    
+
+
+skills:
+  - Python
+  - loops
+  - loop comprehensions
+
+
+projects: []
+
+questions:
+  - 
+
+tags:
+  - python
+  - ai-programming
+---
+
 ## Python Data Structures
 
 ### Key Data Collections
@@ -101,7 +138,7 @@ if "grape" not in fruits:
     print("Grape is not in the list.")
 ```
 
-### List comprreehensions
+### List comprehensions
 
 These offer a more concise way to generate lists in Python compared to traditional loops. These are automatic list generators.
 
@@ -116,6 +153,28 @@ squares = [x ** 2 for x in range(5)]
 ### Copying lists
 
 We can't just assign a new list variable to an existing list to make a copy. Both list variables will point (or refer to) to the same original list in memory.
+
+Instead, use the _copy()_ method to create a copy of the original list with a new variable in memory. Alternatively, we can use list slicing to clone a list.
+
+Examples:
+```python
+veggies_clone = veggies.copy()
+veggies_clone2 = veggies[:]
+# Both approaches create a new list containing the items from the original list
+```
+
+### Nested lists
+
+Since lists can contain lists, we can create two dimentional lists (matrices) or three dimensional lists (cubes).
+
+Example:
+```python
+matrix = [
+[1, 2, 3],
+[4, 5, 6],
+[7, 8, 9]
+]
+```
 
 
 
