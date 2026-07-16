@@ -176,6 +176,8 @@ matrix = [
 ]
 ```
 
+By using loops, we can traverse a matrix or cube. Use the indices of each nested loop to access different elements.
+
 
 
 
