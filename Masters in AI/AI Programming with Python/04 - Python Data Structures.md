@@ -88,4 +88,35 @@ print(squares)
 # Expect [1, 4, 9, 16, 25]
 ```
 
+### List membership testing
+
+The _in_ and _not in_ operators check if an item is or isn't in a list.
+
+Example:
+```python
+fruits = ["apple", "banana", "cherry"].
+if "apple" in fruits: 
+    print("Apple is in the list!")
+if "grape" not in fruits: 
+    print("Grape is not in the list.")
+```
+
+### List comprreehensions
+
+These offer a more concise way to generate lists in Python compared to traditional loops. These are automatic list generators.
+
+An example of list comprehension syntax: [expression for item in iterable], where expressions can include calculations.
+
+Example:
+```python
+squares = [x ** 2 for x in range(5)]
+# sqaures contains [0, 1, 4, 9, 16]
+```
+
+### Copying lists
+
+We can't just assign a new list variable to an existing list to make a copy. Both list variables will point (or refer to) to the same original list in memory.
+
+
+
 
