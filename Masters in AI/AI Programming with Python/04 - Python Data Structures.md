@@ -212,3 +212,5 @@ Because data in a Tuple is immutable, trying to change the value of any Tuple el
 - Can include tuples, locking specific elements.
 
 Combine tuples and lists to control which data remains static and which part can be dynamically modified. This enables optimal management of data integrity and flexibility.
+
+Both lists and tuples be saved as tuples and lists. You can use the _list(name_of_tuple)_ function to convert a tuple to a list and the )_ function to convert a list to a tuple.
