@@ -178,6 +178,15 @@ matrix = [
 
 By using loops, we can traverse a matrix or cube. Use the indices of each nested loop to access different elements.
 
+```python
+matrix_a = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+matrix_b = [9, 8, 7, 6, 5, 4 ,3, 2, 1]
 
+for row in range(len(matrix_a):
+    new_row = []
+        for col in range(len(matrix_a)[0]):
+            sum = matrix_a[row][col} + matrix_b[row][col]               new_row.append(sum)
+        result.append(new_row)
+```
 
 
