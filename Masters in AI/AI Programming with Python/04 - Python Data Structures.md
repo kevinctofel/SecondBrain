@@ -189,4 +189,26 @@ for row in range(len(matrix_a):
         result.append(new_row)
 ```
 
+### Tuples
 
+Tuples are used for storing indexed, immutable data; once a data element is created, it cannot be changed. Tuples are defined by using parenthesis around data elements.
+
+You can access individual elements from tuples by using the element's index, just like with a list. The same approaches from lists to navigate or slice a tuple works.
+
+Because data in a Tuple is immutable, trying to change the value of any Tuple element results in an error.
+
+#### Tuples vs Lists
+
+**Tuples**
+
+- Immutable: Cannot be changed once created.
+- Used when data should remain constant, like coordinates.
+- Can contain lists as elements, allowing some modification.
+
+**Lists**
+
+- Mutable: Can be changed freely.
+- Ideal for collections that require modification, like a shopping cart.
+- Can include tuples, locking specific elements.
+
+Combine tuples and lists to control which data remains static and which part can be dynamically modified. This enables optimal management of data integrity and flexibility.
