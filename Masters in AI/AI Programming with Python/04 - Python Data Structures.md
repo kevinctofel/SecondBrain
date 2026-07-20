@@ -9,7 +9,7 @@ difficulty: 1
 confidence: 4
 review_due: 2026-07-27
 
-status: in progress
+status: complete
 
 concepts:
     - lists
@@ -125,7 +125,7 @@ Can be useful to create new lists when we don't know what the values should be, 
 Example:
 ```python
 squares = []
-for number in range(0:6)
+for number in range(6)
     squares.append(number ** 2)
 print(squares)
 # Expect [1, 4, 9, 16, 25]
@@ -230,7 +230,7 @@ Example:
 library = {
     'Pride and Prejudice': 'Romance',
     '1984': 'Dystopia',
-    'Moby Dick': 'Adventure'
+    'Moby Dick': 'Adventure',
     'The Great Gatsby': 'Adventure'
 }
 ```
@@ -285,7 +285,23 @@ genre = library.get("Harry Potter")
 genre = library.get("Harry Potter", "Not in library")
 print(genre)  # Output: Not in library
 ```
+### Performance Notes
 
+Lists
+
+- Fast appending to the end
+- Slower inserting near the beginning
+
+Dictionaries
+
+- Very fast lookups by key
+- Keys must be unique
+
+Tuples
+
+- Slightly smaller and often faster than lists
+- Useful when data should not change
+  
 ### String operations
 
 Strings are sequences of characters in Python, similar to how words form a story. They are essential for storing and manipulating text, such as usernames or commands.
