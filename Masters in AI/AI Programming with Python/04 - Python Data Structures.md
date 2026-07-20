@@ -317,13 +317,27 @@ _.upper()_ method:
 - Changes a string to all uppercase.
 - Ideal for ensuring consistency in identifiers or product codes.
 
-_.replace()_ method:
+_.replace(original part, new part)_ method:
 - Swaps specified parts of a string with others.
 - Applies to situations like updating currency symbols for localization.
 
-_.split()_ method:
-- Divides a string into a list based on a delimiter.
+_.split(delimeter)_ method:
+- Divides a string into a list based on a delimiter, such as a comma or a space.
 - Useful for processing text data like customer comments or CSV files.
 
+Strings in Python are immutable, which means they cannot be changed after they're created. When you use string methods like .lower(), .upper(), or .replace(), they don't modify the original string. Instead, they create and return a new string with the changes applied.
+
+Example:
+```python
+# WRONG - Changes are lost!
+my_string = "Hello"
+my_string.lower()  # This creates a new string but we don't save it
+print(my_string)   # Output: "Hello" (still uppercase!)
+
+# CORRECT - Store the new string
+my_string = "Hello"
+my_string = my_string.lower()  # Save the result
+print(my_string)   # Output: "hello"
+```
 
 
