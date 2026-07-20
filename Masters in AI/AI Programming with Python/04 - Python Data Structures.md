@@ -2,12 +2,12 @@
 course: AI Programming with Python
 lesson: Python Control Flow and Loops
 module: Python Basics
-date: 2026-07-16
+date: 2026-07-20
 
-study_time: 2.5h
+study_time: 3h
 difficulty: 1
 confidence: 5
-review_due: 2026-07-23
+review_due: 2026-07-27
 
 status: in progress
 
@@ -16,6 +16,11 @@ concepts:
     - modifying lists
     - managing lists
     - copying lists
+    - tuples
+    - dictonaries
+    - key-value pairs
+    - strings
+    
     
 
 
@@ -23,6 +28,7 @@ skills:
   - Python
   - loops
   - loop comprehensions
+  - storing / modifying data in standard Python structures
 
 
 projects: []
