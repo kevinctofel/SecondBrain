@@ -240,12 +240,46 @@ library["The Great Gatsby"] = "Classic"
 
 To delete an item in a dictionary use the _del_ statement with the key: del library["The Great Gatbsby"]
 
-*** Dictionary Methods ***
+### Dictionary Methods
 
-keys(): returns a list of all the keys in a dictionary
-values(): returns a list of all values in a dictonary
-items(): returns a list of key-value pairs as tuples
+.keys(): returns a list of all the keys in a dictionary
+.values(): returns a list of all values in a dictonary
+.items(): returns a list of key-value pairs as tuples
 
+### Iterating Dictionaries
 
+Using loops we can use the dictonary methods to iterate through the keys, values, or key-value pair items.
+
+Examples:
+```python
+for book in library:
+    print(book) # Prints the keys
+for genre in library.values():
+    print(genre) # prints the values
+for book, genre in library.items():
+    print(f" {book}, {genre}")
+```
+
+The _in_ keyword checks if a key is in a dictionary:
+
+```python
+if "1984" in library:
+    print(f"Found! Genre: {library['1984']}")
+else:
+    print("Book not found in library")
+```
+
+The _.get()_ method safely retrives values without causing errors.
+
+```python
+# Returns None if key doesn't exist
+genre = library.get("Harry Potter")
+
+# Or provide a default value
+genre = library.get("Harry Potter", "Not in library")
+print(genre)  # Output: Not in library
+```
+
+### String operations
 
 
