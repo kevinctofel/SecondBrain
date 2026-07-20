@@ -6,7 +6,7 @@ date: 2026-07-20
 
 study_time: 3h
 difficulty: 1
-confidence: 5
+confidence: 4
 review_due: 2026-07-27
 
 status: in progress
