@@ -35,8 +35,10 @@ while max_batches is None or batch_count < max_batches:
   yield total_cookies
   batch_count += 1
 
-# retrieve data from generator function
-next(bake_cookies)
+# retrieve data from generator function\
+# bake_cookies_generator_object = bake_cookies(100)
+
+next(bake_cookies_generator_object)
 ```
 
 
