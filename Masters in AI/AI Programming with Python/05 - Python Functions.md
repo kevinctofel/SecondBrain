@@ -45,6 +45,33 @@ def function_name (parameters):
     code block here
 ```
 
+Example:
+```python
+# Your code here
+
+# Step 1: Define the function
+def greet():
+    print("Hello, Python Coder!")
+    
+greet()
+
+# Step 2: Add variables for names and times
+def greet_personalized(name, time_of_day = "day"):
+    print(f"Good {time_of_day.capitalize()}, {name}")
+
+greet_personalized("Alice")
+
+# Step 3: Loop through names and times & print the function output
+
+names = ["Alice", "Bob", "Charlie"]
+times = ["morning", "afternoon", "evening"]
+
+for i in range(len(names)):
+    # print(names[i])
+    greet_personalized(names[i],times[i])
+
+```
+
 #### Generators
 
 A special type of Python function that generates values one at a time, only when called, using the _yield_ keyword instead of the _return_ keyword. They're extremely memory efficient for handling large amounts of data in streams or chunks. 
