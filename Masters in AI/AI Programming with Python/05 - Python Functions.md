@@ -1,3 +1,36 @@
+---
+course: AI Programming with Python
+lesson: Python Functions
+module: Python Basics
+date: 2026-08-01
+
+study_time: 1h
+difficulty: 1.5
+confidence: 4
+review_due: 2026-08-08
+
+status: in progress
+
+concepts:
+    - functions
+    - generators
+    
+    
+
+
+skills:
+  - Python
+
+
+projects: []
+
+questions:
+  - 
+
+tags:
+  - python
+  - ai-programming
+---
 ## Python Functions
 
 ### Functions
