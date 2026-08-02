@@ -109,6 +109,13 @@ Note that the return values are literal. Using incompatible types, such as add(3
 
 ### The _None_ keyword
 
+Functions have an implicit return of None if no return statement is used.
+
+Example: A function prints a message but doesn't return a value, hence returns None.
+
+Functions can have parameters with a default value of None.
+
+### Recursion in Python
 
 
 
