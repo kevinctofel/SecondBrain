@@ -101,6 +101,15 @@ while max_batches is None or batch_count < max_batches:
 next(bake_cookies_generator_object)
 ```
 
+### Returning values
+
+The _return_ keyword in Python serves a crucial function, enabling a function to provide outputs after processing.
+
+Note that the return values are literal. Using incompatible types, such as add(3, 'Python'), leads to a type error. To help mitigate this, you can define parameter types using colon notation (a: int, b: int) for clarity, readability and error reduction. 
+
+### The _None_ keyword
+
+
 
 
 ### Managing exceptions
