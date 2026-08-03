@@ -133,6 +133,28 @@ NOTE: Always include a base case to avoid infinite recursion loops.
 
 ### Python Functions and Environment
 
+Parameters:
+- Defined in the function signature.
+- Act as placeholders for data.
+- Similar to empty plates waiting to be filled.
+
+Arguments:
+- Actual values passed to a function when called.
+- Like the food served on plates at a dinner party.
+
+Parameters vs. Arguments example:
+```python
+# Defining a function
+def sum(a, b): # a and b are parameters
+	return a + b
+
+# Calling the sum() function
+sum(10, 5) # 10 and 5 are arguments
+
+# Calling the sum() function
+sum(a=10, b=5) # 10 and 5 are arguments. 10 is specified for a and 5 is specified for b.
+```
+
 
 
 ### Managing exceptions
