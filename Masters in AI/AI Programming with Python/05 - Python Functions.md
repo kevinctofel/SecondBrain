@@ -12,12 +12,12 @@ review_due: 2026-08-010
 status: complete
 
 concepts:
-    - functions
-    - generators
-	- exceptions
-    - recursion
-	- arguments vs parameters
-	- default parameters
+  - functions
+  - generators
+  - exceptions
+  - recursion
+  - arguments vs parameters
+  - default parameters
 
 skills:
   - Python
