@@ -4,7 +4,7 @@ lesson: Python Functions
 module: Python Basics
 date: 2026-08-01
 
-study_time: 1h
+study_time: 2h
 difficulty: 1.5
 confidence: 4
 review_due: 2026-08-08
@@ -116,6 +116,22 @@ Example: A function prints a message but doesn't return a value, hence returns N
 Functions can have parameters with a default value of None.
 
 ### Recursion in Python
+
+Recursion is when a function calls itself, breaking down complex problems into smaller manageable parts.
+
+Benefits:
+- Compartmentalization: Divides problems into similar smaller parts.
+- Simplification: Makes code cleaner by reducing redundancy.
+- Mathematical Operations: Ideal for tasks like tree traversal, sequence generation, or by solving factorial operations.
+
+Cautions:
+- Memory Constraints: Each recursive call adds to the stack, potentially leading to stack overflow.
+- Performance: Generally slower due to overhead from multiple function calls.
+- Complexity: May complicate code if problems don't naturally break down into sub-problems.
+
+NOTE: Always include a base case to avoid infinite recursion loops.
+
+### Python Functions and Environment
 
 
 
