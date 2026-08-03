@@ -2,21 +2,22 @@
 course: AI Programming with Python
 lesson: Python Functions
 module: Python Basics
-date: 2026-08-01
+date: 2026-08-03
 
-study_time: 2h
+study_time: 3h
 difficulty: 1.5
 confidence: 4
-review_due: 2026-08-08
+review_due: 2026-08-010
 
-status: in progress
+status: complete
 
 concepts:
     - functions
     - generators
-    
-    
-
+	- exceptions
+    - recursion
+	- arguments vs parameters
+	- default parameters
 
 skills:
   - Python
@@ -155,8 +156,79 @@ sum(10, 5) # 10 and 5 are arguments
 sum(a=10, b=5) # 10 and 5 are arguments. 10 is specified for a and 5 is specified for b.
 ```
 
+Types of Argument Passing:
+- Positional Arguments:
+		- Follow a specific order matching the function's parameters.
+		- Order is critical for desired functionality.
+- Keyword Arguments:
+		- Specify parameter names and values explicitly.
+		- Allows passing arguments in any order.
+		- Preferred for clarity and reducing errors.
+- Mixed Arguments:
+		- Combine positional and keyword arguments.
+		- Positional arguments must precede keyword ones.
+		- Offers flexibility but requires careful ordering.
+
+### Default parameter values
+
+Default parameter values in functions serve as a fallback plan when no specific arguments are provided. They allow for flexibility and reduce the need for repetitive argument specification.
+
+Practical Considerations:
+- Always set parameters with defaults after non-default parameters in the function definition.
+- Prevents errors such as "missing positional argument" when values are not provided.
+
+### Name Scopes
+
+A scope defines where a variable can be accessed.
+
+Local Scope: 
+- Refers to variables created within a function.
+- They are accessible only inside that function.
+  
+Global Scope: 
+- Refers to variables defined outside any function.
+- These can be accessed throughout the entire code.
+
+Name Hiding:
+
+Variables of the same name in different scopes can cause one to "hide" the other. Avoid using the same name between scopes.
+
+Using the _global_ Keyword:
+
+The _global_ keyword allows functions to modify a global variable, making it accessible within that function's local scope.
 
 
 ### Managing exceptions
 
 Exceptions are used to handle unexpected errors in our code so that our program isn't disrupted.
+
+Example:
+```python
+# Step 1: Reuse the add function
+def add(a, b):
+    return a + b
+
+# Step 2: Write the safe_add function with a try-except block
+def safe_add(a, b):
+    try:
+        return add(a, b)
+    except TypeError as e:
+        return f"Error: Invalid input types for addition - {e}"
+
+# Step 3: Create a list of inputs as tuples
+inputs = [
+    (5, "Python"),   # Invalid: int + str
+    (3, 5.2),        # Valid: int + float
+    (2, 5)           # Valid: int + int
+]
+
+# Step 4: Use a for loop to iterate through the inputs and call safe_add
+for a, b in inputs:
+    result = safe_add(a, b)
+    print(f"safe_add({a}, {b}) = {result}")
+
+# Expected output:
+# safe_add(5, Python) = Error: Invalid input types for addition - unsupported operand type(s) for +: 'int' and 'str'
+# safe_add(3, 5.2) = 8.2
+# safe_add(2, 5) = 7
+```
