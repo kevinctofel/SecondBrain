@@ -100,7 +100,7 @@ def run_theme_part():
 
 #### KeyboardInterrupt Exception
 
-KeyboardInterrupt is a built-in Python exception that is raised when a user interrupts a program, typically by pressing Ctrl+C. It provides control for users to pause or halt a process, vital for scenarios requiring immediate human intervention. Use the _raise_ keyword to trigger the exeption.
+KeyboardInterrupt is a built-in Python exception that is raised when a user interrupts a program, typically by pressing Ctrl+C. It provides control for users to pause or halt a process, vital for scenarios requiring immediate human intervention. Use the _raise_ keyword to trigger the exception.
 
 Example:
 ```python
@@ -116,4 +116,43 @@ def run_theme_park_ride():
 
 #### Abstract Exceptions
 
+Abstract exceptions or parent exceptions serve as fundamental guidelines for developing specific error types in Python coding.
 
+- Purpose:
+  - They provide a foundational framework for more detailed error classes.
+- Usage:
+  - Abstract exceptions aren't usually triggered by themselves. This can handle several related exceptions.
+ 
+Some examples of abstract exceptions and related specific types:
+- ArithmeticError:
+  - Deals with numeric calculation issues.
+- LookupError:
+  - Occurs when accessing non-existent items such as indices or dictionary keys. LookupError is a common base class where the specific subclasses are IndexError and KeyError.
+- IndexError:
+  - Occurs when an index is not found in a sequence.
+- KeyError:
+  - Happens when accessing a missing key in a dictionary or mapping.
+
+#### ArithmeticError Exception
+
+ArithmeticError is a built-in Python base exception class. The specific subclasses for ArithmeticError include ZeroDivisionError, OverflowError and FloatingPointError.
+
+Zero Division Error: Occurs when attempting to divide a number by zero.
+
+```python
+try:
+result = 10 / 0
+except ZeroDivisionError as e:
+print(f"ZeroDivisionError: {e}")
+```
+
+Overflow Error: Happens when calculations exceed a system's storage limitation, causing an incorrect result.
+
+```python
+try:
+result = math.exp(1000)
+except OverflowError as e:
+print(f"OverflowError: {e}")
+```
+
+Floating Point Error: Arises when Python performs a calculation using decimal (floating-point) numbers and the result is not mathematically possible or cannot be represented precisely in memory.
