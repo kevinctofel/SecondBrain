@@ -156,3 +156,18 @@ print(f"OverflowError: {e}")
 ```
 
 Floating Point Error: Arises when Python performs a calculation using decimal (floating-point) numbers and the result is not mathematically possible or cannot be represented precisely in memory.
+
+#### LookupError Exception
+
+LookupError is a general base class error in Python indicating the inability to find an anticipated item. It triggers when accessing an index that does not exist inside a dictionary.
+
+Exceptions Under LookupError:
+- IndexError:
+  - Raised when an attempt to access an index that doesn't exist in a list.
+- KeyError:
+  - Raised when trying to access a dictionary key that isn't present.
+ 
+#### IndexError Exception
+
+
+
