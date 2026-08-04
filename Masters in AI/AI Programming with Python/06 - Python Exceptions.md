@@ -54,7 +54,7 @@ While the BaseException is atop the Python Exception Hierarchy, the Exception cl
 
 From a coding standpoint use of the Exception class is the same.
 
-#### SystemExit
+#### SystemExit Exception
 
 System Exit is a Python exception that signifies the interpreter should stop gracefully. It's usually left unhandled to let Python close smoothly. To use it, call the _sys.exit_ method, which triggers the SystemExit exception.
 
@@ -70,5 +70,23 @@ def run_theme_part():
     sys.exit() # This triggers the system exit exception
   except SystemExit:
 ```
+
+#### KeyboardInterrupt Exception
+
+KeyboardInterrupt is a built-in Python exception that is raised when a user interrupts a program, typically by pressing Ctrl+C. It provides control for users to pause or halt a process, vital for scenarios requiring immediate human intervention. Use the _raise_ keyword to trigger the exeption.
+
+Example:
+```python
+def run_theme_park_ride():
+  try:
+    while True:
+      user_input = input("Type 'stop' to stop the ride: ")
+      if user_input.lower() == "stop":
+        raise KeyboardInterrupt
+  except KeyboardInterrupt:
+    print("You stopped the ride!")
+```
+
+#### Abstract Exceptions
 
 
