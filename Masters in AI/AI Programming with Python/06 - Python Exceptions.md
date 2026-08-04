@@ -33,6 +33,33 @@ tags:
 
 In Python, exceptions act as predefined responses to unforeseen errors during code execution. This enables graceful management: we can customize functions to automatically detect and respond to errors, enhancing code stability.
 
+
+| Exception Class | Parent Class | Description |
+| :--- | :--- | :--- |
+| **BaseException** | *Root* | The base class for all built-in exceptions. Not meant to be directly inherited by user applications. |
+| **SystemExit** | BaseException | Raised by the `sys.exit()` function to cleanly terminate the Python interpreter. |
+| **KeyboardInterrupt** | BaseException | Raised when the user hits the interrupt key (usually `Ctrl+C` or `Delete`). |
+| **GeneratorExit** | BaseException | Raised when a generator or coroutine is closed via the `close()` method. |
+| **Exception** | BaseException | The base class for all built-in, non-system-exiting exceptions. All user-defined errors should inherit from this. |
+| **ArithmeticError** | Exception | The base class for all arithmetic or mathematical calculation errors. |
+| **FloatingPointError** | ArithmeticError | Raised when a floating-point operation fails (rarely used in standard Python). |
+| **OverflowError** | ArithmeticError | Raised when the result of an arithmetic operation is too large to be represented. |
+| **ZeroDivisionError** | ArithmeticError | Raised when the second argument of a division or modulo operation is zero. |
+| **LookupError** | Exception | The base class for errors raised when a key or index used on a sequence or mapping is invalid. |
+| **IndexError** | LookupError | Raised when a sequence subscript (like a list index) is out of range. |
+| **KeyError** | LookupError | Raised when a mapping (dictionary) key is not found in the set of existing keys. |
+| **NameError** | Exception | Raised when a local or global name (variable or function) is not found. |
+| **UnboundLocalError** | NameError | Raised when a reference is made to a local variable in a function, but no value has been bound to it. |
+| **AttributeError** | Exception | Raised when an attribute reference or assignment fails (e.g., trying to access a method that doesn't exist). |
+| **TypeError** | Exception | Raised when an operation or function is applied to an object of an inappropriate data type. |
+| **ValueError** | Exception | Raised when a function receives an argument of the correct type but an inappropriate value. |
+| **UnicodeError** | ValueError | Raised when a Unicode-related encoding or decoding error occurs. |
+| **OSError** | Exception | Raised when a system function returns a system-related error, such as an I/O failure. |
+| **FileNotFoundError** | OSError | Raised when a file or directory is requested but cannot be found. |
+| **PermissionError** | OSError | Raised when trying to run an operation without the required system permissions (e.g., Permission Denied). |
+| **TimeoutError** | OSError | Raised when a system-level function times out or expires. |
+
+
 #### How to use the BaseException Function
 
 The BaseException is a generic, catch-all error exception in Python, returning whatever error occurred.
