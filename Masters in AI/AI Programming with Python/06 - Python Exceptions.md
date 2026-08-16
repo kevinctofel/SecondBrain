@@ -2,12 +2,12 @@
 course: AI Programming with Python
 lesson: Python Exceptions
 module: Python Basics
-date: 2026-08-04
+date: 2026-08-16
 
-study_time: 0h
+study_time: 3h
 difficulty: 1
 confidence: 4
-review_due: 2026-08-10
+review_due: 2026-08-23
 
 status: in progress
 
@@ -168,6 +168,17 @@ Exceptions Under LookupError:
   - Raised when trying to access a dictionary key that isn't present.
  
 #### IndexError Exception
+
+An IndexError is categorized as a Lookup Error in Python's exception hierarchy. These errors occur when trying to access an element at an index that doesn’t exist in ordered collections like lists.
+
+Avoidance Tips
+- Check Index Validity: Ensure the index is within the list’s range before accessing an element.
+- Use Try-Except Blocks: Handle the potential error by surrounding the access code with try-except blocks to ensure the program continues running.
+- Use a for-in Loop: When iterating over a list, use for item in my_list instead of manually tracking index numbers. This eliminates the risk of accessing an out-of-range position entirely.
+
+#### KeyError Exception
+
+
 
 
 
