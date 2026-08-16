@@ -178,7 +178,15 @@ Avoidance Tips
 
 #### KeyError Exception
 
+KeyErrors occur when trying to access a dictionary key that doesn't exist. Consider using a conditional check to see if a key is in a dictionary. _if key in my_dict_
 
+#### TypeError Exception
+
+TypeError occurs when an operation is used on an object of the wrong type.
+
+#### ValueError Exception
+
+Raised when the correct type argument is passed to a function, but the value is deemed inappropriate.
 
 
 
