@@ -188,5 +188,9 @@ TypeError occurs when an operation is used on an object of the wrong type.
 
 Raised when the correct type argument is passed to a function, but the value is deemed inappropriate.
 
+#### Try-Except Blocks
 
+Try Block: Acts as a protective layer for potentially risky code, capturing any unforeseen issues like catching a performer stumbling.
+
+Except Block: Steps in to manage exceptions that arise, ensuring the program continues smoothly and errors are addressed contextually.
 
