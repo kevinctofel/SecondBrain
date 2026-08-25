@@ -30,3 +30,4 @@ tags:
 ---
 ## Anaconda
 
+[Anaconda](https://anaconda.org/) is a distribution of packages built for data science. It comes with _conda_, a package and environment manager. We use conda to create environments for isolating  projects that use different versions of Python and/or different packages. It's also used to install, uninstall, and update packages in environments
