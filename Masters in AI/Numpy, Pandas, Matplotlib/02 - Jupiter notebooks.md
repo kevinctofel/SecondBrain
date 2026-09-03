@@ -4,12 +4,12 @@ lesson: Numpy, Pandas, Matlabplot
 module: Jupyter notebooks
 date: 2026-09-03
 
-study_time: 0h
+study_time: 1h
 difficulty: 1
 confidence: 5
 review_due: 2026-09-08
 
-status: in progress
+status: complete
 
 concepts:
   - Jupyter notebooks
