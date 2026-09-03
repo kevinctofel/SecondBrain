@@ -2,21 +2,24 @@
 course: AI Programming with Python
 lesson: Numpy, Pandas, Matlabplot
 module: Anaconda
-date: 2026-08-24
+date: 2026-09-03
 
-study_time: 0h
+study_time: 1h
 difficulty: 1
 confidence: 5
-review_due: 2026-08-31
+review_due: 2026-09-08
 
-status: in progress
+status: complete
 
 concepts:
-  - variables
+  - Anaconda / Miniconda
+  - Conda usage
+  - Managing and using environments
 
 
 skills:
   - Python
+  - Conda
 
 
 projects: []
@@ -78,3 +81,80 @@ Environments allow you to separate and isolate the packages you are using for di
 This issue also happens a lot when dealing with Python 2 and Python 3. You might be working with old code that doesn’t run in Python 3 and new code that doesn’t run in Python 2. Having both installed can lead to a lot of confusion and bugs. It’s much better to have separate environments.
 
 You can also export the list of packages in an environment to a file, then include that file with your code. This allows other people to easily load all the dependencies for your code. Pip has similar functionality with _pip freeze > requirements.txt_.
+
+### Anaconda commands and examples:
+
+#### Installing packages
+
+```python
+conda install PACKAGE_NAME[= version (optional)]
+```
+
+#### Removing packages
+```python
+conda remove PACKAGE_NAME
+```
+
+#### Updating packages
+```python
+conda update package_name
+# For a specific package
+
+conda update --all
+# Update all packages in an environment
+```
+
+#### Listing all installed packages
+
+```python
+conda list
+```
+
+#### Searching for package to install
+
+```python
+conda search *SEARCH_TERM*
+```
+
+#### Creating an environment
+```python
+conda create -n env_name [python=X.X] [LIST_OF_PACKAGES]
+```
+
+#### Activating an environment
+```python
+conda activate my_env
+```
+
+#### Deactivating an environment
+```python
+conda deactivate
+```
+
+#### Exporting an environment
+```python
+conda env export > environment.yaml
+```
+
+#### Creating an environment from an import
+```python
+conda env create -f environment.yaml
+```
+
+#### Listing environments (use either)
+```python
+conda env list
+conda info --envs
+```
+
+#### Removing an environment
+```python
+conda env remove -n env_name
+```
+
+
+
+
+
+
+
