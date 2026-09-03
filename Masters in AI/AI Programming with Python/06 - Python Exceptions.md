@@ -9,7 +9,7 @@ difficulty: 1
 confidence: 4
 review_due: 2026-08-23
 
-status: in progress
+status: complete
 
 concepts:
   - functions
