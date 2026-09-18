@@ -21,15 +21,20 @@ export default defineConfig({
         label: "Notes",
         groups: [
           {
-	    query: createNotesQuery({
-	      tree: {
-		expanded: false,
-		replace: {
-      		  "^/Images/": "",
-   		},
-	      },	
-	    }), 
-	  },
+    query: {
+      sort: ["data.sort", "title"],
+      tree: {
+        expanded: false,
+        replace: {
+          "^/Images/": "",
+        },
+      },
+      filter: [
+        ["filePathStem", "isNotEqual", "/index"],
+        ["filePathStem", "doesNotInclude", "/Articles/"],
+      ],
+    },
+  },
         ],
       },
     ],
