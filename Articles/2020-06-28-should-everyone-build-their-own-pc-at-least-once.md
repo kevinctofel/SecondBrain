@@ -1,5 +1,6 @@
 ---
 title: "Should everyone build their own PC at least once?"
+description: I'm going to answer my own question with a caveat…
 date: 2020-06-28
 tags: [article, hardware]
 ---

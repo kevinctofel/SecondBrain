@@ -1,5 +1,6 @@
 ---
 title: "JavaScript: The semester begins"
+description: Up until three months ago, I'd never written a single line of JavaScript…
 date: 2020-09-07
 tags: [article]
 ---

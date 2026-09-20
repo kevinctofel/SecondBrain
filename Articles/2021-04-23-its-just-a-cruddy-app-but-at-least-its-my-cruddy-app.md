@@ -1,5 +1,6 @@
 ---
 title: "It's just a CRUDdy app, but at least it's my CRUDdy app"
+description: The last time I blogged here was when I applied to the online Georgia Tech Masters in CS program six weeks ago…
 date: 2021-04-23
 tags: [article]
 ---

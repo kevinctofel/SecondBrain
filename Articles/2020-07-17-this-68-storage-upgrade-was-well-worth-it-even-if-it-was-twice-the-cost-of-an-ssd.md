@@ -1,5 +1,6 @@
 ---
 title: "Three weeks in, a $68 PC storage upgrade: SATA SSD vs. M.2 NVMe drives"
+description: I dropped $68 on this Western Digital 250 GB M.2 NVMe drive from Amazon this week and it arrived today.
 date: 2020-07-17
 tags: [article, hardware]
 ---

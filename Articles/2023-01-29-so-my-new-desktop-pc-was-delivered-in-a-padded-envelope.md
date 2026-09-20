@@ -1,5 +1,6 @@
 ---
 title: "So my new desktop PC was delivered in a padded envelope"
+description: It's been nearly three years since I custom build my last desktop PC. And to be honest, I love that computer…
 date: 2023-01-29
 tags: [article]
 ---

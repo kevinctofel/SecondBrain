@@ -1,5 +1,6 @@
 ---
 title: "It's things like this that annoy me about Windows"
+description: I was all set to share an interesting tech tidbit here this morning and was stopped in my tracks.
 date: 2020-08-08
 tags: [article, windows]
 ---

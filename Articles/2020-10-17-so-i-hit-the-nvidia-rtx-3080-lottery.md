@@ -1,5 +1,6 @@
 ---
 title: "So I hit the Nvidia RTX 3080 lottery"
+description: When I built my $900 budget gaming PC back in June, I never thought it would become a money pit of sorts…
 date: 2020-10-17
 tags: [article]
 ---

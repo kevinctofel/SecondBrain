@@ -1,5 +1,6 @@
 ---
 title: "Thoughts on switching from iPhone to Android these days"
+description: Earlier this month, I took the SIM card from my iPhone 11 Pro and dropped it in my Pixel 4…
 date: 2020-08-30
 tags: [article]
 ---

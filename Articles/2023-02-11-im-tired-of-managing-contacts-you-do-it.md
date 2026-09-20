@@ -1,5 +1,6 @@
 ---
 title: "I'm tired of managing contacts. You do it!"
+description: I've been tinkering with an idea lately in terms of big tech and contact management. This is mainly for two reasons.
 date: 2023-02-11
 tags: [article]
 ---

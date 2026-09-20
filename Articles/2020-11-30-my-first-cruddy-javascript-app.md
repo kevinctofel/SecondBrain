@@ -1,5 +1,6 @@
 ---
 title: "My first CRUDdy JavaScript app"
+description: We're in the home stretch of the fall semester where I'm taking my first JavaScript (JS) class…
 date: 2020-11-30
 tags: [article]
 ---

@@ -1,5 +1,6 @@
 ---
 title: "Why I bought a Surface Duo (or two)"
+description: After noting how easy it is to switch from iOS to Android, I decided to pre-order a Microsoft Surface Duo…
 date: 2020-09-05
 tags: [article]
 ---

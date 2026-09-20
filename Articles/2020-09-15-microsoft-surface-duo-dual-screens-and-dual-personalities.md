@@ -1,5 +1,6 @@
 ---
 title: "Microsoft Surface Duo: Dual screens and dual personalities"
+description: The Microsoft Surface Duo I ordered two weeks ago arrived late last week…
 date: 2020-09-15
 tags: [article]
 ---

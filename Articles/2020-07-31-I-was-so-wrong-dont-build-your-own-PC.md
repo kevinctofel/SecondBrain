@@ -1,5 +1,6 @@
 ---
 title: "I was so wrong. Don't build your own PC"
+description: About a month ago I suggested that most people should build their own PC at least once…
 date: 2020-07-31
 tags: [article, hardware]
 ---

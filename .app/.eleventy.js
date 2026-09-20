@@ -25,6 +25,16 @@ export default function (eleventyConfig) {
   assetsModule.setup(eleventyConfig);
 
   core.setup(eleventyConfig);
+  eleventyConfig.addFilter("date", (date, format) => {
+    if (!date) return "";
+    const d = new Date(date);
+    if (isNaN(d.getTime())) return date;
+    const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    const month = months[d.getMonth()];
+    const day = String(d.getDate()).padStart(2, "0");
+    const year = d.getFullYear();
+    return `${month} ${day}, ${year}`;
+  });
   eleventyConfig.addCollection("articles", function(collection) {
         return collection.getFilteredByGlob("Articles/*.md");
     });

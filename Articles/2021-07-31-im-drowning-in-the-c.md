@@ -1,5 +1,6 @@
 ---
 title: "Why I'm drowning in the C"
+description: What a slacker. I just realized I haven't posted here since April…
 date: 2021-07-31
 tags: [article]
 ---

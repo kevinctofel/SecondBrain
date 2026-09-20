@@ -1,5 +1,6 @@
 ---
 title: "Gas station free for 2 months and loving it!"
+description: As I get older, I'm starting to appreciate "things" more…
 date: 2021-08-31
 tags: [article]
 ---

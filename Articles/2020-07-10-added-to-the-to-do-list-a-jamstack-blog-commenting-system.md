@@ -1,5 +1,6 @@
 ---
 title: "Added to the to-do list: A Jamstack blog commenting system"
+description: I've gotten away from posting here or continuing my path towards learning Gatsby for blog publishing of late…
 date: 2020-07-10
 tags: [article, graphql]
 ---

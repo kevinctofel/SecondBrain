@@ -1,5 +1,6 @@
 ---
 title: "Git sub-modules: I finally see the power"
+description: As I noted in my last post, I'm still a n00b developer…
 date: 2020-05-30
 tags: [article, git]
 ---

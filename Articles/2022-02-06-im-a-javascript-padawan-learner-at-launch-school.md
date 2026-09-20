@@ -1,5 +1,6 @@
 ---
 title: "I'm a JavaScript padawan learner at Launch School"
+description: Anyone who knows me even a little knows that I can't sit still when it comes to my education…
 date: 2022-02-06
 tags: [article]
 ---

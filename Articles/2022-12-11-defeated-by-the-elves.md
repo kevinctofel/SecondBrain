@@ -1,5 +1,6 @@
 ---
 title: "Defeated by the elves"
+description: I know when I'm beaten and this week, I was beaten…
 date: 2022-12-11
 tags: [article]
 ---

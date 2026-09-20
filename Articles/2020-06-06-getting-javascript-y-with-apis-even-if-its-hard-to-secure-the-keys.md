@@ -1,5 +1,6 @@
 ---
 title: "Getting JavaScript-y with APIs, even if it's hard to secure the keys"
+description: My spring semster ended about a month ago in a whimper as the pandemic hit smack dab in the middle of March…
 date: 2020-06-06
 tags: [article, javascript]
 ---

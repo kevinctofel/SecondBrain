@@ -1,5 +1,6 @@
 ---
 title: "It's been a... week"
+description: What a long, busy week. I mentioned on Monday that I'm beginning to prep for my first JavaScript assessment…
 date: 2022-12-04
 tags: [article]
 ---

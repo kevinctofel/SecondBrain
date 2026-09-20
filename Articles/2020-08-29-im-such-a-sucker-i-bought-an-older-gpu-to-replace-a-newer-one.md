@@ -1,5 +1,6 @@
 ---
 title: "I'm such a sucker: I bought an older GPU to replace a newer one"
+description: A few weeks back, I explained how my $900 gaming PC quickly became a $1,200 gaming PC…
 date: 2020-08-29
 tags: [article]
 ---

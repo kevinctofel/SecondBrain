@@ -1,5 +1,6 @@
 ---
 title: "Training for the JavaScript Jedi Trials"
+description: Since February of this year, I've been a JavaScript Padawan…
 date: 2022-11-28
 tags: [article]
 ---

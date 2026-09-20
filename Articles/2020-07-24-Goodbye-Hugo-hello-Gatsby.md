@@ -1,5 +1,6 @@
 ---
 title: "Goodbye Hugo, hello Gatsby!"
+description: After a month of considering a switch of the Static Site Generator, or SSG, that creates the pages for this blog…
 date: 2020-07-24
 tags: [article, gatsby]
 ---

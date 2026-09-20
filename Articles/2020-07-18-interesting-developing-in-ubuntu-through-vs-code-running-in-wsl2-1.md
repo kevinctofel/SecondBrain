@@ -1,5 +1,6 @@
 ---
 title: "Interesting: Developing in Ubuntu through VS Code, running in WSL2"
+description: Late last month, I said I’d be looking into WSL, or the Windows Subsystem for Linux…
 date: 2020-07-18
 tags: [article, vscode]
 ---

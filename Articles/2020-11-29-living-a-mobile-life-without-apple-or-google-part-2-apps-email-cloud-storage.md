@@ -1,5 +1,6 @@
 ---
 title: "Living a mobile life without Apple or Google, part 2: apps and email"
+description: Last week, I shared my current experiment of living without "big tech"…
 date: 2020-11-29
 tags: [article]
 ---

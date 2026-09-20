@@ -1,5 +1,6 @@
 ---
 title: "Wish me luck (I'm gonna need it)"
+description: I made a big life decision this past month…
 date: 2021-02-28
 tags: [article]
 ---

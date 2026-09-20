@@ -1,5 +1,6 @@
 ---
 title: "The experiment: Living a mobile life without Apple or Google (part 1)"
+description: I've been thinking quite a bit about data privacy and the mobile industry lately…
 date: 2020-11-21
 tags: [article]
 ---

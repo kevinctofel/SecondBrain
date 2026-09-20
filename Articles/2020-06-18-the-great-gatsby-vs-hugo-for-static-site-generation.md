@@ -1,5 +1,6 @@
 ---
 title: "The Great Gatsby vs Hugo for static site generation"
+description: Well that didn't take long. I've been thinking about the tools that power this site since my last post because I…
 date: 2020-06-18
 tags: [article, gatsby]
 ---

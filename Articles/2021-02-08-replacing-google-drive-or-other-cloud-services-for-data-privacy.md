@@ -1,5 +1,6 @@
 ---
 title: "Replacing Google Drive or other cloud services for data privacy"
+description: I've been remiss in following up the series of blog posts on data privacy…
 date: 2021-02-08
 tags: [article]
 ---
