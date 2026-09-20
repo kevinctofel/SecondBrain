@@ -6,7 +6,7 @@ tags: [article, AI]
 ---
 Like many others, I've been tinkering with AI. More specifically, I'm leaning heavily on local LLMs that I can run on my desktop and laptop. I've been doing that on two new-ish devices. I bought a Framework Desktop with 64 GB of unified memory as well as an ASUS ROG Strix gaming laptop that has an Nvidia RTX 5080 mobile GPU with 16 GB of VRAM.
 
-![Framework Desktop](../Images/IMG_0683.JPEG)
+![Framework Desktop](../Images/IMG_0683.jpeg)
 
 I'll share more on models, agent harnesses and the like in the future. For now, I wanted to share my experience with a practical use for my setup: Migrating 6 years of blog posts between two old sites and this current one. 
 
