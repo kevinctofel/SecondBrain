@@ -42,6 +42,8 @@ Its independent audit found two legitimate posts that had silently disappeared. 
 
 Instead of telling the model what was wrong, I let it diagnose the failures itself.
 
+![Hermes desktop blog migration project](../Images/Hermes-blog-migration.png)
+
 It established a clean pre-migration build baseline, traced the failures to specific migration behavior and devised a recovery plan. I then allowed it to attempt the repairs. Again, it tested those repairs in a throwaway copy first.
 
 The first repair still produced one error. Qwen investigated and corrected it. Further rendered-output inspection uncovered additional shortcodes it had missed. It corrected those too and rebuilt again. Only after the disposable copy passed did it apply the fixes to the real repository. The final Eleventy build completed with zero errors and 139 generated pages. Its validation reported 202 rendered image references with no missing files and no remaining legacy shortcodes in the generated HTML.
