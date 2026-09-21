@@ -15,7 +15,11 @@
 <div class="page" data-pagefind-body>
   <main class="page__main" id="app-content" >
     <article>
+      {% if url %}
+      <h1 class="page__title"><a href="{{ url }}">{{ headline or title or page.fileSlug }}</a></h1>
+      {% else %}
       <h1 class="page__title">{{ headline or title or page.fileSlug }}</h1>
+      {% endif %}
       {% set is_article = page.filePathStem.split("/")[1] == "Articles" %}
       {% if date and is_article %}
       <h3 class="page__date">{{ date | date("%B %d, %Y") }}</h3>
