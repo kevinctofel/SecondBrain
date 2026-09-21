@@ -22,6 +22,7 @@ const saveForm = $("#saveForm");
 const btnSettings = $("#btnSettings");
 const btnCloseSettings = $("#btnCloseSettings");
 const btnTestToken = $("#btnTestToken");
+const btnShowToken = $("#btnShowToken");
 const statusSettings = $("#statusSettings");
 
 // Settings inputs
@@ -206,6 +207,20 @@ btnTestToken.addEventListener("click", async () => {
     statusSettings.className = "status visible error";
     statusSettings.textContent = `✗ ${resp.error || `HTTP ${resp.status || "?"}`}`;
   }
+});
+
+btnShowToken.addEventListener("click", async () => {
+  const data = await browser.storage.local.get([
+    "ghToken", "ghOwner", "ghRepo",
+  ]);
+  const token = data.ghToken || "(empty)";
+  const masked = token.length > 20
+    ? `${token.slice(0, 10)}…${token.slice(-8)} (len=${token.length})`
+    : `${token} (len=${token.length})`;
+  statusSettings.className = "status visible info";
+  statusSettings.textContent =
+    `owner: ${data.ghOwner}  repo: ${data.ghRepo}\n` +
+    `token: ${masked}`;
 });
 
 // ── Helpers ──────────────────────────────────────────────────────
