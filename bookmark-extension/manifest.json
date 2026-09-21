@@ -8,6 +8,12 @@
     "storage",
     "contextMenus"
   ],
+  "host_permissions": [
+    "https://api.github.com/*",
+    "https://api.openai.com/*",
+    "https://api.anthropic.com/*",
+    "<all_urls>"
+  ],
   "action": {
     "default_popup": "popup/popup.html",
     "default_title": "Save to Bookmarks"

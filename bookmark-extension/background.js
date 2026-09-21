@@ -138,6 +138,170 @@ browser.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   }
 });
 
+// ── Image handling ───────────────────────────────────────────────
+const MAX_IMAGE_SIZE = 2 * 1024 * 1024; // 2 MB
+
+/**
+ * Extract the best image URL from page HTML.
+ * Priority: og:image → twitter:image → largest <img>
+ */
+function detectImageUrl(html) {
+  if (!html) return null;
+
+  // 1. og:image meta tag
+  const ogMatch = html.match(
+    /<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i
+  ) || html.match(
+    /<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i
+  );
+  if (ogMatch && ogMatch[1]) {
+    return resolveUrl(ogMatch[1]);
+  }
+
+  // 2. twitter:image meta tag
+  const twMatch = html.match(
+    /<meta[^>]+name=["']twitter:image["'][^>]+content=["']([^"']+)["']/i
+  ) || html.match(
+    /<meta[^>]+content=["']([^"']+)["'][^>]+name=["']twitter:image["']/i
+  );
+  if (twMatch && twMatch[1]) {
+    return resolveUrl(twMatch[1]);
+  }
+
+  // 3. Largest <img> by width×height (or first large one)
+  const imgRegex = /<img[^>]+src=["']([^"']+)["'][^>]*>/gi;
+  let best = null;
+  let bestArea = 0;
+  let m;
+  while ((m = imgRegex.exec(html)) !== null) {
+    const src = m[1];
+    // Skip data URIs, SVGs, tracking pixels
+    if (!src || src.startsWith("data:") || src.toLowerCase().endsWith(".svg")) continue;
+
+    // Try to get width/height from attributes
+    const tag = m[0];
+    const w = parseInt(tag.match(/width=["'](\d+)/i)?.[1] || "0", 10);
+    const h = parseInt(tag.match(/height=["'](\d+)/i)?.[1] || "0", 10);
+    const area = w * h;
+
+    // Prefer images with explicit dimensions; fall back to first image
+    if (area > bestArea) {
+      bestArea = area;
+      best = src;
+    } else if (!best) {
+      best = src;
+    }
+  }
+
+  return best ? resolveUrl(best) : null;
+}
+
+/**
+ * Resolve a potentially-relative URL against the page URL.
+ */
+function resolveUrl(src, pageUrl) {
+  if (!src) return null;
+  try {
+    // Already absolute
+    if (/^https?:\/\//i.test(src)) return src;
+    // Protocol-relative
+    if (src.startsWith("//")) return "https:" + src;
+    // Relative — resolve against page URL if provided
+    if (pageUrl) {
+      return new URL(src, pageUrl).href;
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Download an image and return { base64, ext, size }.
+ * Returns null if the image is too large or download fails.
+ */
+async function downloadImage(url) {
+  console.log(`[IMG] Downloading: ${url}`);
+  try {
+    const res = await fetch(url, {
+      headers: { "Accept": "image/*" },
+    });
+    if (!res.ok) {
+      console.warn(`[IMG] HTTP ${res.status} for image`);
+      return null;
+    }
+
+    const contentType = res.headers.get("Content-Type") || "";
+    const blob = await res.blob();
+    const size = blob.size;
+
+    if (size > MAX_IMAGE_SIZE) {
+      console.warn(`[IMG] Image too large: ${size} bytes (max ${MAX_IMAGE_SIZE})`);
+      return null;
+    }
+
+    // Determine extension from Content-Type
+    const extMap = {
+      "image/jpeg": "jpg",
+      "image/png": "png",
+      "image/gif": "gif",
+      "image/webp": "webp",
+      "image/bmp": "bmp",
+    };
+    const ext = extMap[contentType.split(";")[0].trim()] || "jpg";
+
+    // Convert blob to base64
+    const buffer = await blob.arrayBuffer();
+    const bytes = new Uint8Array(buffer);
+    let binary = "";
+    const chunkSize = 8192;
+    for (let i = 0; i < bytes.length; i += chunkSize) {
+      binary += String.fromCharCode(...bytes.subarray(i, i + chunkSize));
+    }
+    const base64 = btoa(binary);
+
+    console.log(`[IMG] Downloaded: ${size} bytes, type=${contentType}, ext=${ext}`);
+    return { base64, ext, size };
+  } catch (e) {
+    console.warn(`[IMG] Download failed: ${e.message}`);
+    return null;
+  }
+}
+
+/**
+ * Upload an image to the repo under Images/bookmarks/.
+ * Returns the repo-relative path (e.g. "/Images/bookmarks/2026-09-21-slug.jpg")
+ * or null if upload fails.
+ */
+async function uploadImage(settings, base64, ext, date, slug) {
+  const { ghOwner: OWNER, ghRepo: REPO } = settings;
+  const imgPath = `Images/bookmarks/${date}-${slug}.${ext}`;
+
+  console.log(`[IMG] Uploading to: ${imgPath}`);
+
+  try {
+    // Try to create; if it exists, it's already there — reuse the path
+    const result = await ghFetch(settings, `/contents/${imgPath}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        message: `Add bookmark image: ${date}-${slug}.${ext}`,
+        content: base64,
+        branch: "main",
+      }),
+    });
+    console.log(`[IMG] Upload success: ${result.content?.path}`);
+    return `/Images/bookmarks/${date}-${slug}.${ext}`;
+  } catch (e) {
+    if (e.message.includes("409")) {
+      // File already exists — reuse it
+      console.log(`[IMG] File already exists, reusing: ${imgPath}`);
+      return `/Images/bookmarks/${date}-${slug}.${ext}`;
+    }
+    console.warn(`[IMG] Upload failed: ${e.message}`);
+    return null;
+  }
+}
+
 // ── Core save logic ───────────────────────────────────────────────
 async function handleSave(payload) {
   const { title, url, pageContent } = payload;
@@ -150,21 +314,37 @@ async function handleSave(payload) {
   // 1. Generate summary
   const summary = await generateSummary(title, url, pageContent, settings);
 
-  // 2. Build markdown
-  const date = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+  // 2. Detect and download image
+  const date = new Date().toISOString().slice(0, 10);
   const slug = slugify(title);
+  const imgUrl = detectImageUrl(pageContent, url);
+  let imagePath = null;
+
+  if (imgUrl) {
+    console.log(`[IMG] Detected: ${imgUrl}`);
+    const imgData = await downloadImage(imgUrl);
+    if (imgData) {
+      imagePath = await uploadImage(settings, imgData.base64, imgData.ext, date, slug);
+      if (!imagePath) {
+        console.warn("[IMG] Upload failed, continuing without image");
+      }
+    }
+  } else {
+    console.log("[IMG] No image detected");
+  }
+
+  // 3. Build markdown
   const fileName = `${date}-${slug}.md`;
   const filePath = `Bookmarks/${fileName}`;
+  const markdown = buildMarkdown(title, url, date, summary, imagePath);
 
-  const markdown = buildMarkdown(title, url, date, summary);
-
-  // 3. Dedup check
+  // 4. Dedup check
   const existing = await checkExisting(filePath, settings);
   if (existing) {
     return { ok: true, dedup: true, url: existing.html_url };
   }
 
-  // 4. Push to GitHub
+  // 5. Push to GitHub
   const commitInfo = await pushToGitHub(filePath, markdown, settings, title);
 
   return {
@@ -172,6 +352,7 @@ async function handleSave(payload) {
     dedup: false,
     fileName,
     commitUrl: commitInfo.html_url,
+    imagePath,
   };
 }
 
@@ -340,21 +521,37 @@ async function callAnthropic(prompt, model, token) {
 }
 
 // ── Markdown builder ──────────────────────────────────────────────
-function buildMarkdown(title, url, date, summary) {
+function buildMarkdown(title, url, date, summary, imagePath) {
   const escapedTitle = title.replace(/"/g, '\\"');
-  return [
+  const lines = [
     "---",
     `title: "${escapedTitle}"`,
     `url: "${url}"`,
     `date: "${date}"`,
     `summary: "${summary.replace(/"/g, '\\"')}"`,
-    `tags: [bookmarks]`,
+  ];
+
+  if (imagePath) {
+    lines.push(`image: "${imagePath}"`);
+  }
+
+  lines.push(
+    "tags: [bookmarks]",
     "---",
     "",
+  );
+
+  if (imagePath) {
+    lines.push(`![](${imagePath})`, "");
+  }
+
+  lines.push(
     `**Source:** <${url}>`,
     "",
     summary,
-  ].join("\n");
+  );
+
+  return lines.join("\n");
 }
 
 // ── Page content fetch ───────────────────────────────────────────
