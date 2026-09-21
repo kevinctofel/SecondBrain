@@ -186,17 +186,30 @@ const GH_API = "https://api.github.com";
 async function ghFetch(settings, path, opts = {}) {
   const { TOKEN, OWNER, REPO } = settings;
   const url = path.startsWith("http") ? path : `${GH_API}/repos/${OWNER}/${REPO}${path}`;
+  const headers = {
+    Authorization: `Bearer ${TOKEN}`,
+    "Content-Type": "application/json",
+    Accept: "application/vnd.github+json",
+    ...(opts.headers || {}),
+  };
+
+  // Log the request for debugging
+  console.log(`[GH] ${opts.method || "GET"} ${url}`);
+  console.log(`[GH] Auth header: Bearer ${TOKEN.slice(0, 10)}…${TOKEN.slice(-8)} (len=${TOKEN.length})`);
+  if (opts.body) {
+    console.log(`[GH] Body size: ${opts.body.length} bytes`);
+  }
+
   const res = await fetch(url, {
     ...opts,
-    headers: {
-      Authorization: `Bearer ${TOKEN}`,
-      "Content-Type": "application/json",
-      Accept: "application/vnd.github+json",
-      ...(opts.headers || {}),
-    },
+    headers,
   });
+
+  console.log(`[GH] Response: HTTP ${res.status} ${res.statusText}`);
+
   if (!res.ok) {
     const body = await res.text().catch(() => "");
+    console.error(`[GH] Error body: ${body.slice(0, 300)}`);
     throw new Error(`GitHub API ${res.status}: ${res.statusText} — ${body.slice(0, 200)}`);
   }
   return res.json();
