@@ -37,6 +37,23 @@ export default defineConfig({
   },
         ],
       },
+      {
+        label: "Bookmarks",
+        groups: [
+          {
+    query: {
+      sort: ["date", "title"],
+      tree: {
+        expanded: true,
+      },
+      filter: [
+        ["filePathStem", "includes", "/Bookmarks/"],
+        ["filePathStem", "isNotEqual", "/Bookmarks/index"],
+      ],
+    },
+  },
+        ],
+      },
     ],
   },
 });

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Save to Bookmarks</title>
+  <style>
+    :root {
+      --bg: #1a1a2e;
+      --surface: #16213e;
+      --border: #0f3460;
+      --text: #e0e0e0;
+      --muted: #8892b0;
+      --accent: #e94560;
+      --success: #4ecca3;
+      --error: #ff6b6b;
+      --radius: 8px;
+      --font: system-ui, -apple-system, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      width: 360px;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      padding: 16px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .header h1 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .settings-btn {
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 18px;
+      padding: 4px;
+      line-height: 1;
+    }
+    .settings-btn:hover { color: var(--text); }
+
+    /* ── Save form ── */
+    .save-form { display: flex; flex-direction: column; gap: 12px; }
+
+    label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 13px;
+      padding: 8px 10px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input[type="text"]:focus, textarea:focus {
+      border-color: var(--accent);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 60px;
+      max-height: 120px;
+    }
+
+    .url-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .url-row input { flex: 1; font-size: 12px; }
+    .fetch-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 11px;
+      padding: 6px 10px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .fetch-btn:hover { color: var(--text); border-color: var(--accent); }
+    .fetch-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .save-btn {
+      background: var(--accent);
+      border: none;
+      border-radius: var(--radius);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .save-btn:hover { opacity: 0.9; }
+    .save-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .spinner {
+      width: 14px; height: 14px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Status ── */
+    .status {
+      font-size: 12px;
+      padding: 8px 10px;
+      border-radius: var(--radius);
+      display: none;
+      line-height: 1.4;
+    }
+    .status.visible { display: block; }
+    .status.success { background: rgba(78,204,163,0.15); color: var(--success); }
+    .status.error { background: rgba(255,107,107,0.15); color: var(--error); }
+    .status.info { background: rgba(233,69,96,0.1); color: var(--muted); }
+
+    .status a { color: var(--success); text-decoration: underline; }
+
+    /* ── Settings panel ── */
+    .settings-panel { display: none; flex-direction: column; gap: 12px; }
+    .settings-panel.visible { display: flex; }
+
+    .settings-panel h2 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .settings-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .settings-full { grid-column: 1 / -1; }
+
+    .provider-select {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 13px;
+      padding: 8px 10px;
+      outline: none;
+    }
+
+    .close-settings {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      padding: 6px 12px;
+      cursor: pointer;
+      align-self: flex-start;
+    }
+    .close-settings:hover { color: var(--text); border-color: var(--accent); }
+
+    /* ── Token not set notice ── */
+    .token-warning {
+      font-size: 11px;
+      color: var(--muted);
+      padding: 6px 10px;
+      background: var(--surface);
+      border-radius: var(--radius);
+      display: none;
+    }
+    .token-warning.visible { display: block; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Save to Bookmarks</h1>
+    <button class="settings-btn" id="btnSettings" title="Settings">⚙</button>
+  </div>
+
+  <!-- ── Save form ── -->
+  <div class="save-form" id="saveForm">
+    <div>
+      <label for="title">Title</label>
+      <input type="text" id="title" placeholder="Page title">
+    </div>
+
+    <div>
+      <label for="url">URL</label>
+      <div class="url-row">
+        <input type="text" id="url" placeholder="https://…">
+        <button class="fetch-btn" id="btnFetch" title="Fetch page content">Fetch</button>
+      </div>
+    </div>
+
+    <div>
+      <label for="content">Page content <span style="opacity:0.5">(auto-fetched, or paste)</span></label>
+      <textarea id="content" placeholder="HTML or text of the page (used for summary generation)"></textarea>
+    </div>
+
+    <div class="token-warning" id="tokenWarning">
+      ⚠ GitHub token not set — click ⚙ to configure.
+    </div>
+
+    <button class="save-btn" id="btnSave">
+      <span id="btnSaveText">Save Bookmark</span>
+    </button>
+
+    <div class="status" id="status"></div>
+  </div>
+
+  <!-- ── Settings panel ── -->
+  <div class="settings-panel" id="settingsPanel">
+    <h2>Settings</h2>
+
+    <div class="settings-grid">
+      <div class="settings-full">
+        <label for="setOwner">GitHub Owner</label>
+        <input type="text" id="setOwner" placeholder="username">
+      </div>
+      <div class="settings-full">
+        <label for="setRepo">Repository</label>
+        <input type="text" id="setRepo" placeholder="SecondBrain">
+      </div>
+      <div class="settings-full">
+        <label for="setToken">GitHub Token</label>
+        <input type="text" id="setToken" placeholder="ghp_…" autocomplete="off">
+      </div>
+      <div>
+        <label for="setProvider">AI Provider</label>
+        <select class="provider-select" id="setProvider">
+          <option value="openai">OpenAI</option>
+          <option value="anthropic">Anthropic</option>
+        </select>
+      </div>
+      <div>
+        <label for="setModel">Model</label>
+        <input type="text" id="setModel" placeholder="gpt-4o-mini">
+      </div>
+    </div>
+
+    <div class="status" id="statusSettings"></div>
+    <button class="close-settings" id="btnCloseSettings">Done</button>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

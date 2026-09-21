@@ -38,4 +38,9 @@ export default function (eleventyConfig) {
   eleventyConfig.addCollection("articles", function(collection) {
         return collection.getFilteredByGlob("Articles/*.md");
     });
+  eleventyConfig.addCollection("bookmarks", function(collection) {
+        return collection.getFilteredByGlob("Bookmarks/*.md")
+          .filter(note => note.data.tags && note.data.tags.includes("bookmarks"))
+          .sort((a, b) => new Date(b.date) - new Date(a.date));
+    });
 }
