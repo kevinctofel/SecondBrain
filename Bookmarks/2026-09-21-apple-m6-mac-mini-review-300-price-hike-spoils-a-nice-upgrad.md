@@ -8,7 +8,7 @@ image: "//Images/bookmarks/2026-09-21-apple-m6-mac-mini-review-300-price-hike-sp
 tags: [bookmarks]
 ---
 
-<img src="//Images/bookmarks/2026-09-21-apple-m6-mac-mini-review-300-price-hike-spoils-a-nice-upgrad.jpg" alt="Apple M6 Mac mini review: $300 price hike spoils a nice upgrade - Ars Technica">
+<img src="../Images/bookmarks/2026-09-21-apple-m6-mac-mini-review-300-price-hike-spoils-a-nice-upgrad.jpg" alt="Apple M6 Mac mini review: $300 price hike spoils a nice upgrade - Ars Technica">
 
 # [Apple M6 Mac mini review: $300 price hike spoils a nice upgrade - Ars Technica](https://arstechnica.com/gadgets/2026/09/apple-m6-mac-mini-review-300-price-hike-spoils-a-nice-upgrade/)
 
