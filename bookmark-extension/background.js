@@ -20,6 +20,7 @@ const STORE_KEYS = {
   REPO: "ghRepo",
   MODEL: "aiModel",
   PROVIDER: "aiProvider", // "openai" | "anthropic" | "local"
+  AI_KEY: "aiKey",
 };
 
 const DEFAULTS = {
@@ -77,6 +78,58 @@ browser.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     return true;
   }
 
+  if (msg.type === "TEST_TOKEN") {
+    browser.storage.local.get(["ghToken", "ghOwner", "ghRepo"]).then(async (data) => {
+      const { ghToken, ghOwner = "kevinctofel", ghRepo = "SecondBrain" } = data;
+      try {
+        // Test 1: Is the token valid?
+        const userRes = await fetch("https://api.github.com/user", {
+          headers: {
+            Authorization: `Bearer ${ghToken}`,
+            Accept: "application/vnd.github+json",
+          },
+        });
+        if (!userRes.ok) {
+          const body = await userRes.text().catch(() => "");
+          sendResponse({
+            ok: false,
+            stage: "token",
+            status: userRes.status,
+            error: `Token invalid — ${body.slice(0, 200)}`,
+          });
+          return;
+        }
+        const user = await userRes.json();
+
+        // Test 2: Can the token access the repo?
+        const repoRes = await fetch(
+          `https://api.github.com/repos/${ghOwner}/${ghRepo}`,
+          {
+            headers: {
+              Authorization: `Bearer ${ghToken}`,
+              Accept: "application/vnd.github+json",
+            },
+          }
+        );
+        if (!repoRes.ok) {
+          const body = await repoRes.text().catch(() => "");
+          sendResponse({
+            ok: false,
+            stage: "repo",
+            status: repoRes.status,
+            error: `Token valid as ${user.login} but cannot access ${ghOwner}/${ghRepo} — ${body.slice(0, 200)}`,
+          });
+          return;
+        }
+
+        sendResponse({ ok: true, login: user.login, repo: `${ghOwner}/${ghRepo}` });
+      } catch (e) {
+        sendResponse({ ok: false, error: e.message });
+      }
+    });
+    return true;
+  }
+
   if (msg.type === "SAVE_SETTINGS") {
     browser.storage.local.set(msg.payload).then(() => {
       sendResponse({ ok: true });
@@ -84,6 +137,262 @@ browser.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     return true;
   }
 });
+
+// ── Image handling ───────────────────────────────────────────────
+const MAX_IMAGE_SIZE = 4 * 1024 * 1024; // 4 MB
+const TARGET_IMAGE_WIDTH = 800; // px — request CDN-resized when possible
+
+/**
+ * Try to get a smaller version of the image URL.
+ * Many CDNs (WordPress, Next.js, etc.) support query params for resizing.
+ * Returns an array of URLs to try, smallest-first.
+ */
+function resizeImageUrlCandidates(url) {
+  if (!url) return [];
+  const candidates = [url];
+  // Add CDN resize variants (tried in order; first successful one wins)
+  const parsed = new URL(url);
+  // WordPress/Next.js style: ?w=800
+  const wUrl = url + (url.includes("?") ? "&" : "?") + "w=" + TARGET_IMAGE_WIDTH;
+  candidates.push(wUrl);
+  // Some CDNs: ?width=800
+  const widthUrl = url + (url.includes("?") ? "&" : "?") + "width=" + TARGET_IMAGE_WIDTH;
+  candidates.push(widthUrl);
+  return candidates;
+}
+
+/**
+ * Extract the best image URL from page HTML.
+ * Priority: og:image → twitter:image → largest <img>
+ */
+function detectImageUrl(html, pageUrl) {
+  if (!html) return null;
+
+  // 1. og:image meta tag (property= or name=)
+  const ogMatch = html.match(
+    /<meta[^>]+(?:property|name)=["']og:image["'][^>]+content=["']([^"']+)["']/i
+  ) || html.match(
+    /<meta[^>]+content=["']([^"']+)["'][^>]+(?:property|name)=["']og:image["']/i
+  );
+  if (ogMatch && ogMatch[1]) {
+    return resolveUrl(ogMatch[1], pageUrl);
+  }
+
+  // 2. twitter:image meta tag
+  const twMatch = html.match(
+    /<meta[^>]+name=["']twitter:image["'][^>]+content=["']([^"']+)["']/i
+  ) || html.match(
+    /<meta[^>]+content=["']([^"']+)["'][^>]+name=["']twitter:image["']/i
+  );
+  if (twMatch && twMatch[1]) {
+    return resolveUrl(twMatch[1], pageUrl);
+  }
+
+  // 3. Largest <img> by width×height (or first large one)
+  const imgRegex = /<img[^>]+src=["']([^"']+)["'][^>]*>/gi;
+  let best = null;
+  let bestArea = 0;
+  let m;
+  while ((m = imgRegex.exec(html)) !== null) {
+    const src = m[1];
+    // Skip data URIs, SVGs, tracking pixels
+    if (!src || src.startsWith("data:") || src.toLowerCase().endsWith(".svg")) continue;
+
+    // Try to get width/height from attributes
+    const tag = m[0];
+    const w = parseInt(tag.match(/width=["'](\d+)/i)?.[1] || "0", 10);
+    const h = parseInt(tag.match(/height=["'](\d+)/i)?.[1] || "0", 10);
+    const area = w * h;
+
+    // Prefer images with explicit dimensions; fall back to first image
+    if (area > bestArea) {
+      bestArea = area;
+      best = src;
+    } else if (!best) {
+      best = src;
+    }
+  }
+
+  return best ? resolveUrl(best, pageUrl) : null;
+}
+
+/**
+ * Resolve a potentially-relative URL against the page URL.
+ */
+function resolveUrl(src, pageUrl) {
+  if (!src) return null;
+  try {
+    // Already absolute
+    if (/^https?:\/\//i.test(src)) return src;
+    // Protocol-relative
+    if (src.startsWith("//")) return "https:" + src;
+    // Relative — resolve against page URL if provided
+    if (pageUrl) {
+      return new URL(src, pageUrl).href;
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Download an image and return { base64, ext, size }.
+ * Tries CDN resize variants first, then the original.
+ * Returns null if all attempts fail or the image is too large.
+ */
+async function downloadImage(url) {
+  const candidates = resizeImageUrlCandidates(url);
+  console.log(`[IMG] Downloading: ${url} (${candidates.length} candidates)`);
+
+  for (const candidate of candidates) {
+    try {
+      const res = await fetch(candidate, {
+        headers: { "Accept": "image/*" },
+      });
+      if (!res.ok) {
+        console.warn(`[IMG] HTTP ${res.status} for ${candidate}`);
+        continue;
+      }
+
+      const contentType = res.headers.get("Content-Type") || "";
+      const blob = await res.blob();
+      const size = blob.size;
+
+      if (size > MAX_IMAGE_SIZE) {
+        console.warn(`[IMG] Too large: ${size} bytes (max ${MAX_IMAGE_SIZE}) for ${candidate}`);
+        continue;
+      }
+
+      // Determine extension from Content-Type
+      const extMap = {
+        "image/jpeg": "jpg",
+        "image/png": "png",
+        "image/gif": "gif",
+        "image/webp": "webp",
+        "image/bmp": "bmp",
+      };
+      const ext = extMap[contentType.split(";")[0].trim()] || "jpg";
+
+      // Convert blob to base64
+      const buffer = await blob.arrayBuffer();
+      const bytes = new Uint8Array(buffer);
+      let binary = "";
+      const chunkSize = 8192;
+      for (let i = 0; i < bytes.length; i += chunkSize) {
+        binary += String.fromCharCode(...bytes.subarray(i, i + chunkSize));
+      }
+      const base64 = btoa(binary);
+
+      console.log(`[IMG] Downloaded: ${size} bytes from ${candidate}, type=${contentType}, ext=${ext}`);
+      return { base64, ext, size };
+    } catch (e) {
+      console.warn(`[IMG] Download failed for ${candidate}: ${e.message}`);
+    }
+  }
+
+  console.warn("[IMG] All candidates failed");
+  return null;
+}
+
+/**
+ * Upload an image to the repo under Images/bookmarks/.
+ * Returns the repo-relative path (e.g. "/Images/bookmarks/2026-09-21-slug.jpg")
+ * or null if upload fails.
+ */
+async function uploadImage(settings, base64, ext, date, slug) {
+  const { ghOwner: OWNER, ghRepo: REPO } = settings;
+  const imgPath = `Images/bookmarks/${date}-${slug}.${ext}`;
+
+  console.log(`[IMG] Uploading to: ${imgPath}`);
+
+  try {
+    // Try to create; if it exists, it's already there — reuse the path
+    const result = await ghFetch(settings, `/contents/${imgPath}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        message: `Add bookmark image: ${date}-${slug}.${ext}`,
+        content: base64,
+        branch: "main",
+      }),
+    });
+    console.log(`[IMG] Upload success: ${result.content?.path}`);
+    return `/Images/bookmarks/${date}-${slug}.${ext}`;
+  } catch (e) {
+    if (e.message.includes("409")) {
+      // File already exists — reuse it
+      console.log(`[IMG] File already exists, reusing: ${imgPath}`);
+      return `/Images/bookmarks/${date}-${slug}.${ext}`;
+    }
+    console.warn(`[IMG] Upload failed: ${e.message}`);
+    return null;
+  }
+}
+
+// ── Article date detection ────────────────────────────────────────
+/**
+ * Extract the article publication date from page HTML.
+ * Priority: article:published_time → JSON-LD datePublished → <time> tag → date-stamped URL.
+ * Returns an ISO date string (YYYY-MM-DD) or null.
+ */
+function detectArticleDate(html, url) {
+  if (!html) return null;
+
+  // 1. article:published_time meta tag
+  const meta = html.match(
+    /<meta[^>]+property=["']article:published_time["'][^>]+content=["']([^"']+)["']/i
+  ) || html.match(
+    /<meta[^>]+content=["']([^"']+)["'][^>]+property=["']article:published_time["']/i
+  );
+  if (meta && meta[1]) {
+    const d = new Date(meta[1]);
+    if (!isNaN(d.getTime())) {
+      return d.toISOString().slice(0, 10);
+    }
+  }
+
+  // 2. JSON-LD datePublished
+  const jsonLd = html.match(
+    /<script[^>]+application\/ld\+json[^>]*>([\s\S]*?)<\/script>/gi
+  );
+  if (jsonLd) {
+    for (const block of jsonLd) {
+      const content = block.replace(/<script[^>]*>/, "").replace(/<\/script>/, "").trim();
+      try {
+        const data = JSON.parse(content);
+        const items = Array.isArray(data) ? data : [data];
+        for (const item of items) {
+          const dateStr = item.datePublished || item.dateCreated;
+          if (dateStr) {
+            const d = new Date(dateStr);
+            if (!isNaN(d.getTime())) {
+              return d.toISOString().slice(0, 10);
+            }
+          }
+        }
+      } catch { /* not valid JSON */ }
+    }
+  }
+
+  // 3. <time> tag with datetime attribute
+  const timeTag = html.match(/<time[^>]+datetime=["']([^"']+)["']/i);
+  if (timeTag && timeTag[1]) {
+    const d = new Date(timeTag[1]);
+    if (!isNaN(d.getTime())) {
+      return d.toISOString().slice(0, 10);
+    }
+  }
+
+  // 4. Date-stamped URL (e.g. /2024-03-15/my-post/)
+  if (url) {
+    const urlDate = url.match(/(\d{4})-?(\d{2})-?(\d{2})/);
+    if (urlDate) {
+      return `${urlDate[1]}-${urlDate[2]}-${urlDate[3]}`;
+    }
+  }
+
+  return null;
+}
 
 // ── Core save logic ───────────────────────────────────────────────
 async function handleSave(payload) {
@@ -97,21 +406,40 @@ async function handleSave(payload) {
   // 1. Generate summary
   const summary = await generateSummary(title, url, pageContent, settings);
 
-  // 2. Build markdown
-  const date = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+  // 2. Detect article date (fallback: save date)
+  const date = new Date().toISOString().slice(0, 10);
+  const articleDate = detectArticleDate(pageContent, url) || date;
+
+  // 3. Detect and download image
   const slug = slugify(title);
+  const imgUrl = detectImageUrl(pageContent, url);
+  let imagePath = null;
+
+  if (imgUrl) {
+    console.log(`[IMG] Detected: ${imgUrl}`);
+    const imgData = await downloadImage(imgUrl);
+    if (imgData) {
+      imagePath = await uploadImage(settings, imgData.base64, imgData.ext, date, slug);
+      if (!imagePath) {
+        console.warn("[IMG] Upload failed, continuing without image");
+      }
+    }
+  } else {
+    console.log("[IMG] No image detected");
+  }
+
+  // 4. Build markdown
   const fileName = `${date}-${slug}.md`;
   const filePath = `Bookmarks/${fileName}`;
+  const markdown = buildMarkdown(title, url, date, summary, imagePath, articleDate);
 
-  const markdown = buildMarkdown(title, url, date, summary);
-
-  // 3. Dedup check
+  // 5. Dedup check
   const existing = await checkExisting(filePath, settings);
   if (existing) {
     return { ok: true, dedup: true, url: existing.html_url };
   }
 
-  // 4. Push to GitHub
+  // 6. Push to GitHub
   const commitInfo = await pushToGitHub(filePath, markdown, settings, title);
 
   return {
@@ -119,6 +447,7 @@ async function handleSave(payload) {
     dedup: false,
     fileName,
     commitUrl: commitInfo.html_url,
+    imagePath,
   };
 }
 
@@ -132,19 +461,32 @@ async function getSettings() {
 const GH_API = "https://api.github.com";
 
 async function ghFetch(settings, path, opts = {}) {
-  const { TOKEN, OWNER, REPO } = settings;
+  const { ghToken: TOKEN, ghOwner: OWNER, ghRepo: REPO } = settings;
   const url = path.startsWith("http") ? path : `${GH_API}/repos/${OWNER}/${REPO}${path}`;
+  const headers = {
+    Authorization: `Bearer ${TOKEN}`,
+    "Content-Type": "application/json",
+    Accept: "application/vnd.github+json",
+    ...(opts.headers || {}),
+  };
+
+  // Log the request for debugging
+  console.log(`[GH] ${opts.method || "GET"} ${url}`);
+  console.log(`[GH] Auth header: Bearer ${TOKEN.slice(0, 10)}…${TOKEN.slice(-8)} (len=${TOKEN.length})`);
+  if (opts.body) {
+    console.log(`[GH] Body size: ${opts.body.length} bytes`);
+  }
+
   const res = await fetch(url, {
     ...opts,
-    headers: {
-      Authorization: `Bearer ${TOKEN}`,
-      "Content-Type": "application/json",
-      Accept: "application/vnd.github+json",
-      ...(opts.headers || {}),
-    },
+    headers,
   });
+
+  console.log(`[GH] Response: HTTP ${res.status} ${res.statusText}`);
+
   if (!res.ok) {
     const body = await res.text().catch(() => "");
+    console.error(`[GH] Error body: ${body.slice(0, 300)}`);
     throw new Error(`GitHub API ${res.status}: ${res.statusText} — ${body.slice(0, 200)}`);
   }
   return res.json();
@@ -168,12 +510,12 @@ async function checkExisting(filePath, settings) {
  * Returns the commit API object.
  */
 async function pushToGitHub(filePath, content, settings, title) {
-  const { TOKEN, OWNER, REPO } = settings;
+  const { ghToken: TOKEN, ghOwner: OWNER, ghRepo: REPO } = settings;
   const commitMsg = `Add bookmark: ${title}`;
 
   // Try to create; if it exists (race condition), update instead
   try {
-    return await ghFetch(settings, `/repos/${OWNER}/${REPO}/contents/${filePath}`, {
+    return await ghFetch(settings, `/contents/${filePath}`, {
       method: "PUT",
       body: JSON.stringify({
         message: commitMsg,
@@ -185,7 +527,7 @@ async function pushToGitHub(filePath, content, settings, title) {
     if (!e.message.includes("409")) throw e;
     // File exists — get sha then update
     const existing = await ghFetch(settings, `/contents/${filePath}`);
-    return await ghFetch(settings, `/repos/${OWNER}/${REPO}/contents/${filePath}`, {
+    return await ghFetch(settings, `/contents/${filePath}`, {
       method: "PUT",
       body: JSON.stringify({
         message: `Update bookmark: ${title}`,
@@ -199,7 +541,7 @@ async function pushToGitHub(filePath, content, settings, title) {
 
 // ── Summary generation ────────────────────────────────────────────
 async function generateSummary(title, url, content, settings) {
-  const { PROVIDER, MODEL, TOKEN } = settings;
+  const { aiProvider: PROVIDER, aiModel: MODEL, aiKey: AI_KEY } = settings;
 
   // Extract readable text from HTML (strip tags, collapse whitespace)
   const text = extractText(content).slice(0, 8000);
@@ -218,11 +560,11 @@ async function generateSummary(title, url, content, settings) {
   ].join("\n");
 
   if (PROVIDER === "openai") {
-    return callOpenAI(prompt, MODEL, TOKEN);
+    return callOpenAI(prompt, MODEL, AI_KEY);
   }
 
   if (PROVIDER === "anthropic") {
-    return callAnthropic(prompt, MODEL, TOKEN);
+    return callAnthropic(prompt, MODEL, AI_KEY);
   }
 
   // Fallback: no AI, just truncate
@@ -274,21 +616,54 @@ async function callAnthropic(prompt, model, token) {
 }
 
 // ── Markdown builder ──────────────────────────────────────────────
-function buildMarkdown(title, url, date, summary) {
-  const escapedTitle = title.replace(/"/g, '\\"');
-  return [
+const MONTHS = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December",
+];
+
+/**
+ * Format an ISO date string (YYYY-MM-DD) as "Month DD, YYYY".
+ */
+function formatFullDate(isoDate) {
+  const d = new Date(isoDate + "T00:00:00");
+  if (isNaN(d.getTime())) return isoDate;
+  return `${MONTHS[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+}
+
+function buildMarkdown(title, url, date, summary, imagePath, articleDate) {
+  const escapedTitle = title.replace(/"/g, '\\\\"');
+  const publishedDate = articleDate || date;
+
+  const lines = [
     "---",
     `title: "${escapedTitle}"`,
     `url: "${url}"`,
     `date: "${date}"`,
-    `summary: "${summary.replace(/"/g, '\\"')}"`,
-    `tags: [bookmarks]`,
+    `sourceDate: "${publishedDate}"`,
+    `summary: "${summary.replace(/"/g, '\\\\"')}"`,
+  ];
+
+  if (imagePath) {
+    lines.push(`image: "${imagePath}"`);
+  }
+
+  lines.push(
+    "tags: [bookmarks]",
     "---",
     "",
-    `**Source:** <${url}>`,
+  );
+
+  if (imagePath) {
+    lines.push(`<img src="${imagePath}" alt="${escapedTitle}">`, "");
+  }
+
+  lines.push(
+    `*Published: ${formatFullDate(publishedDate)}*`,
     "",
     summary,
-  ].join("\n");
+  );
+
+  return lines.join("\n");
 }
 
 // ── Page content fetch ───────────────────────────────────────────
