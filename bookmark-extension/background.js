@@ -78,21 +78,50 @@ browser.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   }
 
   if (msg.type === "TEST_TOKEN") {
-    browser.storage.local.get(["ghToken"]).then(async (data) => {
+    browser.storage.local.get(["ghToken", "ghOwner", "ghRepo"]).then(async (data) => {
+      const { ghToken, ghOwner = "kevinctofel", ghRepo = "SecondBrain" } = data;
       try {
-        const res = await fetch("https://api.github.com/user", {
+        // Test 1: Is the token valid?
+        const userRes = await fetch("https://api.github.com/user", {
           headers: {
-            Authorization: `Bearer ${data.ghToken}`,
+            Authorization: `Bearer ${ghToken}`,
             Accept: "application/vnd.github+json",
           },
         });
-        if (res.ok) {
-          const user = await res.json();
-          sendResponse({ ok: true, login: user.login });
-        } else {
-          const body = await res.text().catch(() => "");
-          sendResponse({ ok: false, status: res.status, error: body.slice(0, 200) });
+        if (!userRes.ok) {
+          const body = await userRes.text().catch(() => "");
+          sendResponse({
+            ok: false,
+            stage: "token",
+            status: userRes.status,
+            error: `Token invalid — ${body.slice(0, 200)}`,
+          });
+          return;
         }
+        const user = await userRes.json();
+
+        // Test 2: Can the token access the repo?
+        const repoRes = await fetch(
+          `https://api.github.com/repos/${ghOwner}/${ghRepo}`,
+          {
+            headers: {
+              Authorization: `Bearer ${ghToken}`,
+              Accept: "application/vnd.github+json",
+            },
+          }
+        );
+        if (!repoRes.ok) {
+          const body = await repoRes.text().catch(() => "");
+          sendResponse({
+            ok: false,
+            stage: "repo",
+            status: repoRes.status,
+            error: `Token valid as ${user.login} but cannot access ${ghOwner}/${ghRepo} — ${body.slice(0, 200)}`,
+          });
+          return;
+        }
+
+        sendResponse({ ok: true, login: user.login, repo: `${ghOwner}/${ghRepo}` });
       } catch (e) {
         sendResponse({ ok: false, error: e.message });
       }

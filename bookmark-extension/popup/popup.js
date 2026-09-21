@@ -187,8 +187,10 @@ btnCloseSettings.addEventListener("click", async () => {
 });
 
 btnTestToken.addEventListener("click", async () => {
-  // Save the current token first (in case they haven't clicked Done yet)
+  // Save the current settings first (in case they haven't clicked Done yet)
   await browser.storage.local.set({
+    ghOwner: setOwner.value.trim() || "kevinctofel",
+    ghRepo: setRepo.value.trim() || "SecondBrain",
     ghToken: setToken.value.trim(),
   });
 
@@ -199,10 +201,10 @@ btnTestToken.addEventListener("click", async () => {
 
   if (resp.ok) {
     statusSettings.className = "status visible success";
-    statusSettings.textContent = `✓ Token valid — logged in as ${resp.login}`;
+    statusSettings.textContent = `✓ Token valid — ${resp.login} can access ${resp.repo}`;
   } else {
     statusSettings.className = "status visible error";
-    statusSettings.textContent = `✗ Token rejected (HTTP ${resp.status || "?"}): ${resp.error || resp.message || "Unknown error"}`;
+    statusSettings.textContent = `✗ ${resp.error || `HTTP ${resp.status || "?"}`}`;
   }
 });
 
