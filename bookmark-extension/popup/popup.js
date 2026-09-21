@@ -33,19 +33,19 @@ const setModel = $("#setModel");
 // ── Init: fill from active tab ───────────────────────────────────
 async function init() {
   // Check if a token is set
-  const res = await chrome.runtime.sendMessage({ type: "CHECK_SETTINGS" });
+  const res = await browser.runtime.sendMessage({ type: "CHECK_SETTINGS" });
   if (!res.tokenSet) {
     tokenWarning.classList.add("visible");
   }
 
   // Try to pick up a URL from a context menu click
-  const sessionData = await chrome.storage.session.get("contextUrl");
+  const sessionData = await browser.storage.session.get("contextUrl");
   const contextUrl = sessionData.contextUrl;
   if (contextUrl) {
-    chrome.storage.session.remove("contextUrl");
+    browser.storage.session.remove("contextUrl");
   }
 
-  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
   if (!tab) return;
 
   const url = contextUrl || tab.url;
@@ -78,7 +78,7 @@ async function fetchContent(tabId, url) {
 async function fetchWithTab(tabId, url) {
   // Use the tab's fetch context via the service worker
   // (service worker has the page's origin context)
-  const resp = await chrome.runtime.sendMessage({ type: "FETCH_PAGE", url });
+  const resp = await browser.runtime.sendMessage({ type: "FETCH_PAGE", url });
   if (!resp?.ok) throw new Error(resp?.error || "Fetch failed");
   return resp.content;
 }
@@ -105,7 +105,7 @@ btnSave.addEventListener("click", async () => {
   statusEl.textContent = "";
 
   try {
-    const resp = await chrome.runtime.sendMessage({
+    const resp = await browser.runtime.sendMessage({
       type: "SAVE_BOOKMARK",
       payload: { title, url, pageContent: content },
     });
@@ -133,7 +133,7 @@ btnFetch.addEventListener("click", async () => {
   const url = urlInput.value.trim();
   if (!url) return;
 
-  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
   if (!tab) return;
 
   await fetchContent(tab.id, url);
@@ -141,7 +141,7 @@ btnFetch.addEventListener("click", async () => {
 
 // ── Settings ─────────────────────────────────────────────────────
 btnSettings.addEventListener("click", async () => {
-  const data = await chrome.storage.local.get([
+  const data = await browser.storage.local.get([
     "ghToken",
     "ghOwner",
     "ghRepo",
@@ -160,7 +160,7 @@ btnSettings.addEventListener("click", async () => {
 });
 
 btnCloseSettings.addEventListener("click", async () => {
-  await chrome.storage.local.set({
+  await browser.storage.local.set({
     ghOwner: setOwner.value.trim() || "kevinctofel",
     ghRepo: setRepo.value.trim() || "SecondBrain",
     ghToken: setToken.value.trim(),
@@ -177,7 +177,7 @@ btnCloseSettings.addEventListener("click", async () => {
     saveForm.style.display = "flex";
 
     // Re-check token warning
-    chrome.runtime.sendMessage({ type: "CHECK_SETTINGS" }, (res) => {
+    browser.runtime.sendMessage({ type: "CHECK_SETTINGS" }, (res) => {
       tokenWarning.classList.toggle("visible", !res.tokenSet);
     });
   }, 1200);

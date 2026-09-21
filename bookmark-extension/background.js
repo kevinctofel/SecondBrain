@@ -1,3 +1,5 @@
+importScripts("browser.js");
+
 /**
  * SecondBrain Bookmarks — Service Worker
  *
@@ -6,7 +8,8 @@
  *   - Save requests from the popup (markdown generation + GitHub push)
  *   - Settings persistence (token, repo, model)
  *
- * All state lives in chrome.storage. The service worker is stateless
+ * Uses the cross-browser `browser` namespace (see browser.js shim).
+ * All state lives in browser.storage. The service worker is stateless
  * between invocations — every message re-reads what it needs.
  */
 
@@ -28,30 +31,30 @@ const DEFAULTS = {
 };
 
 // ── Context menu ──────────────────────────────────────────────────
-chrome.runtime.onInstalled.addListener(() => {
-  chrome.contextMenus.create({
+browser.runtime.onInstalled.addListener(() => {
+  browser.contextMenus.create({
     id: "save-to-bookmarks",
     title: "Save to Bookmarks",
     contexts: ["link", "page"],
   });
 });
 
-chrome.contextMenus.onClicked.addListener((info) => {
+browser.contextMenus.onClicked.addListener((info) => {
   if (info.menuItemId !== "save-to-bookmarks") return;
   // Open the popup with the context pre-filled
-  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+  browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
     const tab = tabs[0];
     if (!tab) return;
     // We can't pre-fill the popup from a context menu click directly,
     // so we store the URL and the popup reads it on open.
-    chrome.storage.session.set({ contextUrl: info.linkUrl || info.pageUrl });
+    browser.storage.session.set({ contextUrl: info.linkUrl || info.pageUrl });
     // Open the action popup (programmatic open)
-    chrome.action.openPopup?.();
-  });
+    browser.action.openPopup?.();
+  }).catch(() => {});
 });
 
 // ── Message handler ───────────────────────────────────────────────
-chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+browser.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   if (msg.type === "SAVE_BOOKMARK") {
     handleSave(msg.payload)
       .then(sendResponse)
@@ -67,7 +70,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   }
 
   if (msg.type === "CHECK_SETTINGS") {
-    chrome.storage.local.get(Object.values(STORE_KEYS), (data) => {
+    browser.storage.local.get(Object.values(STORE_KEYS)).then((data) => {
       const tokenSet = !!data[STORE_KEYS.TOKEN];
       sendResponse({ tokenSet });
     });
@@ -75,7 +78,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   }
 
   if (msg.type === "SAVE_SETTINGS") {
-    chrome.storage.local.set(msg.payload, () => {
+    browser.storage.local.set(msg.payload).then(() => {
       sendResponse({ ok: true });
     });
     return true;
@@ -122,7 +125,7 @@ async function handleSave(payload) {
 // ── Settings ──────────────────────────────────────────────────────
 async function getSettings() {
   const keys = Object.values(STORE_KEYS);
-  return chrome.storage.local.get(keys);
+  return browser.storage.local.get(keys);
 }
 
 // ── GitHub API ────────────────────────────────────────────────────
