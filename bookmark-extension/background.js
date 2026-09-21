@@ -145,7 +145,7 @@ const MAX_IMAGE_SIZE = 2 * 1024 * 1024; // 2 MB
  * Extract the best image URL from page HTML.
  * Priority: og:image → twitter:image → largest <img>
  */
-function detectImageUrl(html) {
+function detectImageUrl(html, pageUrl) {
   if (!html) return null;
 
   // 1. og:image meta tag
@@ -155,7 +155,7 @@ function detectImageUrl(html) {
     /<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i
   );
   if (ogMatch && ogMatch[1]) {
-    return resolveUrl(ogMatch[1]);
+    return resolveUrl(ogMatch[1], pageUrl);
   }
 
   // 2. twitter:image meta tag
@@ -165,7 +165,7 @@ function detectImageUrl(html) {
     /<meta[^>]+content=["']([^"']+)["'][^>]+name=["']twitter:image["']/i
   );
   if (twMatch && twMatch[1]) {
-    return resolveUrl(twMatch[1]);
+    return resolveUrl(twMatch[1], pageUrl);
   }
 
   // 3. Largest <img> by width×height (or first large one)
@@ -193,7 +193,7 @@ function detectImageUrl(html) {
     }
   }
 
-  return best ? resolveUrl(best) : null;
+  return best ? resolveUrl(best, pageUrl) : null;
 }
 
 /**
@@ -302,6 +302,71 @@ async function uploadImage(settings, base64, ext, date, slug) {
   }
 }
 
+// ── Article date detection ────────────────────────────────────────
+/**
+ * Extract the article publication date from page HTML.
+ * Priority: article:published_time → JSON-LD datePublished → <time> tag → date-stamped URL.
+ * Returns an ISO date string (YYYY-MM-DD) or null.
+ */
+function detectArticleDate(html, url) {
+  if (!html) return null;
+
+  // 1. article:published_time meta tag
+  const meta = html.match(
+    /<meta[^>]+property=["']article:published_time["'][^>]+content=["']([^"']+)["']/i
+  ) || html.match(
+    /<meta[^>]+content=["']([^"']+)["'][^>]+property=["']article:published_time["']/i
+  );
+  if (meta && meta[1]) {
+    const d = new Date(meta[1]);
+    if (!isNaN(d.getTime())) {
+      return d.toISOString().slice(0, 10);
+    }
+  }
+
+  // 2. JSON-LD datePublished
+  const jsonLd = html.match(
+    /<script[^>]+application\/ld\+json[^>]*>([\s\S]*?)<\/script>/gi
+  );
+  if (jsonLd) {
+    for (const block of jsonLd) {
+      const content = block.replace(/<script[^>]*>/, "").replace(/<\/script>/, "").trim();
+      try {
+        const data = JSON.parse(content);
+        const items = Array.isArray(data) ? data : [data];
+        for (const item of items) {
+          const dateStr = item.datePublished || item.dateCreated;
+          if (dateStr) {
+            const d = new Date(dateStr);
+            if (!isNaN(d.getTime())) {
+              return d.toISOString().slice(0, 10);
+            }
+          }
+        }
+      } catch { /* not valid JSON */ }
+    }
+  }
+
+  // 3. <time> tag with datetime attribute
+  const timeTag = html.match(/<time[^>]+datetime=["']([^"']+)["']/i);
+  if (timeTag && timeTag[1]) {
+    const d = new Date(timeTag[1]);
+    if (!isNaN(d.getTime())) {
+      return d.toISOString().slice(0, 10);
+    }
+  }
+
+  // 4. Date-stamped URL (e.g. /2024-03-15/my-post/)
+  if (url) {
+    const urlDate = url.match(/(\d{4})-?(\d{2})-?(\d{2})/);
+    if (urlDate) {
+      return `${urlDate[1]}-${urlDate[2]}-${urlDate[3]}`;
+    }
+  }
+
+  return null;
+}
+
 // ── Core save logic ───────────────────────────────────────────────
 async function handleSave(payload) {
   const { title, url, pageContent } = payload;
@@ -314,8 +379,11 @@ async function handleSave(payload) {
   // 1. Generate summary
   const summary = await generateSummary(title, url, pageContent, settings);
 
-  // 2. Detect and download image
+  // 2. Detect article date (fallback: save date)
   const date = new Date().toISOString().slice(0, 10);
+  const articleDate = detectArticleDate(pageContent, url) || date;
+
+  // 3. Detect and download image
   const slug = slugify(title);
   const imgUrl = detectImageUrl(pageContent, url);
   let imagePath = null;
@@ -333,18 +401,18 @@ async function handleSave(payload) {
     console.log("[IMG] No image detected");
   }
 
-  // 3. Build markdown
+  // 4. Build markdown
   const fileName = `${date}-${slug}.md`;
   const filePath = `Bookmarks/${fileName}`;
-  const markdown = buildMarkdown(title, url, date, summary, imagePath);
+  const markdown = buildMarkdown(title, url, date, summary, imagePath, articleDate);
 
-  // 4. Dedup check
+  // 5. Dedup check
   const existing = await checkExisting(filePath, settings);
   if (existing) {
     return { ok: true, dedup: true, url: existing.html_url };
   }
 
-  // 5. Push to GitHub
+  // 6. Push to GitHub
   const commitInfo = await pushToGitHub(filePath, markdown, settings, title);
 
   return {
@@ -521,14 +589,31 @@ async function callAnthropic(prompt, model, token) {
 }
 
 // ── Markdown builder ──────────────────────────────────────────────
-function buildMarkdown(title, url, date, summary, imagePath) {
-  const escapedTitle = title.replace(/"/g, '\\"');
+const MONTHS = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December",
+];
+
+/**
+ * Format an ISO date string (YYYY-MM-DD) as "Month DD, YYYY".
+ */
+function formatFullDate(isoDate) {
+  const d = new Date(isoDate + "T00:00:00");
+  if (isNaN(d.getTime())) return isoDate;
+  return `${MONTHS[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+}
+
+function buildMarkdown(title, url, date, summary, imagePath, articleDate) {
+  const escapedTitle = title.replace(/"/g, '\\\\"');
+  const publishedDate = articleDate || date;
+
   const lines = [
     "---",
     `title: "${escapedTitle}"`,
     `url: "${url}"`,
     `date: "${date}"`,
-    `summary: "${summary.replace(/"/g, '\\"')}"`,
+    `sourceDate: "${publishedDate}"`,
+    `summary: "${summary.replace(/"/g, '\\\\"')}"`,
   ];
 
   if (imagePath) {
@@ -546,7 +631,9 @@ function buildMarkdown(title, url, date, summary, imagePath) {
   }
 
   lines.push(
-    `**Source:** <${url}>`,
+    `# [${title}](${url})`,
+    "",
+    `*Published: ${formatFullDate(publishedDate)}*`,
     "",
     summary,
   );
