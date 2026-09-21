@@ -21,6 +21,7 @@ const settingsPanel = $("#settingsPanel");
 const saveForm = $("#saveForm");
 const btnSettings = $("#btnSettings");
 const btnCloseSettings = $("#btnCloseSettings");
+const btnTestToken = $("#btnTestToken");
 const statusSettings = $("#statusSettings");
 
 // Settings inputs
@@ -177,10 +178,32 @@ btnCloseSettings.addEventListener("click", async () => {
     saveForm.style.display = "flex";
 
     // Re-check token warning
-    browser.runtime.sendMessage({ type: "CHECK_SETTINGS" }, (res) => {
-      tokenWarning.classList.toggle("visible", !res.tokenSet);
-    });
+    browser.runtime.sendMessage({ type: "CHECK_SETTINGS" })
+      .then((res) => {
+        tokenWarning.classList.toggle("visible", !res.tokenSet);
+      })
+      .catch(() => {});
   }, 1200);
+});
+
+btnTestToken.addEventListener("click", async () => {
+  // Save the current token first (in case they haven't clicked Done yet)
+  await browser.storage.local.set({
+    ghToken: setToken.value.trim(),
+  });
+
+  statusSettings.className = "status visible info";
+  statusSettings.textContent = "Testing token…";
+
+  const resp = await browser.runtime.sendMessage({ type: "TEST_TOKEN" });
+
+  if (resp.ok) {
+    statusSettings.className = "status visible success";
+    statusSettings.textContent = `✓ Token valid — logged in as ${resp.login}`;
+  } else {
+    statusSettings.className = "status visible error";
+    statusSettings.textContent = `✗ Token rejected (HTTP ${resp.status || "?"}): ${resp.error || resp.message || "Unknown error"}`;
+  }
 });
 
 // ── Helpers ──────────────────────────────────────────────────────

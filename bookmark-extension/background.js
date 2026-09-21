@@ -77,6 +77,29 @@ browser.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     return true;
   }
 
+  if (msg.type === "TEST_TOKEN") {
+    browser.storage.local.get(["ghToken"]).then(async (data) => {
+      try {
+        const res = await fetch("https://api.github.com/user", {
+          headers: {
+            Authorization: `Bearer ${data.ghToken}`,
+            Accept: "application/vnd.github+json",
+          },
+        });
+        if (res.ok) {
+          const user = await res.json();
+          sendResponse({ ok: true, login: user.login });
+        } else {
+          const body = await res.text().catch(() => "");
+          sendResponse({ ok: false, status: res.status, error: body.slice(0, 200) });
+        }
+      } catch (e) {
+        sendResponse({ ok: false, error: e.message });
+      }
+    });
+    return true;
+  }
+
   if (msg.type === "SAVE_SETTINGS") {
     browser.storage.local.set(msg.payload).then(() => {
       sendResponse({ ok: true });
