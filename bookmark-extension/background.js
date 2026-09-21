@@ -139,7 +139,27 @@ browser.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 });
 
 // ── Image handling ───────────────────────────────────────────────
-const MAX_IMAGE_SIZE = 2 * 1024 * 1024; // 2 MB
+const MAX_IMAGE_SIZE = 4 * 1024 * 1024; // 4 MB
+const TARGET_IMAGE_WIDTH = 800; // px — request CDN-resized when possible
+
+/**
+ * Try to get a smaller version of the image URL.
+ * Many CDNs (WordPress, Next.js, etc.) support query params for resizing.
+ * Returns an array of URLs to try, smallest-first.
+ */
+function resizeImageUrlCandidates(url) {
+  if (!url) return [];
+  const candidates = [url];
+  // Add CDN resize variants (tried in order; first successful one wins)
+  const parsed = new URL(url);
+  // WordPress/Next.js style: ?w=800
+  const wUrl = url + (url.includes("?") ? "&" : "?") + "w=" + TARGET_IMAGE_WIDTH;
+  candidates.push(wUrl);
+  // Some CDNs: ?width=800
+  const widthUrl = url + (url.includes("?") ? "&" : "?") + "width=" + TARGET_IMAGE_WIDTH;
+  candidates.push(widthUrl);
+  return candidates;
+}
 
 /**
  * Extract the best image URL from page HTML.
@@ -218,54 +238,61 @@ function resolveUrl(src, pageUrl) {
 
 /**
  * Download an image and return { base64, ext, size }.
- * Returns null if the image is too large or download fails.
+ * Tries CDN resize variants first, then the original.
+ * Returns null if all attempts fail or the image is too large.
  */
 async function downloadImage(url) {
-  console.log(`[IMG] Downloading: ${url}`);
-  try {
-    const res = await fetch(url, {
-      headers: { "Accept": "image/*" },
-    });
-    if (!res.ok) {
-      console.warn(`[IMG] HTTP ${res.status} for image`);
-      return null;
+  const candidates = resizeImageUrlCandidates(url);
+  console.log(`[IMG] Downloading: ${url} (${candidates.length} candidates)`);
+
+  for (const candidate of candidates) {
+    try {
+      const res = await fetch(candidate, {
+        headers: { "Accept": "image/*" },
+      });
+      if (!res.ok) {
+        console.warn(`[IMG] HTTP ${res.status} for ${candidate}`);
+        continue;
+      }
+
+      const contentType = res.headers.get("Content-Type") || "";
+      const blob = await res.blob();
+      const size = blob.size;
+
+      if (size > MAX_IMAGE_SIZE) {
+        console.warn(`[IMG] Too large: ${size} bytes (max ${MAX_IMAGE_SIZE}) for ${candidate}`);
+        continue;
+      }
+
+      // Determine extension from Content-Type
+      const extMap = {
+        "image/jpeg": "jpg",
+        "image/png": "png",
+        "image/gif": "gif",
+        "image/webp": "webp",
+        "image/bmp": "bmp",
+      };
+      const ext = extMap[contentType.split(";")[0].trim()] || "jpg";
+
+      // Convert blob to base64
+      const buffer = await blob.arrayBuffer();
+      const bytes = new Uint8Array(buffer);
+      let binary = "";
+      const chunkSize = 8192;
+      for (let i = 0; i < bytes.length; i += chunkSize) {
+        binary += String.fromCharCode(...bytes.subarray(i, i + chunkSize));
+      }
+      const base64 = btoa(binary);
+
+      console.log(`[IMG] Downloaded: ${size} bytes from ${candidate}, type=${contentType}, ext=${ext}`);
+      return { base64, ext, size };
+    } catch (e) {
+      console.warn(`[IMG] Download failed for ${candidate}: ${e.message}`);
     }
-
-    const contentType = res.headers.get("Content-Type") || "";
-    const blob = await res.blob();
-    const size = blob.size;
-
-    if (size > MAX_IMAGE_SIZE) {
-      console.warn(`[IMG] Image too large: ${size} bytes (max ${MAX_IMAGE_SIZE})`);
-      return null;
-    }
-
-    // Determine extension from Content-Type
-    const extMap = {
-      "image/jpeg": "jpg",
-      "image/png": "png",
-      "image/gif": "gif",
-      "image/webp": "webp",
-      "image/bmp": "bmp",
-    };
-    const ext = extMap[contentType.split(";")[0].trim()] || "jpg";
-
-    // Convert blob to base64
-    const buffer = await blob.arrayBuffer();
-    const bytes = new Uint8Array(buffer);
-    let binary = "";
-    const chunkSize = 8192;
-    for (let i = 0; i < bytes.length; i += chunkSize) {
-      binary += String.fromCharCode(...bytes.subarray(i, i + chunkSize));
-    }
-    const base64 = btoa(binary);
-
-    console.log(`[IMG] Downloaded: ${size} bytes, type=${contentType}, ext=${ext}`);
-    return { base64, ext, size };
-  } catch (e) {
-    console.warn(`[IMG] Download failed: ${e.message}`);
-    return null;
   }
+
+  console.warn("[IMG] All candidates failed");
+  return null;
 }
 
 /**
