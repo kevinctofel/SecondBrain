@@ -644,7 +644,7 @@ function buildMarkdown(title, url, date, summary, imagePath, articleDate) {
   ];
 
   if (imagePath) {
-    lines.push(`image: "${imagePath}"`);
+    lines.push(`image: "/${imagePath}"`);
   }
 
   lines.push(
@@ -654,7 +654,7 @@ function buildMarkdown(title, url, date, summary, imagePath, articleDate) {
   );
 
   if (imagePath) {
-    lines.push(`![](${imagePath})`, "");
+    lines.push(`<img src="/${imagePath}" alt="${escapedTitle}">`, "");
   }
 
   lines.push(

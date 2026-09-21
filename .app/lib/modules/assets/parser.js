@@ -7,6 +7,7 @@ const extRegex = /\.(png|jpg|jpeg|svg|webp|gif)$/;
 const remoteRegex = /^https?:/;
 const isImageFile = (file) => extRegex.test(file);
 const isRelative = (url) => !remoteRegex.test(url);
+const isSiteAbsolute = (url) => url.startsWith("/");
 const isProduction = process.env.ELEVENTY_RUN_MODE === "build";
 
 export async function transformParser(content) {
@@ -25,7 +26,7 @@ export async function transformParser(content) {
     .toArray()
     .filter((img) => {
       const src = img.attribs.src;
-      return isRelative(src) && isImageFile(src);
+      return isRelative(src) && !isSiteAbsolute(src) && isImageFile(src);
     });
 
   if (!elements.length) return content;
