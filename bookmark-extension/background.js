@@ -184,7 +184,7 @@ async function getSettings() {
 const GH_API = "https://api.github.com";
 
 async function ghFetch(settings, path, opts = {}) {
-  const { TOKEN, OWNER, REPO } = settings;
+  const { ghToken: TOKEN, ghOwner: OWNER, ghRepo: REPO } = settings;
   const url = path.startsWith("http") ? path : `${GH_API}/repos/${OWNER}/${REPO}${path}`;
   const headers = {
     Authorization: `Bearer ${TOKEN}`,
@@ -233,7 +233,7 @@ async function checkExisting(filePath, settings) {
  * Returns the commit API object.
  */
 async function pushToGitHub(filePath, content, settings, title) {
-  const { TOKEN, OWNER, REPO } = settings;
+  const { ghToken: TOKEN, ghOwner: OWNER, ghRepo: REPO } = settings;
   const commitMsg = `Add bookmark: ${title}`;
 
   // Try to create; if it exists (race condition), update instead
@@ -264,7 +264,7 @@ async function pushToGitHub(filePath, content, settings, title) {
 
 // ── Summary generation ────────────────────────────────────────────
 async function generateSummary(title, url, content, settings) {
-  const { PROVIDER, MODEL, TOKEN } = settings;
+  const { aiProvider: PROVIDER, aiModel: MODEL, ghToken: TOKEN } = settings;
 
   // Extract readable text from HTML (strip tags, collapse whitespace)
   const text = extractText(content).slice(0, 8000);
