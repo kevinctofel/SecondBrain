@@ -671,6 +671,7 @@ async function fetchPageContent(url) {
   const res = await fetch(url, {
     headers: {
       "Accept": "text/html,application/xhtml+xml",
+      "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
     },
   });
   if (!res.ok) {
@@ -706,8 +707,8 @@ function extractText(html) {
   text = text.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, " ");
   text = text.replace(/<noscript[^>]*>[\s\S]*?<\/noscript>/gi, " ");
 
-  // Remove nav, footer, header, aside, form, button, iframe, svg
-  text = text.replace(/<(nav|footer|header|aside|form|button|iframe|svg|header)[^>]*>[\s\S]*?<\/\1>/gi, " ");
+  // Remove nav, footer, aside, form, button, iframe, svg
+  text = text.replace(/<(nav|footer|aside|form|button|iframe|svg)[^>]*>[\s\S]*?<\/\1>/gi, " ");
 
   // Remove HTML comments
   text = text.replace(/<!--[\s\S]*?-->/g, " ");
