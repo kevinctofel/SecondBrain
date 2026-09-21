@@ -20,6 +20,7 @@ const STORE_KEYS = {
   REPO: "ghRepo",
   MODEL: "aiModel",
   PROVIDER: "aiProvider", // "openai" | "anthropic" | "local"
+  AI_KEY: "aiKey",
 };
 
 const DEFAULTS = {
@@ -264,7 +265,7 @@ async function pushToGitHub(filePath, content, settings, title) {
 
 // ── Summary generation ────────────────────────────────────────────
 async function generateSummary(title, url, content, settings) {
-  const { aiProvider: PROVIDER, aiModel: MODEL, ghToken: TOKEN } = settings;
+  const { aiProvider: PROVIDER, aiModel: MODEL, aiKey: AI_KEY } = settings;
 
   // Extract readable text from HTML (strip tags, collapse whitespace)
   const text = extractText(content).slice(0, 8000);
@@ -283,11 +284,11 @@ async function generateSummary(title, url, content, settings) {
   ].join("\n");
 
   if (PROVIDER === "openai") {
-    return callOpenAI(prompt, MODEL, TOKEN);
+    return callOpenAI(prompt, MODEL, AI_KEY);
   }
 
   if (PROVIDER === "anthropic") {
-    return callAnthropic(prompt, MODEL, TOKEN);
+    return callAnthropic(prompt, MODEL, AI_KEY);
   }
 
   // Fallback: no AI, just truncate

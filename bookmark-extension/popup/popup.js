@@ -31,6 +31,7 @@ const setRepo = $("#setRepo");
 const setToken = $("#setToken");
 const setProvider = $("#setProvider");
 const setModel = $("#setModel");
+const setAiKey = $("#setAiKey");
 
 // ── Init: fill from active tab ───────────────────────────────────
 async function init() {
@@ -149,6 +150,7 @@ btnSettings.addEventListener("click", async () => {
     "ghRepo",
     "aiModel",
     "aiProvider",
+    "aiKey",
   ]);
 
   setOwner.value = data.ghOwner || "kevinctofel";
@@ -156,6 +158,7 @@ btnSettings.addEventListener("click", async () => {
   setToken.value = data.ghToken || "";
   setProvider.value = data.aiProvider || "openai";
   setModel.value = data.aiModel || "gpt-4o-mini";
+  setAiKey.value = data.aiKey || "";
 
   saveForm.style.display = "none";
   settingsPanel.classList.add("visible");
@@ -168,6 +171,7 @@ btnCloseSettings.addEventListener("click", async () => {
     ghToken: setToken.value.trim(),
     aiProvider: setProvider.value,
     aiModel: setModel.value.trim() || "gpt-4o-mini",
+    aiKey: setAiKey.value.trim(),
   });
 
   statusSettings.className = "status visible success";
