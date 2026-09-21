@@ -8,7 +8,7 @@ image: "//Images/bookmarks/2026-09-21-apple-mac-mini-late-2026-review-strong-per
 tags: [bookmarks]
 ---
 
-<img src="//Images/bookmarks/2026-09-21-apple-mac-mini-late-2026-review-strong-performance-but-losin.jpg" alt="Apple Mac mini (Late 2026) Review: Strong performance, but losing its grip on value | Tom's Hardware">
+<img src="../Images/bookmarks/2026-09-21-apple-mac-mini-late-2026-review-strong-performance-but-losin.jpg" alt="Apple Mac mini (Late 2026) Review: Strong performance, but losing its grip on value | Tom's Hardware">
 
 # [Apple Mac mini (Late 2026) Review: Strong performance, but losing its grip on value | Tom's Hardware](https://www.tomshardware.com/desktops/mini-pcs/apple-mac-mini-late-2026-review)
 
