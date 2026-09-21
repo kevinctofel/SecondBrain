@@ -225,7 +225,7 @@ async function pushToGitHub(filePath, content, settings, title) {
 
   // Try to create; if it exists (race condition), update instead
   try {
-    return await ghFetch(settings, `/repos/${OWNER}/${REPO}/contents/${filePath}`, {
+    return await ghFetch(settings, `/contents/${filePath}`, {
       method: "PUT",
       body: JSON.stringify({
         message: commitMsg,
@@ -237,7 +237,7 @@ async function pushToGitHub(filePath, content, settings, title) {
     if (!e.message.includes("409")) throw e;
     // File exists — get sha then update
     const existing = await ghFetch(settings, `/contents/${filePath}`);
-    return await ghFetch(settings, `/repos/${OWNER}/${REPO}/contents/${filePath}`, {
+    return await ghFetch(settings, `/contents/${filePath}`, {
       method: "PUT",
       body: JSON.stringify({
         message: `Update bookmark: ${title}`,
