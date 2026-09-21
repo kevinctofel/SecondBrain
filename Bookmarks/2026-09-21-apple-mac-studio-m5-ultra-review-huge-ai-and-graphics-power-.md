@@ -8,7 +8,7 @@ image: "/Images/bookmarks/2026-09-21-apple-mac-studio-m5-ultra-review-huge-ai-an
 tags: [bookmarks]
 ---
 
-![](/Images/bookmarks/2026-09-21-apple-mac-studio-m5-ultra-review-huge-ai-and-graphics-power-.jpg)
+<img src="/Images/bookmarks/2026-09-21-apple-mac-studio-m5-ultra-review-huge-ai-and-graphics-power-.jpg" alt="Apple Mac Studio (M5 Ultra) Review: Huge AI And Graphics Power At A Huge Premium">
 
 # [Apple Mac Studio (M5 Ultra) Review: Huge AI And Graphics Power At A Huge Premium](https://www.engadget.com/2263184/apple-mac-studio-m5-ultra-review/)
 

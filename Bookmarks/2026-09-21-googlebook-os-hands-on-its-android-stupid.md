@@ -8,7 +8,7 @@ image: "/Images/bookmarks/2026-09-21-googlebook-os-hands-on-its-android-stupid.j
 tags: [bookmarks]
 ---
 
-![](/Images/bookmarks/2026-09-21-googlebook-os-hands-on-its-android-stupid.jpg)
+<img src="/Images/bookmarks/2026-09-21-googlebook-os-hands-on-its-android-stupid.jpg" alt="Googlebook OS hands-on: It’s Android, stupid">
 
 # [Googlebook OS hands-on: It’s Android, stupid](https://9to5google.com/2026/09/21/googlebook-os-hands-on/)
 
