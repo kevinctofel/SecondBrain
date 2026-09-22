@@ -64,7 +64,9 @@ browser.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   }
 
   if (msg.type === "FETCH_PAGE") {
-    fetchPageContent(msg.url)
+    // Use content script in the tab's DOM (no CORS restrictions).
+    // Falls back to direct fetch if the content script isn't available.
+    fetchPageContent(msg.url, msg.tabId)
       .then((content) => sendResponse({ ok: true, content }))
       .catch((err) => sendResponse({ ok: false, error: err.message }));
     return true; // async
@@ -543,8 +545,10 @@ async function pushToGitHub(filePath, content, settings, title) {
 async function generateSummary(title, url, content, settings) {
   const { aiProvider: PROVIDER, aiModel: MODEL, aiKey: AI_KEY } = settings;
 
-  // Extract readable text from HTML (strip tags, collapse whitespace)
-  const text = extractText(content).slice(0, 8000);
+  // Content may be raw HTML (from fallback fetch) or already-extracted text
+  // (from the content script). Detect by checking for HTML tags.
+  const hasHtmlTags = /<[a-z][\s\S]*?>/.test(content);
+  const text = (hasHtmlTags ? extractText(content) : content).slice(0, 8000);
 
   if (!text.trim()) {
     return "No readable content extracted.";
@@ -667,17 +671,37 @@ function buildMarkdown(title, url, date, summary, imagePath, articleDate) {
 }
 
 // ── Page content fetch ───────────────────────────────────────────
-async function fetchPageContent(url) {
+/**
+ * Fetch page content for a URL.
+ * Primary: content script in the tab's DOM (no CORS).
+ * Fallback: direct fetch (may fail on CORS-blocked sites).
+ */
+async function fetchPageContent(url, tabId) {
+  // Try content script first (no CORS restrictions)
+  if (tabId) {
+    try {
+      const resp = await browser.tabs.sendMessage(tabId, { type: "EXTRACT_PAGE" });
+      if (resp && resp.ok && resp.content) {
+        console.log(`[PAGE] Extracted ${resp.content.length} chars via content script`);
+        return resp.content;
+      }
+    } catch (e) {
+      console.warn(`[PAGE] Content script unavailable, falling back to fetch: ${e.message}`);
+    }
+  }
+
+  // Fallback: direct fetch (works for sites that allow cross-origin)
   const res = await fetch(url, {
     headers: {
       "Accept": "text/html,application/xhtml+xml",
-      "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
     },
   });
   if (!res.ok) {
     throw new Error(`Could not fetch page: ${res.status} ${res.statusText}`);
   }
-  return res.text();
+  const html = await res.text();
+  console.log(`[PAGE] Fallback fetch: ${html.length} chars HTML`);
+  return html;
 }
 
 // ── Utils ─────────────────────────────────────────────────────────

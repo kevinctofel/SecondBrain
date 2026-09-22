@@ -21,6 +21,8 @@ const settingsPanel = $("#settingsPanel");
 const saveForm = $("#saveForm");
 const btnSettings = $("#btnSettings");
 const btnCloseSettings = $("#btnCloseSettings");
+const btnTestToken = $("#btnTestToken");
+const btnShowToken = $("#btnShowToken");
 const statusSettings = $("#statusSettings");
 
 // Settings inputs
@@ -29,6 +31,7 @@ const setRepo = $("#setRepo");
 const setToken = $("#setToken");
 const setProvider = $("#setProvider");
 const setModel = $("#setModel");
+const setAiKey = $("#setAiKey");
 
 // ── Init: fill from active tab ───────────────────────────────────
 async function init() {
@@ -76,9 +79,8 @@ async function fetchContent(tabId, url) {
 }
 
 async function fetchWithTab(tabId, url) {
-  // Use the tab's fetch context via the service worker
-  // (service worker has the page's origin context)
-  const resp = await browser.runtime.sendMessage({ type: "FETCH_PAGE", url });
+  // Use the tab's content script to extract page content (no CORS)
+  const resp = await browser.runtime.sendMessage({ type: "FETCH_PAGE", url, tabId });
   if (!resp?.ok) throw new Error(resp?.error || "Fetch failed");
   return resp.content;
 }
@@ -147,6 +149,7 @@ btnSettings.addEventListener("click", async () => {
     "ghRepo",
     "aiModel",
     "aiProvider",
+    "aiKey",
   ]);
 
   setOwner.value = data.ghOwner || "kevinctofel";
@@ -154,6 +157,7 @@ btnSettings.addEventListener("click", async () => {
   setToken.value = data.ghToken || "";
   setProvider.value = data.aiProvider || "openai";
   setModel.value = data.aiModel || "gpt-4o-mini";
+  setAiKey.value = data.aiKey || "";
 
   saveForm.style.display = "none";
   settingsPanel.classList.add("visible");
@@ -166,6 +170,7 @@ btnCloseSettings.addEventListener("click", async () => {
     ghToken: setToken.value.trim(),
     aiProvider: setProvider.value,
     aiModel: setModel.value.trim() || "gpt-4o-mini",
+    aiKey: setAiKey.value.trim(),
   });
 
   statusSettings.className = "status visible success";
@@ -177,10 +182,48 @@ btnCloseSettings.addEventListener("click", async () => {
     saveForm.style.display = "flex";
 
     // Re-check token warning
-    browser.runtime.sendMessage({ type: "CHECK_SETTINGS" }, (res) => {
-      tokenWarning.classList.toggle("visible", !res.tokenSet);
-    });
+    browser.runtime.sendMessage({ type: "CHECK_SETTINGS" })
+      .then((res) => {
+        tokenWarning.classList.toggle("visible", !res.tokenSet);
+      })
+      .catch(() => {});
   }, 1200);
+});
+
+btnTestToken.addEventListener("click", async () => {
+  // Save the current settings first (in case they haven't clicked Done yet)
+  await browser.storage.local.set({
+    ghOwner: setOwner.value.trim() || "kevinctofel",
+    ghRepo: setRepo.value.trim() || "SecondBrain",
+    ghToken: setToken.value.trim(),
+  });
+
+  statusSettings.className = "status visible info";
+  statusSettings.textContent = "Testing token…";
+
+  const resp = await browser.runtime.sendMessage({ type: "TEST_TOKEN" });
+
+  if (resp.ok) {
+    statusSettings.className = "status visible success";
+    statusSettings.textContent = `✓ Token valid — ${resp.login} can access ${resp.repo}`;
+  } else {
+    statusSettings.className = "status visible error";
+    statusSettings.textContent = `✗ ${resp.error || `HTTP ${resp.status || "?"}`}`;
+  }
+});
+
+btnShowToken.addEventListener("click", async () => {
+  const data = await browser.storage.local.get([
+    "ghToken", "ghOwner", "ghRepo",
+  ]);
+  const token = data.ghToken || "(empty)";
+  const masked = token.length > 20
+    ? `${token.slice(0, 10)}…${token.slice(-8)} (len=${token.length})`
+    : `${token} (len=${token.length})`;
+  statusSettings.className = "status visible info";
+  statusSettings.textContent =
+    `owner: ${data.ghOwner}  repo: ${data.ghRepo}\n` +
+    `token: ${masked}`;
 });
 
 // ── Helpers ──────────────────────────────────────────────────────
