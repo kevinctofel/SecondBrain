@@ -13,6 +13,7 @@
 ---
 
 <div class="page" data-pagefind-body>
+  {% from 'modules/notes/edit-this-note.macro.njk' import editThisNote %}
   <main class="page__main" id="app-content" >
     <article>
       {% if url %}
@@ -27,6 +28,11 @@
       <div class="article">
         {{ content | safe }}
       </div>
+      {% if is_article %}
+      <div class="page__edit" data-pagefind-ignore>
+        {{ editThisNote(app.editThisNote, page) }}
+      </div>
+      {% endif %}
     </article>
   </main>
 

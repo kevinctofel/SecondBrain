@@ -15,6 +15,12 @@ export default defineConfig({
     // - "fileSlug"  Use the file slug
     autoLabel: "title",
     },
+  editThisNote: {
+    // "Edit this page" link on article pages. The branch is resolved at build
+    // time (git branch / CF_PAGES_BRANCH) and the file is the note's source path.
+    url: "https://github.com/kevinctofel/SecondBrain/edit/{{ branch }}/{{ file }}",
+    openInNewTab: true,
+  },
   sidebar: {
     sections: [
       {
