@@ -1,11 +1,25 @@
 import { execSync } from "child_process";
+import { sourcePathsMap } from "./note-source-paths.js";
 
+/**
+ * Creates the editThisNoteLink filter.
+ * Resolves the note's source path via the module-level sourcePathsMap, which
+ * is keyed on the raw Eleventy page.filePathStem, so a note whose file is
+ * "2020-05-30-some-post.md" still resolves to the real (date-prefixed) file.
+ * Falls back to the plain filePathStem when the map has no entry.
+ * @param {import("@11ty/eleventy").UserConfig} eleventyConfig
+ * @returns {((page: {filePathStem: string}, config: {url: string}) => string)}
+ */
 export const editThisNoteLinkFilter = () => {
   const branch = getGitBranch();
 
   return function (page, config) {
-    // Example: "Features/Start%20page.md"
-    const file = `${page.filePathStem.replace(/^\//, "")}.md`;
+    if (typeof config !== "object" || config === null) {
+      return "";
+    }
+    const stem = page.filePathStem.replace(/^\//, "").toLowerCase();
+    const filePath = sourcePathsMap.get(stem) ?? stem;
+    const file = `${filePath}.md`;
     const url = config.url;
 
     return url
@@ -21,13 +35,12 @@ function getGitBranch() {
     const branch = execSync("git branch --show-current", options)
       .toString()
       .trim();
-    return (
-      branch ||
-      process.env.CF_PAGES_BRANCH || // Cloudflare Pages
-      process.env.HEAD || // Netlify
-      ""
-    );
+
+    // If git is not available or in a git repo, branch will be empty
+    // Fall back to the main branch
+    return branch || "main";
   } catch (err) {
-    return "";
+    // Fallback to main if git branch fails
+    return "main";
   }
 }
