@@ -545,10 +545,8 @@ async function pushToGitHub(filePath, content, settings, title) {
 async function generateSummary(title, url, content, settings) {
   const { aiProvider: PROVIDER, aiModel: MODEL, aiKey: AI_KEY } = settings;
 
-  // Content may be raw HTML (from fallback fetch) or already-extracted text
-  // (from the content script). Detect by checking for HTML tags.
-  const hasHtmlTags = /<[a-z][\s\S]*?>/.test(content);
-  const text = (hasHtmlTags ? extractText(content) : content).slice(0, 8000);
+  // Extract readable text from HTML (strip tags, collapse whitespace)
+  const text = extractText(content).slice(0, 8000);
 
   if (!text.trim()) {
     return "No readable content extracted.";
