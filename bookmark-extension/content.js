@@ -2,13 +2,13 @@
  * SecondBrain Bookmarks — Content Script
  *
  * Runs in the page context (no CORS restrictions).
- * Sends the page's raw HTML to the service worker, which runs
- * extractText, detectImageUrl, detectArticleDate on it.
+ * Sends the page's raw HTML to the service worker.
  *
- * Responds to messages from background.js (EXTRACT_PAGE).
+ * Uses `chrome` directly (content scripts don't have the
+ * `browser` polyfill from browser.js).
  */
 
-browser.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   if (msg.type !== "EXTRACT_PAGE") return;
 
   try {
