@@ -48,3 +48,15 @@
   inline-size: 500px;
   max-inline-size: 45%;
 }
+
+.app-header__rss {
+  color: var(--color-neutral-text-contrast);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: color 200ms ease-in-out;
+
+  &:hover {
+    color: var(--color-primary-text);
+  }
+}

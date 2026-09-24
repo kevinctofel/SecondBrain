@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kevin C. Tofel</title>
+    <link>https://kctofel.com</link>
+    <description>Tech, hardware, Linux, programming, and AI notes.</description>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 24 Sep 2026 22:14:50 GMT</lastBuildDate>
+    <atom:link href="https://kctofel.com/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building a browser extension to bookmark articles for my blog</title>
+      <link>https://kctofel.com/n/articles/building-a-browser-extension-to-auto-bookmark-articles/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/building-a-browser-extension-to-auto-bookmark-articles/</guid>
+      <pubDate>Mon, 21 Sep 2026 00:00:00 GMT</pubDate>
+      <description>I built a Chrome extension that saves any web page as a markdown bookmark on my blog, complete with an AI-generated summary, the article's photo, and a link back to the source.</description>
+    </item>
+    <item>
+      <title>AI broke my blog, and then fixed it</title>
+      <link>https://kctofel.com/n/articles/ai-broke-my-blog-then-fixed-it/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/ai-broke-my-blog-then-fixed-it/</guid>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 GMT</pubDate>
+      <description>With 6 years of posts across 3 sites, I decided to let AI consolidate all posts into one site. The migration was a good learning test, both for me and AI.</description>
+    </item>
+    <item>
+      <title>Planning 2026 like a real world D&amp;D character</title>
+      <link>https://kctofel.com/n/articles/2026-planning/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/2026-planning/</guid>
+      <pubDate>Tue, 30 Dec 2025 00:00:00 GMT</pubDate>
+      <description>I've planned 2026 to level up my stats as if I was a real world Dungeons &amp; Dragons character.</description>
+    </item>
+    <item>
+      <title>Minimal living budget recap July 2025</title>
+      <link>https://kctofel.com/n/articles/Minimal-living-budget-results-July-2025/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/Minimal-living-budget-results-July-2025/</guid>
+      <pubDate>Wed, 06 Aug 2025 00:00:00 GMT</pubDate>
+      <description>I have a full month of minimal apartment living under my belt. So how did I do compared to my budget? Let's see!</description>
+    </item>
+    <item>
+      <title>2025 mid-year update</title>
+      <link>https://kctofel.com/n/articles/2025-mid-year-update/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/2025-mid-year-update/</guid>
+      <pubDate>Tue, 01 Jul 2025 00:00:00 GMT</pubDate>
+      <description>It's been six months without a blog post and boy, have there been some ch- ch- changes in my life!</description>
+    </item>
+    <item>
+      <title>Week in review - Jan. 12, 2025</title>
+      <link>https://kctofel.com/n/articles/weekly-review-jan-12-2025/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/weekly-review-jan-12-2025/</guid>
+      <pubDate>Sun, 12 Jan 2025 00:00:00 GMT</pubDate>
+      <description>Why I downsized to the smaller iPad Pro, some limited tech time this week and a grandbaby update</description>
+    </item>
+    <item>
+      <title>Week in review - Dec. 29, 2024</title>
+      <link>https://kctofel.com/n/articles/weekly-review-dec-29-2024/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/weekly-review-dec-29-2024/</guid>
+      <pubDate>Sun, 29 Dec 2024 00:00:00 GMT</pubDate>
+      <description>Another look at de-Googled phones, considering AI hardware and a 250 year old autobiography</description>
+    </item>
+    <item>
+      <title>Week in review - Dec. 22, 2024</title>
+      <link>https://kctofel.com/n/articles/weekly-review-dec-22-2024/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/weekly-review-dec-22-2024/</guid>
+      <pubDate>Sun, 22 Dec 2024 00:00:00 GMT</pubDate>
+      <description>An early baby, eBooks on a home server, Witcher 3 upgrades, and my first mechanical keyboard mod</description>
+    </item>
+    <item>
+      <title>I'm tired of managing contacts. You do it!</title>
+      <link>https://kctofel.com/n/articles/im-tired-of-managing-contacts-you-do-it/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/im-tired-of-managing-contacts-you-do-it/</guid>
+      <pubDate>Sat, 11 Feb 2023 00:00:00 GMT</pubDate>
+      <description>I've been tinkering with an idea lately in terms of big tech and contact management. This is mainly for two reasons.</description>
+    </item>
+    <item>
+      <title>So my new desktop PC was delivered in a padded envelope</title>
+      <link>https://kctofel.com/n/articles/so-my-new-desktop-pc-was-delivered-in-a-padded-envelope/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/so-my-new-desktop-pc-was-delivered-in-a-padded-envelope/</guid>
+      <pubDate>Sun, 29 Jan 2023 00:00:00 GMT</pubDate>
+      <description>It's been nearly three years since I custom build my last desktop PC. And to be honest, I love that computer…</description>
+    </item>
+    <item>
+      <title>Defeated by the elves</title>
+      <link>https://kctofel.com/n/articles/defeated-by-the-elves/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/defeated-by-the-elves/</guid>
+      <pubDate>Sun, 11 Dec 2022 00:00:00 GMT</pubDate>
+      <description>I know when I'm beaten and this week, I was beaten…</description>
+    </item>
+    <item>
+      <title>It's been a... week</title>
+      <link>https://kctofel.com/n/articles/its-been-a-week/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/its-been-a-week/</guid>
+      <pubDate>Sun, 04 Dec 2022 00:00:00 GMT</pubDate>
+      <description>What a long, busy week. I mentioned on Monday that I'm beginning to prep for my first JavaScript assessment…</description>
+    </item>
+    <item>
+      <title>Training for the JavaScript Jedi Trials</title>
+      <link>https://kctofel.com/n/articles/training-for-the-javascript-jedi-trials/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/training-for-the-javascript-jedi-trials/</guid>
+      <pubDate>Mon, 28 Nov 2022 00:00:00 GMT</pubDate>
+      <description>Since February of this year, I've been a JavaScript Padawan…</description>
+    </item>
+    <item>
+      <title>I'm a JavaScript padawan learner at Launch School</title>
+      <link>https://kctofel.com/n/articles/im-a-javascript-padawan-learner-at-launch-school/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/im-a-javascript-padawan-learner-at-launch-school/</guid>
+      <pubDate>Sun, 06 Feb 2022 00:00:00 GMT</pubDate>
+      <description>Anyone who knows me even a little knows that I can't sit still when it comes to my education…</description>
+    </item>
+    <item>
+      <title>So ends the great Masters in CS experiment</title>
+      <link>https://kctofel.com/n/articles/so-ends-the-great-masters-in-cs-experiment/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/so-ends-the-great-masters-in-cs-experiment/</guid>
+      <pubDate>Wed, 22 Dec 2021 00:00:00 GMT</pubDate>
+      <description>Well, my first semester in the Georgia Tech OMSCS program is over. And my first semester is also my last semester…</description>
+    </item>
+    <item>
+      <title>Gas station free for 2 months and loving it!</title>
+      <link>https://kctofel.com/n/articles/gas-station-free-for-2-months-and-loving-it/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/gas-station-free-for-2-months-and-loving-it/</guid>
+      <pubDate>Tue, 31 Aug 2021 00:00:00 GMT</pubDate>
+      <description>As I get older, I'm starting to appreciate &quot;things&quot; more…</description>
+    </item>
+    <item>
+      <title>Why I'm drowning in the C</title>
+      <link>https://kctofel.com/n/articles/im-drowning-in-the-c/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/im-drowning-in-the-c/</guid>
+      <pubDate>Sat, 31 Jul 2021 00:00:00 GMT</pubDate>
+      <description>What a slacker. I just realized I haven't posted here since April…</description>
+    </item>
+    <item>
+      <title>It's just a CRUDdy app, but at least it's my CRUDdy app</title>
+      <link>https://kctofel.com/n/articles/its-just-a-cruddy-app-but-at-least-its-my-cruddy-app/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/its-just-a-cruddy-app-but-at-least-its-my-cruddy-app/</guid>
+      <pubDate>Fri, 23 Apr 2021 00:00:00 GMT</pubDate>
+      <description>The last time I blogged here was when I applied to the online Georgia Tech Masters in CS program six weeks ago…</description>
+    </item>
+    <item>
+      <title>Wish me luck (I'm gonna need it)</title>
+      <link>https://kctofel.com/n/articles/wish-me-luck-im-gonna-need-it/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/wish-me-luck-im-gonna-need-it/</guid>
+      <pubDate>Sun, 28 Feb 2021 00:00:00 GMT</pubDate>
+      <description>I made a big life decision this past month…</description>
+    </item>
+    <item>
+      <title>Replacing Google Drive or other cloud services for data privacy</title>
+      <link>https://kctofel.com/n/articles/replacing-google-drive-or-other-cloud-services-for-data-privacy/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/replacing-google-drive-or-other-cloud-services-for-data-privacy/</guid>
+      <pubDate>Mon, 08 Feb 2021 00:00:00 GMT</pubDate>
+      <description>I've been remiss in following up the series of blog posts on data privacy…</description>
+    </item>
+    <item>
+      <title>My first CRUDdy JavaScript app</title>
+      <link>https://kctofel.com/n/articles/my-first-cruddy-javascript-app/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/my-first-cruddy-javascript-app/</guid>
+      <pubDate>Mon, 30 Nov 2020 00:00:00 GMT</pubDate>
+      <description>We're in the home stretch of the fall semester where I'm taking my first JavaScript (JS) class…</description>
+    </item>
+    <item>
+      <title>Living a mobile life without Apple or Google, part 2: apps and email</title>
+      <link>https://kctofel.com/n/articles/living-a-mobile-life-without-apple-or-google-part-2-apps-email-cloud-storage/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/living-a-mobile-life-without-apple-or-google-part-2-apps-email-cloud-storage/</guid>
+      <pubDate>Sun, 29 Nov 2020 00:00:00 GMT</pubDate>
+      <description>Last week, I shared my current experiment of living without &quot;big tech&quot;…</description>
+    </item>
+    <item>
+      <title>The experiment: Living a mobile life without Apple or Google (part 1)</title>
+      <link>https://kctofel.com/n/articles/the-experiment-living-a-mobile-life-without-apple-or-google/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/the-experiment-living-a-mobile-life-without-apple-or-google/</guid>
+      <pubDate>Sat, 21 Nov 2020 00:00:00 GMT</pubDate>
+      <description>I've been thinking quite a bit about data privacy and the mobile industry lately…</description>
+    </item>
+    <item>
+      <title>So I hit the Nvidia RTX 3080 lottery</title>
+      <link>https://kctofel.com/n/articles/so-i-hit-the-nvidia-rtx-3080-lottery/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/so-i-hit-the-nvidia-rtx-3080-lottery/</guid>
+      <pubDate>Sat, 17 Oct 2020 00:00:00 GMT</pubDate>
+      <description>When I built my $900 budget gaming PC back in June, I never thought it would become a money pit of sorts…</description>
+    </item>
+    <item>
+      <title>Microsoft Surface Duo: Dual screens and dual personalities</title>
+      <link>https://kctofel.com/n/articles/microsoft-surface-duo-dual-screens-and-dual-personalities/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/microsoft-surface-duo-dual-screens-and-dual-personalities/</guid>
+      <pubDate>Tue, 15 Sep 2020 00:00:00 GMT</pubDate>
+      <description>The Microsoft Surface Duo I ordered two weeks ago arrived late last week…</description>
+    </item>
+    <item>
+      <title>JavaScript: The semester begins</title>
+      <link>https://kctofel.com/n/articles/javascript-the-semester-begins/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/javascript-the-semester-begins/</guid>
+      <pubDate>Mon, 07 Sep 2020 00:00:00 GMT</pubDate>
+      <description>Up until three months ago, I'd never written a single line of JavaScript…</description>
+    </item>
+    <item>
+      <title>Why I bought a Surface Duo (or two)</title>
+      <link>https://kctofel.com/n/articles/why-i-bought-a-surface-duo-or-two/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/why-i-bought-a-surface-duo-or-two/</guid>
+      <pubDate>Sat, 05 Sep 2020 00:00:00 GMT</pubDate>
+      <description>After noting how easy it is to switch from iOS to Android, I decided to pre-order a Microsoft Surface Duo…</description>
+    </item>
+    <item>
+      <title>Thoughts on switching from iPhone to Android these days</title>
+      <link>https://kctofel.com/n/articles/thoughts-on-switching-from-iphone-to-android-these-days/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/thoughts-on-switching-from-iphone-to-android-these-days/</guid>
+      <pubDate>Sun, 30 Aug 2020 00:00:00 GMT</pubDate>
+      <description>Earlier this month, I took the SIM card from my iPhone 11 Pro and dropped it in my Pixel 4…</description>
+    </item>
+    <item>
+      <title>I'm such a sucker: I bought an older GPU to replace a newer one</title>
+      <link>https://kctofel.com/n/articles/im-such-a-sucker-i-bought-an-older-gpu-to-replace-a-newer-one/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/im-such-a-sucker-i-bought-an-older-gpu-to-replace-a-newer-one/</guid>
+      <pubDate>Sat, 29 Aug 2020 00:00:00 GMT</pubDate>
+      <description>A few weeks back, I explained how my $900 gaming PC quickly became a $1,200 gaming PC…</description>
+    </item>
+    <item>
+      <title>It's things like this that annoy me about Windows</title>
+      <link>https://kctofel.com/n/articles/Its-things-like-this-that-annoy-me-about-Windows/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/Its-things-like-this-that-annoy-me-about-Windows/</guid>
+      <pubDate>Sat, 08 Aug 2020 00:00:00 GMT</pubDate>
+      <description>I was all set to share an interesting tech tidbit here this morning and was stopped in my tracks.</description>
+    </item>
+    <item>
+      <title>I was so wrong. Don't build your own PC</title>
+      <link>https://kctofel.com/n/articles/I-was-so-wrong-dont-build-your-own-PC/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/I-was-so-wrong-dont-build-your-own-PC/</guid>
+      <pubDate>Fri, 31 Jul 2020 00:00:00 GMT</pubDate>
+      <description>About a month ago I suggested that most people should build their own PC at least once…</description>
+    </item>
+    <item>
+      <title>Goodbye Hugo, hello Gatsby!</title>
+      <link>https://kctofel.com/n/articles/Goodbye-Hugo-hello-Gatsby/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/Goodbye-Hugo-hello-Gatsby/</guid>
+      <pubDate>Fri, 24 Jul 2020 00:00:00 GMT</pubDate>
+      <description>After a month of considering a switch of the Static Site Generator, or SSG, that creates the pages for this blog…</description>
+    </item>
+    <item>
+      <title>Interesting: Developing in Ubuntu through VS Code, running in WSL2</title>
+      <link>https://kctofel.com/n/articles/interesting-developing-in-ubuntu-through-vs-code-running-in-wsl2-1/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/interesting-developing-in-ubuntu-through-vs-code-running-in-wsl2-1/</guid>
+      <pubDate>Sat, 18 Jul 2020 00:00:00 GMT</pubDate>
+      <description>Late last month, I said I’d be looking into WSL, or the Windows Subsystem for Linux…</description>
+    </item>
+    <item>
+      <title>Three weeks in, a $68 PC storage upgrade: SATA SSD vs. M.2 NVMe drives</title>
+      <link>https://kctofel.com/n/articles/this-68-storage-upgrade-was-well-worth-it-even-if-it-was-twice-the-cost-of-an-ssd/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/this-68-storage-upgrade-was-well-worth-it-even-if-it-was-twice-the-cost-of-an-ssd/</guid>
+      <pubDate>Fri, 17 Jul 2020 00:00:00 GMT</pubDate>
+      <description>I dropped $68 on this Western Digital 250 GB M.2 NVMe drive from Amazon this week and it arrived today.</description>
+    </item>
+    <item>
+      <title>Added to the to-do list: A Jamstack blog commenting system</title>
+      <link>https://kctofel.com/n/articles/added-to-the-to-do-list-a-jamstack-blog-commenting-system/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/added-to-the-to-do-list-a-jamstack-blog-commenting-system/</guid>
+      <pubDate>Fri, 10 Jul 2020 00:00:00 GMT</pubDate>
+      <description>I've gotten away from posting here or continuing my path towards learning Gatsby for blog publishing of late…</description>
+    </item>
+    <item>
+      <title>Should everyone build their own PC at least once?</title>
+      <link>https://kctofel.com/n/articles/should-everyone-build-their-own-pc-at-least-once/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/should-everyone-build-their-own-pc-at-least-once/</guid>
+      <pubDate>Sun, 28 Jun 2020 00:00:00 GMT</pubDate>
+      <description>I'm going to answer my own question with a caveat…</description>
+    </item>
+    <item>
+      <title>The Great Gatsby vs Hugo for static site generation</title>
+      <link>https://kctofel.com/n/articles/the-great-gatsby-vs-hugo-for-static-site-generation/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/the-great-gatsby-vs-hugo-for-static-site-generation/</guid>
+      <pubDate>Thu, 18 Jun 2020 00:00:00 GMT</pubDate>
+      <description>Well that didn't take long. I've been thinking about the tools that power this site since my last post because I…</description>
+    </item>
+    <item>
+      <title>Getting JavaScript-y with APIs, even if it's hard to secure the keys</title>
+      <link>https://kctofel.com/n/articles/getting-javascript-y-with-apis-even-if-its-hard-to-secure-the-keys/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/getting-javascript-y-with-apis-even-if-its-hard-to-secure-the-keys/</guid>
+      <pubDate>Sat, 06 Jun 2020 00:00:00 GMT</pubDate>
+      <description>My spring semster ended about a month ago in a whimper as the pandemic hit smack dab in the middle of March…</description>
+    </item>
+    <item>
+      <title>Git sub-modules: I finally see the power</title>
+      <link>https://kctofel.com/n/articles/i-see-the-power-of-git-submodules/</link>
+      <guid isPermaLink="true">https://kctofel.com/n/articles/i-see-the-power-of-git-submodules/</guid>
+      <pubDate>Sat, 30 May 2020 00:00:00 GMT</pubDate>
+      <description>As I noted in my last post, I'm still a n00b developer…</description>
+    </item>
+  </channel>
+</rss>
