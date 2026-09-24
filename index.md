@@ -1,6 +1,7 @@
 ---
 
 templateEngineOverride: njk, md
+panel: false
 ---
 
 # Kevin C. Tofel
