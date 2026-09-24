@@ -38,6 +38,7 @@ export default defineConfig({
       filter: [
         ["filePathStem", "isNotEqual", "/index"],
         ["filePathStem", "doesNotInclude", "/Articles/"],
+        ["filePathStem", "doesNotInclude", "/Bookmarks/"],
       ],
     },
   },
