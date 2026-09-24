@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "start": "npm-run-all clean -p css:watch js:watch 11ty:serve",
-    "build": "npm-run-all clean -p css:build js:build rss 11ty:build && cp ../rss.xml dist/rss.xml",
+    "build": "npm-run-all clean -p css:build js:build rss 11ty:build",
     "11ty:serve": "eleventy --serve",
-    "11ty:build": "eleventy",
+    "11ty:build": "eleventy && cp ../rss.xml dist/rss.xml",
     "rss": "node ../build-rss.mjs",
     "themes:generate": "node ./scripts/generate-themes.js",
     "css:watch": "node scripts/bundle-css.js --watch",
