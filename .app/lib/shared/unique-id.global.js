@@ -1,3 +1,5 @@
+import { webcrypto } from "crypto";
+
 /**
  * Creates a uniqueId filter.
  * @returns The filter function.
@@ -14,7 +16,7 @@ export const uniqueIdGlobal = () => {
    * ```
    */
   return () => {
-    const id = crypto.randomUUID().substring(0, 8);
+    const id = webcrypto.randomUUID().substring(0, 8);
     return (...args) => `id-${id}-${args.join("-")}`.toLowerCase();
   };
 };
