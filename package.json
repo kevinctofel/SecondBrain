@@ -1,0 +1,9 @@
+{
+  "name": "kctofel",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install --prefix .app",
+    "build": "npm run build --prefix .app"
+  }
+}

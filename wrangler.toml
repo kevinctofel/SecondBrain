@@ -1,3 +1,5 @@
 name = "kctofel"
-compatibility_date = "2025-09-25"
-build = { command = "cd .app && npm install && npm run build", upload = ".app/dist" }
+pages_build_output_dir = ".app/dist"
+
+[build]
+command = "cd .app && npm install && npm run build"
