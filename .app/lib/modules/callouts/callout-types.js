@@ -1,4 +1,10 @@
 import fs from "fs";
+import path from "path";
+import { createRequire } from "module";
+import { fileURLToPath } from "url";
+
+const require = createRequire(import.meta.url);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export const calloutTypes = {
   ...define("note", "blue", "note"),
@@ -24,6 +30,6 @@ function define(name, color, icon, aliases = [], type = name) {
 }
 
 function getIcon(icon) {
-  const path = import.meta.resolve(`@tabler/icons/outline/${icon}.svg`);
-  return fs.readFileSync(new URL(path), "utf8");
+  const iconPath = require.resolve(`@tabler/icons/outline/${icon}.svg`);
+  return fs.readFileSync(iconPath, "utf8");
 }
