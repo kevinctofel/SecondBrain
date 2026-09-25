@@ -5,8 +5,9 @@ import path from "path";
 import { createRequire } from "module";
 import { fileURLToPath } from "url";
 const require = createRequire(import.meta.url);
-const matter = require("/home/kct/blog_migration_5/SecondBrain/.app/node_modules/gray-matter");
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const grayMatterPath = require.resolve("gray-matter", { paths: [path.join(__dirname, ".app", "node_modules")] });
+const matter = require(grayMatterPath);
 
 const articlesDir = path.join(__dirname, "Articles");
 const base = "https://kctofel.com";
