@@ -1,5 +1,2 @@
 name = "kctofel"
 pages_build_output_dir = ".app/dist"
-
-[build]
-command = "cd .app && npm install && npm run build"
