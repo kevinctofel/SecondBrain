@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm-run-all clean -p css:watch js:watch 11ty:serve",
     "build": "npm-run-all clean -p css:build js:build 11ty:build && node ../build-rss.mjs && cp ../rss.xml dist/rss.xml",
-    "11ty:serve": "eleventy --serve",
+    "11ty:serve": "eleventy --serve --port=8088",
     "11ty:build": "eleventy",
     "themes:generate": "node ./scripts/generate-themes.js",
     "css:watch": "node scripts/bundle-css.js --watch",
