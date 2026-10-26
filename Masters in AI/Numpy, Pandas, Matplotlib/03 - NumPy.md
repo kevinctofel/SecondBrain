@@ -98,4 +98,42 @@ print('The elements in x are of type:', x.dtype)
 # The elements in x are of type: int64
 ```
 
+An example with strings instead of integers
+
+```python
+## We create a rank 1 ndarray that only contains strings
+x = np.array(['Hello', 'World'])
+
+## We print information about x
+print('x = ', x)
+print('x has dimensions:', x.shape)
+print('x is an object of type:', type(x))
+print('The elements in x are of type:', x.dtype)
+x = ['Hello' 'World']
+
+# x has dimensions: (2,)
+# x is an object of type: class 'numpy.ndarray'
+# The elements in x are of type: U5
+```
+One big difference between Python lists and ndarrays, is that unlike Python lists, all the elements of an ndarray must be of the same type. So, while we can create Python lists with both integers and strings, we can't mix types in ndarrays. If you provide the np.array() function with a Python list that has both integers and strings, NumPy will interpret all elements as strings. 
+
+Example:
+```python
+## We create a rank 1 ndarray from a Python list that contains integers and strings
+x = np.array([1, 2, 'World'])
+
+## We print information about x
+print('x = ', x)
+print('x has dimensions:', x.shape)
+print('x is an object of type:', type(x))
+print('The elements in x are of type:', x.dtype)
+x = ['1' '2' 'World']
+
+# x has dimensions: (3,)
+# x is an object of type: class 'numpy.ndarray'
+# The elements in x are of type: U21
+
+# NOTE: This U21 indicates a fixed-length string of 21 characters, as NumPy upcasts to accommodate the longest string in the array. 
+```
+
 
