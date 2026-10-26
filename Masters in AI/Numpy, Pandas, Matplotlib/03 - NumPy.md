@@ -4,9 +4,9 @@ lesson: Numpy, Pandas, Matlabplot
 module: NumPy
 date: 2026-10-26
 
-study_time: 0h
-difficulty: 1
-confidence: 5
+study_time: 1h
+difficulty: 3
+confidence: 2
 review_due: 2026-09-08
 
 status: in progress
@@ -212,3 +212,6 @@ np.save('my_array', x)
 ## We load the saved array from our current directory into variable y
 y = np.load('my_array.npy')
 ```
+
+### Using built-in functions to create ndarrays
+
