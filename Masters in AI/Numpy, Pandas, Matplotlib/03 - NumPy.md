@@ -136,4 +136,79 @@ x = ['1' '2' 'World']
 # NOTE: This U21 indicates a fixed-length string of 21 characters, as NumPy upcasts to accommodate the longest string in the array. 
 ```
 
+Upcasting in Numeric datatype example:
 
+In this case NumPy upcasts the integers in z to floats in order to avoid losing precision in numerical computations.
+
+```python
+## We create a rank 1 ndarray that contains integers
+x = np.array([1,2,3])
+
+## We create a rank 1 ndarray that contains floats
+y = np.array([1.0,2.0,3.0])
+
+## We create a rank 1 ndarray that contains integers and floats
+z = np.array([1, 2.5, 4])
+
+## We print the dtype of each ndarray
+print('The elements in x are of type:', x.dtype)
+print('The elements in y are of type:', y.dtype)
+print('The elements in z are of type:', z.dtype)
+
+# The elements in x are of type: int64
+# The elements in y are of type: float64
+# The elements in z are of type: float64
+```
+
+Even though NumPy automatically selects the dtype of the ndarray, NumPy also allows you to specify the particular dtype you want to assign to the elements of the ndarray. You can specify the dtype when you create the ndarray using the keyword dtype in the np.array() function. 
+
+Example:
+```python
+## We create a rank 1 ndarray of floats but set the dtype to int64
+x = np.array([1.5, 2.2, 3.7, 4.0, 5.9], dtype = np.int64)
+
+## We print the dtype x
+print('x = ', x)
+print('The elements in x are of type:', x.dtype)
+
+# x = [1 2 3 4 5]
+# The elements in x are of type: int64
+```
+
+#### numpy.ndarray.size and creating a 2-D array
+
+```python
+## We create a rank 2 ndarray that only contains integers
+Y = np.array([[1,2,3],[4,5,6],[7,8,9], [10,11,12]])
+
+print('Y = \n', Y)
+
+## We print information about Y
+print('Y has dimensions:', Y.shape)
+print('Y has a total of', Y.size, 'elements')
+print('Y is an object of type:', type(Y))
+print('The elements in Y are of type:', Y.dtype)
+Y =
+[[ 1 2 3]
+[ 4 5 6]
+[ 7 8 9]
+[10 11 12]]
+
+# Y has dimensions: (4, 3)
+# Y has a total of 12 elements
+# Y is an object of type: class 'numpy.ndarray'
+# The elements in Y are of type: int64
+```
+
+#### Saving / loading a NumPy array in a file
+
+```python
+## We create a rank 1 ndarray
+x = np.array([1, 2, 3, 4, 5])
+
+## We save x into the current directory as 
+np.save('my_array', x)
+
+## We load the saved array from our current directory into variable y
+y = np.load('my_array.npy')
+```
