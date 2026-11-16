@@ -215,3 +215,178 @@ y = np.load('my_array.npy')
 
 ### Using built-in functions to create ndarrays
 
+#### Create a Numpy array of zeros with a desired shape
+```python
+# We create a 3 x 4 ndarray full of zeros. 
+X = np.zeros((3,4))
+
+# We print X
+print()
+print('X = \n', X)
+print()
+
+# We print information about X
+print('X has dimensions:', X.shape)
+print('X is an object of type:', type(X))
+print('The elements in X are of type:', X.dtype)
+```
+
+#### Create a Numpy array of ones
+```python
+# We create a 3 x 2 ndarray full of ones. 
+X = np.ones((3,2))
+
+# We print X
+print()
+print('X = \n', X)
+print()
+
+# We print information about X
+print('X has dimensions:', X.shape)
+print('X is an object of type:', type(X))
+```
+
+#### Create a Numpy array of constants
+```python
+# We create a 2 x 3 ndarray full of fives. 
+X = np.full((2,3), 5) 
+
+# We print X
+print()
+print('X = \n', X)
+print()
+
+# We print information about X
+print('X has dimensions:', X.shape)
+print('X is an object of type:', type(X))
+print('The elements in X are of type:', X.dtype)
+```
+
+#### Create a Numpy array of an Identity matrix
+
+A fundamental array in Linear Algebra is the Identity Matrix. An Identity matrix is a square matrix that has only 1s in its main diagonal and zeros everywhere else. The function np.eye(N) creates a square N x N ndarray corresponding to the Identity matrix. Since all Identity Matrices are square, the np.eye() function only takes a single integer as an argument.
+
+```python
+# We create a 5 x 5 Identity matrix. 
+X = np.eye(5)
+
+# We print X
+print()
+print('X = \n', X)
+print()
+
+# We print information about X
+print('X has dimensions:', X.shape)
+print('X is an object of type:', type(X))
+print('The elements in X are of type:', X.dtype)
+```
+
+#### Create a diagonal NumPy array
+
+We can also create diagonal matrices by using the np.diag() function. A diagonal matrix is a square matrix that only has values in its main diagonal. The np.diag() function creates an ndarray corresponding to a diagonal matrix.
+
+```python
+# Create a 4 x 4 diagonal matrix that contains the numbers 10,20,30, and 50
+# on its main diagonal
+X = np.diag([10,20,30,50])
+
+# We print X
+print()
+print('X
+```
+
+#### numpy.arange
+
+NumPy also allows you to create ndarrays that have evenly spaced values within a given interval. NumPy's np.arange() function is very versatile and can be used with either one, two, or three arguments. 
+
+Create a Numpy array of evenly spaced values in a given range, using arange(stop_val)
+```python
+# We create a rank 1 ndarray that has sequential integers from 0 to 9
+x = np.arange(10)
+
+# We print the ndarray
+print()
+print('x = ', x)
+print()
+
+# We print information about the ndarray
+print('x has dimensions:', x.shape)
+print('x is an object of type:', type(x))
+print('The elements in x are of type:', x.dtype) 
+# x = [0 1 2 3 4 5 6 7 8 9]
+```
+
+Create a Numpy array using arange(start_val, stop_val)
+```python
+# We create a rank 1 ndarray that has sequential integers from 4 to 9. 
+x = np.arange(4,10)
+
+# We print the ndarray
+print()
+print('x = ', x)
+print()
+
+# We print information about the ndarray
+print('x has dimensions:', x.shape)
+print('x is an object of type:', type(x))
+print('The elements in x are of type:', x.dtype) 
+# x = [4 5 6 7 8 9]
+```
+
+Create a Numpy array using arange(start_val, stop_val, step_size)
+```python
+# We create a rank 1 ndarray that has evenly spaced integers from 1 to 13 in steps of 3.
+x = np.arange(1,14,3)
+
+# We print the ndarray
+print()
+print('x = ', x)
+print()
+
+# We print information about the ndarray
+print('x has dimensions:', x.shape)
+print('x is an object of type:', type(x))
+print('The elements in x are of type:', x.dtype) 
+# x = [ 1 4 7 10 13]
+```
+
+Even though the np.arange() function allows for non-integer steps, such as 0.3, the output is usually inconsistent, due to the finite floating point precision. For this reason, in the cases where non-integer steps are required, it is usually better to use the function np.linspace(). The np.linspace(start, stop, N) function returns N evenly spaced numbers over the closed interval [start, stop]. This means that both the start and thestop values are included. We should also note the np.linspace() function needs to be called with at least two arguments in the form np.linspace(start,stop). In this case, the default number of elements in the specified interval will be N= 50. The reason np.linspace() works better than the np.arange() function, is that np.linspace() uses the number of elements we want in a particular interval, instead of the step between values.
+
+Create a Numpy array using linspace(start, stop, n), with stop inclusive.
+```python
+# We create a rank 1 ndarray that has 10 integers evenly spaced between 0 and 25.
+x = np.linspace(0,25,10)
+
+# We print the ndarray
+print()
+print('x = \n', x)
+print()
+
+# We print information about the ndarray
+print('x has dimensions:', x.shape)
+print('x is an object of type:', type(x))
+print('The elements in x are of type:', x.dtype) 
+# x = [ 0. 2.77777778 5.55555556 8.33333333 11.11111111
+13.88888889 16.66666667 19.44444444 22.22222222 25. ]
+```
+
+As we can see from the above example, the function np.linspace(0,25,10) returns an ndarray with 10 evenly spaced numbers in the closed interval [0, 25]. We can also see that both the start and end points, 0 and 25 in this case, are included. However, you can let the endpoint of the interval be excluded (just like in the np.arange() function) by setting the keyword endpoint = False in the np.linspace() function. Let's create the same x ndarray we created above but now with the endpoint excluded.
+
+Create a Numpy array using linspace(start, stop, n), with stop excluded.
+```python
+# We create a rank 1 ndarray that has 10 integers evenly spaced between 0 and 25,
+# with 25 excluded.
+x = np.linspace(0,25,10, endpoint = False)
+
+# We print the ndarray
+print()
+print('x = \n', x)
+print()
+
+# We print information about the ndarray
+print('x has dimensions:', x.shape)
+print('x is an object of type:', type(x))
+print('The elements in x are of type:', x.dtype) 
+# x = [ 0. 2.5 5. 7.5 10. 12.5 15. 17.5 20. 22.5]
+```
+
