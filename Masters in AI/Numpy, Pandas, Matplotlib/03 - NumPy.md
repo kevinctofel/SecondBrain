@@ -2,9 +2,9 @@
 course: AI Programming with Python
 lesson: Numpy, Pandas, Matlabplot
 module: NumPy
-date: 2026-10-26
+date: 2026-11-16
 
-study_time: 1h
+study_time: 2h
 difficulty: 3
 confidence: 2
 review_due: 2026-09-08
@@ -388,5 +388,168 @@ print('x has dimensions:', x.shape)
 print('x is an object of type:', type(x))
 print('The elements in x are of type:', x.dtype) 
 # x = [ 0. 2.5 5. 7.5 10. 12.5 15. 17.5 20. 22.5]
+```
+
+#### numpy.reshape - This is a Function
+
+So far, we have only used the built-in functions np.arange() and np.linspace() to create rank 1 ndarrays. However, we can use these functions to create rank 2 ndarrays of any shape by combining them with the np.reshape() function. The np.reshape(ndarray, new_shape) function converts the given ndarray into the specified new_shape. It is important to note that the new_shape should be compatible with the number of elements in the given ndarray. For example, you can convert a rank 1 ndarray with 6 elements, into a 3 x 2 rank 2 ndarray, or a 2 x 3 rank 2 ndarray, since both of these rank 2 arrays will have a total of 6 elements. However, you can't reshape the rank 1 ndarray with 6 elements into a 3 x 3 rank 2 ndarray, since this rank 2 array will have 9 elements, which is greater than the number of elements in the original ndarray.
+
+```python
+# We create a rank 1 ndarray with sequential integers from 0 to 19
+x = np.arange(20)
+
+# We print x
+print()
+print('Original x = ', x)
+print()
+
+# We reshape x into a 4 x 5 ndarray 
+x = np.reshape(x, (4,5))
+
+# We print the reshaped x
+print()
+print('Reshaped x = \n', x)
+print()
+
+# We print information about the reshaped x
+print('x has dimensions:', x.shape)
+print('x is an object of type:', type(x))
+print('The elements in x are of type:', x.dtype) 
+# Original x = [ 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19]
+
+Reshaped x =
+# [[ 0 1 2 3 4]
+ [ 5 6 7 8 9]
+ [10 11 12 13 14]
+ [15 16 17 18 19]]
+```
+
+#### numpy.ndarray.reshape - This one is a Method
+
+One great feature about NumPy, is that some functions can also be applied as methods. This allows us to apply different functions in sequence in just one line of code. ndarray methods are similar to ndarray attributes in that they are both applied using dot notation (.)
+
+```python
+# We create a a rank 1 ndarray with sequential integers from 0 to 19 and
+# reshape it to a 4 x 5 array 
+Y = np.arange(20).reshape(4, 5)
+
+# We print Y
+print()
+print('Y = \n', Y)
+print()
+
+# We print information about Y
+print('Y has dimensions:', Y.shape)
+print('Y is an object of type:', type(Y))
+print('The elements in Y are of type:', Y.dtype) 
+# Y =
+[[ 0 1 2 3 4]
+ [ 5 6 7 8 9]
+ [10 11 12 13 14]
+ [15 16 17 18 19]]
+```
+
+As before, it is important to note that the new_shape should be compatible with the number of elements in ndarray. In the example above, the function np.arange(20) creates an ndarray and serves as the ndarray to be reshaped by the reshape() method. Therefore, when using reshape() as a method, we don't need to pass the ndarray as an argument to the reshape() function, instead we only need to pass the new_shape argument.
+
+#### Create a rank 2 Numpy array by using the reshape() function.
+
+```python
+# We create a rank 1 ndarray with 10 integers evenly spaced between 0 and 50,
+# with 50 excluded. We then reshape it to a 5 x 2 ndarray
+X = np.linspace(0,50,10, endpoint=False).reshape(5,2)
+
+# We print X
+print()
+print('X = \n', X)
+print()
+
+# We print information about X
+print('X has dimensions:', X.shape)
+print('X is an object of type:', type(X))
+print('The elements in X are of type:', X.dtype)
+# X =
+ [[ 0. 5.]
+ [ 10. 15.]
+ [ 20. 25.]
+ [ 30. 35.]
+ [ 40. 45.]]
+```
+
+#### random arrays
+
+The last type of ndarrays we are going to create are random ndarrays. Random ndarrays are arrays that contain random numbers. Often in Machine Learning, you need to create random matrices, for example, when initializing the weights of a Neural Network. NumPy offers a variety of random functions to help us create random ndarrays of any shape.
+
+Create a Numpy array using the numpy.random.random() function
+```python
+# We create a 3 x 3 ndarray with random floats in the half-open interval [0.0, 1.0).
+X = np.random.random((3,3))
+
+# We print X
+print()
+print('X = \n', X)
+print()
+
+# We print information about X
+print('X has dimensions:', X.shape)
+print('X is an object of type:', type(X))
+print('The elements in x are of type:', X.dtype)
+# X =
+[[ 0.12379926 0.52943854 0.3443525 ]
+ [ 0.11169547 0.82123909 0.52864397]
+ [ 0.58244133 0.21980803 0.69026858]]
+```
+
+NumPy also allows us to create ndarrays with random integers within a particular interval. The function np.random.randint(start, stop, size = shape) creates an ndarray of the given shape with random integers in the half-open interval [start, stop). 
+
+Create a Numpy array using the numpy.random.randint() function.
+```python
+# We create a 3 x 2 ndarray with random integers in the half-open interval [4, 15).
+X = np.random.randint(4,15,size=(3,2))
+
+# We print X
+print()
+print('X = \n', X)
+print()
+
+# We print information about X
+print('X has dimensions:', X.shape)
+print('X is an object of type:', type(X))
+print('The elements in X are of type:', X.dtype)
+# X =
+[[ 7 11]
+ [ 9 11]
+ [ 6 7]]
+```
+
+In some cases, you may need to create ndarrays with random numbers that satisfy certain statistical properties. For example, you may want the random numbers in the ndarray to have an average of 0. NumPy allows you create random ndarrays with numbers drawn from various probability distributions. The function np.random.normal(mean, standard deviation, size=shape), for example, creates an ndarray with the given shape that contains random numbers picked from a normal (Gaussian) distribution with the given mean and standard deviation.
+
+Create a Numpy array of "Normal" distributed random numbers, using the numpy.random.normal() function.
+```python
+# We create a 1000 x 1000 ndarray of random floats drawn from normal (Gaussian) distribution
+# with a mean of zero and a standard deviation of 0.1.
+X = np.random.normal(0, 0.1, size=(1000,1000))
+
+# We print X
+print()
+print('X = \n', X)
+print()
+
+# We print information about X
+print('X has dimensions:', X.shape)
+print('X is an object of type:', type(X))
+print('The elements in X are of type:', X.dtype)
+print('The elements in X have a mean of:', X.mean())
+print('The maximum value in X is:', X.max())
+print('The minimum value in X is:', X.min())
+print('X has', (X < 0).sum(), 'negative numbers')
+print('X has', (X > 0).sum(), 'positive numbers')
+# X =
+[[ 0.04218614 0.03247225 -0.02936003 ..., 0.01586796 -0.05599115 -0.03630946]
+ [ 0.13879995 -0.01583122 -0.16599967 ..., 0.01859617 -0.08241612 0.09684025]
+ [ 0.14422252 -0.11635985 -0.04550231 ..., -0.09748604 -0.09350044 0.02514799]
+ ...,
+ [-0.10472516 -0.04643974 0.08856722 ..., -0.02096011 -0.02946155 0.12930844]
+ [-0.26596955 0.0829783 0.11032549 ..., -0.14492074 -0.00113646 -0.03566034]
+ [-0.12044482 0.20355356 0.13637195 ..., 0.06047196 -0.04170031 -0.04957684]]
 ```
 
